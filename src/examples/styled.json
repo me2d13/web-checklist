@@ -116,9 +116,8 @@
         },
         {
             "type": "text",
-            "text": "Adjust throttle to 1000 RPM or less",
+            "text": "Top level text can be between sections and when it is long it will be wrapped to the next line",
             "textStyle": {
-                "textAlign": "center",
                 "fontWeight": "bold"
             }
         },
