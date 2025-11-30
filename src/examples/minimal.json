@@ -1,0 +1,21 @@
+{
+    "title": "Car Checklist",
+    "columns": 1,
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Enter a car",
+            "steps": [
+                {
+                    "item": "Car door",
+                    "state": "OPENED"
+                },
+                {
+                    "item": "Driver",
+                    "state": "SEATED"
+                }
+            ]
+        }
+    ]
+}
+

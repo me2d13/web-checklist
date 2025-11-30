@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="en">
+    <title>Web Checklist</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Edit Section -->
+    <div id="edit-section" class="edit-section">
+        <div class="edit-container">
+            <h1>Web Checklist Generator</h1>
+            
+            <div class="json-editor">
+                <div class="json-editor-header">
+                    <label for="json-input">Enter JSON Data:</label>
+                    <div class="example-links">
+                        <span class="examples-label">Examples:</span>
+                        <a href="#" class="example-link" data-example="minimal">minimal</a>
+                        <a href="#" class="example-link" data-example="styled">styled</a>
+                        <a href="#" class="example-link" data-example="rich">rich</a>
+                    </div>
+                </div>
+                <textarea 
+                    id="json-input" 
+                    class="json-textarea" 
+                    placeholder="Paste or enter JSON data here..."
+                    rows="20"
+                ></textarea>
+            </div>
+            
+            <!-- Error Message Box -->
+            <div id="error-box" class="error-box hidden">
+                <div class="error-content">
+                    <span class="error-icon">⚠️</span>
+                    <div class="error-message" id="error-message"></div>
+                </div>
+                <button id="close-error" class="close-error" aria-label="Close error">×</button>
+            </div>
+            
+            <div class="button-container">
+                <button id="render-btn" class="btn btn-primary">Render</button>
+                <button id="render-hide-btn" class="btn btn-secondary">Render and Hide</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toggle Button (shown when edit section is hidden) -->
+    <button id="toggle-edit-btn" class="toggle-btn hidden" aria-label="Show editor">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+        </svg>
+    </button>
+
+    <!-- Checklist Section -->
+    <div id="checklist-section" class="checklist-section">
+        <div id="checklist-container" class="checklist-container">
+            <!-- Generated checklist will appear here -->
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
+

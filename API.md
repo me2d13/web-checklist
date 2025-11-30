@@ -1,0 +1,386 @@
+# Web Checklist - JSON API Reference
+
+This document describes the complete JSON structure for defining checklists.
+
+## Top Level Structure
+
+```json
+{
+    "title": "string (optional)",
+    "titleStyle": "object|string (optional)",
+    "columns": "number (optional, default: 1)",
+    "defaultStyle": "object (optional)",
+    "namedStyles": "object (optional)",
+    "elements": "array (required)"
+}
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `title` | string | No | Main title displayed at the top of the checklist |
+| `titleStyle` | object\|string | No | CSS styles or named style reference for the main checklist title |
+| `columns` | number | No | Number of columns for multi-column layout (default: 1) |
+| `defaultStyle` | object | No | Default styles applied to all elements by type |
+| `namedStyles` | object | No | Dictionary of reusable named styles |
+| `elements` | array | Yes | Array of element objects (sequences, text, etc.) |
+
+---
+
+## Elements
+
+Elements are objects in the `elements` array. Each element must have a `type` field.
+
+### Common Fields for All Elements
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | Yes | Element type: `"sequence"` or `"text"` |
+| `style` | object | No | CSS styles applied to the element container |
+
+---
+
+## Element Type: Sequence
+
+A sequence represents a checklist section with optional title and a list of steps.
+
+### Structure
+
+```json
+{
+    "type": "sequence",
+    "title": "string (optional)",
+    "style": "object|string (optional)",
+    "titleStyle": "object|string (optional)",
+    "itemStyle": "object|string (optional)",
+    "stateStyle": "object|string (optional)",
+    "steps": "array (required)"
+}
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | Yes | Must be `"sequence"` |
+| `title` | string | No | Sequence title. If omitted, steps appear without a heading |
+| `style` | object\|string | No | CSS styles or named style reference for the sequence container |
+| `titleStyle` | object\|string | No | CSS styles or named style reference for the sequence title |
+| `itemStyle` | object\|string | No | Default CSS styles or named style reference for all step items in this sequence |
+| `stateStyle` | object\|string | No | Default CSS styles or named style reference for all step states in this sequence |
+| `steps` | array | Yes | Array of step objects |
+
+**Note:** `itemStyle` and `stateStyle` at the sequence level apply to all steps in that sequence. Individual step styles override these defaults.
+
+### Steps
+
+Each step in a sequence has the following structure:
+
+```json
+{
+    "item": "string (optional)",
+    "state": "string (optional)",
+    "itemStyle": "object|string (optional)",
+    "stateStyle": "object|string (optional)"
+}
+```
+
+#### Step Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `item` | string | No | Step item description (left side) |
+| `state` | string | No | Step state/value (right side) |
+| `itemStyle` | object\|string | No | CSS styles or named style reference for the step item |
+| `stateStyle` | object\|string | No | CSS styles or named style reference for the step state |
+
+#### Step Rendering
+
+Steps are rendered as a line with:
+- Item on the left
+- Dotted line filling the space between
+- State on the right
+
+Example: `Item ................... STATE`
+
+---
+
+## Element Type: Text
+
+A text element displays custom text content, typically used as notes or instructions between sequences.
+
+### Structure
+
+```json
+{
+    "type": "text",
+    "text": "string (required)",
+    "style": "object (optional)",
+    "textStyle": "object (optional)"
+}
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | Yes | Must be `"text"` |
+| `text` | string | Yes | Text content to display |
+| `style` | object | No | CSS styles applied to the text element container |
+| `textStyle` | object | No | CSS styles applied to the text content itself |
+
+---
+
+## Default Styles
+
+Default styles allow you to define styling that applies to all elements of a specific type throughout the checklist.
+
+### Structure
+
+```json
+{
+    "defaultStyle": {
+        "sequence": {
+            "style": "object|string (optional)",
+            "titleStyle": "object|string (optional)",
+            "itemStyle": "object|string (optional)",
+            "stateStyle": "object|string (optional)"
+        },
+        "text": {
+            "style": "object|string (optional)",
+            "textStyle": "object|string (optional)"
+        }
+    }
+}
+```
+
+### Fields by Element Type
+
+#### For `sequence` elements:
+- `style` - Default container style for all sequences
+- `titleStyle` - Default title style for all sequence titles
+- `itemStyle` - Default item style for all steps in all sequences
+- `stateStyle` - Default state style for all steps in all sequences
+
+#### For `text` elements:
+- `style` - Default container style for all text elements
+- `textStyle` - Default text content style for all text elements
+
+### Priority Order (lowest to highest)
+
+1. **Document-level defaults** (`defaultStyle`)
+2. **Sequence-level defaults** (`itemStyle`/`stateStyle` on sequence)
+3. **Element-specific styles** (styles defined on individual elements/steps)
+
+### Example
+
+```json
+{
+    "defaultStyle": {
+        "sequence": {
+            "titleStyle": {
+                "letterSpacing": "0.15em",
+                "textTransform": "uppercase"
+            },
+            "itemStyle": {
+                "color": "#666"
+            }
+        },
+        "text": {
+            "textStyle": {
+                "fontStyle": "italic"
+            }
+        }
+    }
+}
+```
+
+---
+
+## Named Styles
+
+Named styles allow you to define reusable styles once and reference them throughout the checklist.
+
+### Structure
+
+```json
+{
+    "namedStyles": {
+        "styleName1": {
+            "color": "#ff0000",
+            "fontWeight": "bold"
+        },
+        "styleName2": {
+            "backgroundColor": "#e8f5e9"
+        }
+    }
+}
+```
+
+### Usage
+
+Any style field can use either:
+- **Inline styles** (object) - Define styles directly
+- **Named style reference** (string) - Reference a predefined named style
+
+```json
+{
+    "titleStyle": "styleName1"
+}
+```
+
+or
+
+```json
+{
+    "titleStyle": {
+        "color": "#ff0000",
+        "fontWeight": "bold"
+    }
+}
+```
+
+---
+
+## Styling
+
+Style fields can contain either:
+- **Object**: CSS property-value pairs applied directly
+- **String**: Reference to a named style defined in `namedStyles`
+
+Property names can use either camelCase or kebab-case.
+
+### Supported Style Fields
+
+| Field | Applied To | Description |
+|-------|-----------|-------------|
+| `style` (element level) | Element container | Styles for the entire element (sequence or text) |
+| `titleStyle` (sequence level) | Sequence title | Styles for the sequence title |
+| `itemStyle` (step level) | Step item | Styles for individual step item |
+| `stateStyle` (step level) | Step state | Styles for individual step state |
+| `textStyle` (text element) | Text content | Styles for the text content in text elements |
+
+### Style Object Format
+
+```json
+{
+    "backgroundColor": "#e8f5e9",
+    "color": "#2e7d32",
+    "fontWeight": "bold",
+    "textAlign": "center",
+    "padding": "0.5rem"
+}
+```
+
+Any valid CSS property can be used. Property names are automatically converted from camelCase to kebab-case.
+
+### Common Style Properties
+
+- `backgroundColor` - Background color
+- `color` - Text color
+- `fontSize` - Font size
+- `fontWeight` - Font weight (e.g., "bold", "600")
+- `fontStyle` - Font style (e.g., "italic")
+- `textAlign` - Text alignment (e.g., "center", "left", "right")
+- `padding` - Padding
+- `margin` - Margin
+- `border` - Border
+- `borderRadius` - Border radius
+
+---
+
+## Complete Example
+
+```json
+{
+    "title": "Pre-Flight Checklist",
+    "titleStyle": {
+        "color": "#1565c0",
+        "textTransform": "uppercase"
+    },
+    "columns": 2,
+    "defaultStyle": {
+        "sequence": {
+            "titleStyle": {
+                "letterSpacing": "0.1em"
+            }
+        }
+    },
+    "namedStyles": {
+        "engineControl": {
+            "color": "#9c27b0",
+            "fontWeight": "bold"
+        },
+        "warningBg": {
+            "backgroundColor": "#fff3e0",
+            "borderLeft": "4px solid #ff9800"
+        }
+    },
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Exterior Inspection",
+            "style": {
+                "backgroundColor": "#e8f5e9"
+            },
+            "titleStyle": {
+                "color": "#2e7d32",
+                "textAlign": "center"
+            },
+            "itemStyle": {
+                "fontStyle": "italic"
+            },
+            "stateStyle": "engineControl",
+            "steps": [
+                {
+                    "item": "Flight Controls",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Fuel Level",
+                    "state": "VERIFY",
+                    "itemStyle": {
+                        "color": "#d32f2f",
+                        "fontWeight": "bold"
+                    }
+                },
+                {
+                    "item": "Throttle",
+                    "state": "CHECK"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Ensure all pre-flight checks are complete",
+            "style": "warningBg",
+            "textStyle": {
+                "fontStyle": "italic",
+                "color": "#666",
+                "textAlign": "center"
+            }
+        },
+        {
+            "type": "sequence",
+            "steps": [
+                {
+                    "item": "Parking Brake",
+                    "state": "SET"
+                }
+            ]
+        }
+    ]
+}
+```
+
+---
+
+## Notes
+
+- Elements without a title (sequences or text) flow naturally with previous elements
+- Text elements are commonly used between sequences to add notes or instructions
+- Multi-column layout automatically balances content across columns
+- Sequences without titles are useful for continuing steps after a text element
+- Style inheritance: Element styles don't cascade; each style field is independent
+

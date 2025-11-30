@@ -1,0 +1,232 @@
+{
+    "title": "Aircraft Pre-Flight Checklist",
+    "columns": 2,
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Exterior Inspection",
+            "steps": [
+                {
+                    "item": "Flight Control Surfaces",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Landing Gear",
+                    "state": "SECURE"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Make sure you have 3 greens"
+        },
+        {
+            "type": "sequence",
+            "steps": [
+                {
+                    "item": "Fuel Level",
+                    "state": "VERIFY"
+                },
+                {
+                    "item": "Oil Level",
+                    "state": "CHECK"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Cockpit Preparation",
+            "steps": [
+                {
+                    "item": "Seat Position",
+                    "state": "ADJUST"
+                },
+                {
+                    "item": "Seat Belts",
+                    "state": "FASTENED"
+                },
+                {
+                    "item": "Circuit Breakers",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Fuel Selector",
+                    "state": "BOTH"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Engine Start",
+            "steps": [
+                {
+                    "item": "Battery Master",
+                    "state": "ON"
+                },
+                {
+                    "item": "Beacon Light",
+                    "state": "ON"
+                },
+                {
+                    "item": "Fuel Pump",
+                    "state": "ON"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "1/4 INCH"
+                },
+                {
+                    "item": "Mixture",
+                    "state": "FULL RICH"
+                },
+                {
+                    "item": "Propeller Area",
+                    "state": "CLEAR"
+                },
+                {
+                    "item": "Ignition",
+                    "state": "START"
+                },
+                {
+                    "item": "Oil Pressure",
+                    "state": "CHECK"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "After Engine Start",
+            "steps": [
+                {
+                    "item": "Fuel Pump",
+                    "state": "OFF"
+                },
+                {
+                    "item": "Navigation Lights",
+                    "state": "ON"
+                },
+                {
+                    "item": "Avionics Master",
+                    "state": "ON"
+                },
+                {
+                    "item": "Radios",
+                    "state": "SET"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Before Taxi",
+            "steps": [
+                {
+                    "item": "Flight Instruments",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Heading Indicator",
+                    "state": "SET"
+                },
+                {
+                    "item": "Altimeter",
+                    "state": "SET"
+                },
+                {
+                    "item": "Brakes",
+                    "state": "TEST"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Complete run-up before takeoff"
+        },
+        {
+            "type": "sequence",
+            "title": "Run-up",
+            "steps": [
+                {
+                    "item": "Parking Brake",
+                    "state": "SET"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "1700 RPM"
+                },
+                {
+                    "item": "Magnetos",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Carburetor Heat",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Engine Instruments",
+                    "state": "GREEN"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "IDLE"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Before Takeoff",
+            "steps": [
+                {
+                    "item": "Flight Controls",
+                    "state": "FREE & CORRECT"
+                },
+                {
+                    "item": "Flaps",
+                    "state": "SET"
+                },
+                {
+                    "item": "Trim",
+                    "state": "SET"
+                },
+                {
+                    "item": "Mixture",
+                    "state": "FULL RICH"
+                },
+                {
+                    "item": "Fuel Pump",
+                    "state": "ON"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Takeoff",
+            "steps": [
+                {
+                    "item": "Lights",
+                    "state": "ON"
+                },
+                {
+                    "item": "Transponder",
+                    "state": "ALT"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "FULL"
+                },
+                {
+                    "item": "Airspeed",
+                    "state": "ALIVE"
+                },
+                {
+                    "item": "Rotate",
+                    "state": "55 KIAS"
+                },
+                {
+                    "item": "Climb Speed",
+                    "state": "70-80 KIAS"
+                }
+            ]
+        }
+    ]
+}
+

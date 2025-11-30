@@ -1,0 +1,247 @@
+{
+    "title": "Cessna 172 Normal Procedures",
+    "titleStyle": {
+        "fontStyle": "italic"
+    },
+    "columns": 2,
+    "defaultStyle": {
+        "sequence": {
+            "titleStyle": {
+                "letterSpacing": "0.15em",
+                "fontStyle": "italic"
+            }
+        }
+    },
+    "namedStyles": {
+        "engineAction": {
+            "color": "#9c27b0",
+            "fontWeight": "bold"
+        },
+        "smallRed": {
+            "color": "#d32f2f",
+            "fontSize": "0.85rem"
+        }
+    },
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Before Starting Engine",
+            "style": {
+                "backgroundColor": "#e8f5e9"
+            },
+            "steps": [
+                {
+                    "item": "Preflight Inspection",
+                    "state": "COMPLETE"
+                },
+                {
+                    "item": "Seats, Belts, Harness",
+                    "state": "ADJUST & LOCK"
+                },
+                {
+                    "item": "Fuel Shutoff Valve",
+                    "state": "ON"
+                },
+                {
+                    "item": "Brakes",
+                    "state": "TEST & SET"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Starting Engine",
+            "titleStyle": {
+                "color": "#d32f2f",
+                "textAlign": "center"
+            },
+            "steps": [
+                {
+                    "item": "Mixture",
+                    "state": "RICH"
+                },
+                {
+                    "item": "Carburetor Heat",
+                    "state": "COLD",
+                    "itemStyle": {
+                        "color": "#d32f2f",
+                        "fontStyle": "italic"
+                    },
+                    "stateStyle": {
+                        "color": "#1565c0"
+                    }
+                },
+                {
+                    "item": "Master Switch",
+                    "state": "ON"
+                },
+                {
+                    "item": "Beacon",
+                    "state": "ON"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "OPEN 1/2 INCH",
+                    "itemStyle": "engineAction"
+                },
+                {
+                    "item": "Propeller Area",
+                    "state": "CLEAR"
+                },
+                {
+                    "item": "Ignition Switch",
+                    "state": "START",
+                    "itemStyle": "engineAction"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Adjust throttle to 1000 RPM or less",
+            "textStyle": {
+                "textAlign": "center",
+                "fontWeight": "bold"
+            }
+        },
+        {
+            "type": "sequence",
+            "steps": [
+                {
+                    "item": "Oil Pressure",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Navigation Lights",
+                    "state": "ON"
+                },
+                {
+                    "item": "Avionics Master Switch",
+                    "state": "ON"
+                },
+                {
+                    "item": "Radios",
+                    "state": "ON"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Before Takeoff",
+            "titleStyle": {
+                "backgroundColor": "#1565c0",
+                "color": "#ffffff",
+                "textAlign": "center",
+                "marginLeft": "-0.5rem",
+                "marginRight": "-0.5rem",
+                "paddingLeft": "1rem",
+                "paddingRight": "1rem"
+            },
+            "steps": [
+                {
+                    "item": "Parking Brake",
+                    "state": "SET"
+                },
+                {
+                    "item": "Cabin Doors",
+                    "state": "CLOSED & LOCKED"
+                },
+                {
+                    "item": "Flight Controls",
+                    "state": "FREE & CORRECT"
+                },
+                {
+                    "item": "Trim",
+                    "state": "TAKEOFF"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "1700 RPM",
+                    "itemStyle": "engineAction"
+                },
+                {
+                    "item": "Magnetos",
+                    "state": "CHECK",
+                    "itemStyle": "engineAction"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "IDLE",
+                    "itemStyle": "engineAction"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Normal Takeoff",
+            "style": {
+                "transform": "rotate(-2deg)"
+            },
+            "steps": [
+                {
+                    "item": "Wing Flaps",
+                    "state": "0-10°"
+                },
+                {
+                    "item": "Carburetor Heat",
+                    "state": "COLD"
+                },
+                {
+                    "item": "Mixture",
+                    "state": "RICH"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "FULL OPEN"
+                },
+                {
+                    "item": "Elevator Control",
+                    "state": "LIFT NOSE WHEEL"
+                },
+                {
+                    "item": "Climb Speed",
+                    "state": "70-80 KIAS"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Landing",
+            "itemStyle": {
+                "color": "#2e7d32",
+                "fontStyle": "italic"
+            },
+            "stateStyle": "smallRed",
+            "steps": [
+                {
+                    "item": "Mixture",
+                    "state": "RICH"
+                },
+                {
+                    "item": "Carburetor Heat",
+                    "state": "ON"
+                },
+                {
+                    "item": "Airspeed",
+                    "state": "65-75 KIAS",
+                    "itemStyle": {
+                        "color": "#1565c0",
+                        "fontWeight": "bold"
+                    }
+                },
+                {
+                    "item": "Wing Flaps",
+                    "state": "AS DESIRED"
+                },
+                {
+                    "item": "Touchdown",
+                    "state": "MAIN WHEELS FIRST"
+                },
+                {
+                    "item": "Brakes",
+                    "state": "MINIMUM REQUIRED"
+                }
+            ]
+        }
+    ]
+}
+
