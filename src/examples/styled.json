@@ -9,6 +9,10 @@
             "titleStyle": {
                 "letterSpacing": "0.15em",
                 "fontStyle": "italic"
+            },
+            "textStyle": {
+                "color": "#666666",
+                "fontSize": "0.9rem"
             }
         }
     },
@@ -20,6 +24,14 @@
         "smallRed": {
             "color": "#d32f2f",
             "fontSize": "0.85rem"
+        },
+        "subsection": {
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "marginTop": "1rem",
+            "marginBottom": "0rem",
+            "textDecoration": "underline"
         }
     },
     "elements": [
@@ -37,6 +49,13 @@
                 {
                     "item": "Seats, Belts, Harness",
                     "state": "ADJUST & LOCK"
+                },
+                {
+                    "text": "Text step",
+                    "textStyle": {
+                        "color": "gray",
+                        "fontStyle": "italic"
+                    }
                 },
                 {
                     "item": "Fuel Shutoff Valve",
@@ -154,6 +173,10 @@
                     "state": "TAKEOFF"
                 },
                 {
+                    "text": "Engine",
+                    "textStyle": "subsection"
+                },
+                {
                     "item": "Throttle",
                     "state": "1700 RPM",
                     "itemStyle": "engineAction"
@@ -244,4 +267,3 @@
         }
     ]
 }
-

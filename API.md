@@ -55,6 +55,7 @@ A sequence represents a checklist section with optional title and a list of step
     "titleStyle": "object|string (optional)",
     "itemStyle": "object|string (optional)",
     "stateStyle": "object|string (optional)",
+    "textStyle": "object|string (optional)",
     "steps": "array (required)"
 }
 ```
@@ -69,13 +70,18 @@ A sequence represents a checklist section with optional title and a list of step
 | `titleStyle` | object\|string | No | CSS styles or named style reference for the sequence title |
 | `itemStyle` | object\|string | No | Default CSS styles or named style reference for all step items in this sequence |
 | `stateStyle` | object\|string | No | Default CSS styles or named style reference for all step states in this sequence |
+| `textStyle` | object\|string | No | Default CSS styles or named style reference for all text steps in this sequence |
 | `steps` | array | Yes | Array of step objects |
 
 **Note:** `itemStyle` and `stateStyle` at the sequence level apply to all steps in that sequence. Individual step styles override these defaults.
 
 ### Steps
 
-Each step in a sequence has the following structure:
+### Steps
+
+Each step in a sequence can be either an item/state step or a text step.
+
+#### Item/State Step
 
 ```json
 {
@@ -86,7 +92,16 @@ Each step in a sequence has the following structure:
 }
 ```
 
-#### Step Fields
+#### Text Step
+
+```json
+{
+    "text": "string (required)",
+    "textStyle": "object|string (optional)"
+}
+```
+
+#### Step Fields (Item/State)
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -95,14 +110,23 @@ Each step in a sequence has the following structure:
 | `itemStyle` | object\|string | No | CSS styles or named style reference for the step item |
 | `stateStyle` | object\|string | No | CSS styles or named style reference for the step state |
 
+#### Step Fields (Text)
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `text` | string | Yes | Text content to display |
+| `textStyle` | object\|string | No | CSS styles or named style reference for the text content |
+
 #### Step Rendering
 
-Steps are rendered as a line with:
+**Item/State Steps** are rendered as a line with:
 - Item on the left
 - Dotted line filling the space between
 - State on the right
 
 Example: `Item ................... STATE`
+
+**Text Steps** are rendered as a single line of text.
 
 ---
 
@@ -145,7 +169,8 @@ Default styles allow you to define styling that applies to all elements of a spe
             "style": "object|string (optional)",
             "titleStyle": "object|string (optional)",
             "itemStyle": "object|string (optional)",
-            "stateStyle": "object|string (optional)"
+            "stateStyle": "object|string (optional)",
+            "textStyle": "object|string (optional)"
         },
         "text": {
             "style": "object|string (optional)",
@@ -162,6 +187,7 @@ Default styles allow you to define styling that applies to all elements of a spe
 - `titleStyle` - Default title style for all sequence titles
 - `itemStyle` - Default item style for all steps in all sequences
 - `stateStyle` - Default state style for all steps in all sequences
+- `textStyle` - Default text style for all text steps in all sequences
 
 #### For `text` elements:
 - `style` - Default container style for all text elements
@@ -259,6 +285,7 @@ Property names can use either camelCase or kebab-case.
 | `titleStyle` (sequence level) | Sequence title | Styles for the sequence title |
 | `itemStyle` (step level) | Step item | Styles for individual step item |
 | `stateStyle` (step level) | Step state | Styles for individual step state |
+| `textStyle` (step level) | Step text | Styles for individual step text |
 | `textStyle` (text element) | Text content | Styles for the text content in text elements |
 
 ### Style Object Format

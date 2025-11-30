@@ -326,6 +326,12 @@ body {
     font-weight: 600;
 }
 
+.sequence-step-text {
+    margin-bottom: 0.25rem;
+    font-family: monospace;
+    font-size: 0.95rem;
+}
+
 /* Text Elements */
 .checklist-element-text {
     background-color: #fafafa;

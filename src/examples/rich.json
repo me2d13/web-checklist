@@ -13,16 +13,10 @@
                 {
                     "item": "Landing Gear",
                     "state": "SECURE"
-                }
-            ]
-        },
-        {
-            "type": "text",
-            "text": "Make sure you have 3 greens"
-        },
-        {
-            "type": "sequence",
-            "steps": [
+                },
+                {
+                    "text": "Make sure you have 3 greens"
+                },
                 {
                     "item": "Fuel Level",
                     "state": "VERIFY"
@@ -229,4 +223,3 @@
         }
     ]
 }
-

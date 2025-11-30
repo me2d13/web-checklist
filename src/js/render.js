@@ -10,37 +10,37 @@
 export function renderChecklist(data, container) {
     // Clear previous content
     container.innerHTML = '';
-    
+
     // Create checklist title if present
     if (data.title) {
         const title = document.createElement('h2');
         title.className = 'checklist-title';
         title.textContent = data.title;
-        
+
         // Apply custom title style if present
         if (data.titleStyle) {
             applyStylesWithNamed(title, data.titleStyle, data.namedStyles || {});
         }
-        
+
         container.appendChild(title);
     }
-    
+
     // Create elements wrapper for column layout
     const elementsWrapper = document.createElement('div');
     elementsWrapper.className = 'checklist-elements';
-    
+
     // Apply column count if specified
     if (data.columns && data.columns > 1) {
         elementsWrapper.style.columnCount = data.columns;
     }
-    
+
     // Render elements (pass namedStyles and defaultStyle for reference)
     if (data.elements && data.elements.length > 0) {
         renderElements(data.elements, elementsWrapper, data.namedStyles || {}, data.defaultStyle || {});
     }
-    
+
     container.appendChild(elementsWrapper);
-        
+
     console.log('Checklist data:', data);
 }
 
@@ -55,18 +55,18 @@ function renderElements(elements, container, namedStyles, defaultStyle) {
     elements.forEach(element => {
         const elementDiv = document.createElement('div');
         elementDiv.className = `checklist-element checklist-element-${element.type || 'unknown'}`;
-        
+
         // Apply default style for this element type first (if present)
         const typeDefaults = defaultStyle[element.type] || {};
         if (typeDefaults.style) {
             applyStylesWithNamed(elementDiv, typeDefaults.style, namedStyles);
         }
-        
+
         // Apply element-specific styles (overrides defaults)
         if (element.style) {
             applyStylesWithNamed(elementDiv, element.style, namedStyles);
         }
-        
+
         // Call the appropriate render function based on type
         switch (element.type) {
             case 'sequence':
@@ -78,7 +78,7 @@ function renderElements(elements, container, namedStyles, defaultStyle) {
             default:
                 renderUnknown(element, elementDiv);
         }
-        
+
         container.appendChild(elementDiv);
     });
 }
@@ -131,72 +131,97 @@ function renderSequence(element, container, namedStyles, typeDefaults) {
         const titleDiv = document.createElement('div');
         titleDiv.className = 'sequence-title';
         titleDiv.textContent = element.title;
-        
+
         // Apply default title style (if present)
         if (typeDefaults.titleStyle) {
             applyStylesWithNamed(titleDiv, typeDefaults.titleStyle, namedStyles);
         }
-        
+
         // Apply element-specific title styles (overrides defaults)
         if (element.titleStyle) {
             applyStylesWithNamed(titleDiv, element.titleStyle, namedStyles);
         }
-        
+
         container.appendChild(titleDiv);
     }
-    
+
     // Render steps
     if (element.steps && element.steps.length > 0) {
         element.steps.forEach(step => {
-            const stepDiv = document.createElement('div');
-            stepDiv.className = 'sequence-step';
-            
-            const stepItem = document.createElement('span');
-            stepItem.className = 'step-item';
-            stepItem.textContent = step.item || '';
-            
-            // Apply default item style (if present)
-            if (typeDefaults.itemStyle) {
-                applyStylesWithNamed(stepItem, typeDefaults.itemStyle, namedStyles);
+            // Check if it's a text step
+            if (step.text) {
+                const stepDiv = document.createElement('div');
+                stepDiv.className = 'sequence-step-text';
+                stepDiv.textContent = step.text;
+
+                // Apply default text style (if present)
+                if (typeDefaults.textStyle) {
+                    applyStylesWithNamed(stepDiv, typeDefaults.textStyle, namedStyles);
+                }
+
+                // Apply sequence-level default text style (if present)
+                if (element.textStyle) {
+                    applyStylesWithNamed(stepDiv, element.textStyle, namedStyles);
+                }
+
+                // Apply step-level text styles (overrides defaults)
+                if (step.textStyle) {
+                    applyStylesWithNamed(stepDiv, step.textStyle, namedStyles);
+                }
+
+                container.appendChild(stepDiv);
+            } else {
+                // It's a regular item/state step
+                const stepDiv = document.createElement('div');
+                stepDiv.className = 'sequence-step';
+
+                const stepItem = document.createElement('span');
+                stepItem.className = 'step-item';
+                stepItem.textContent = step.item || '';
+
+                // Apply default item style (if present)
+                if (typeDefaults.itemStyle) {
+                    applyStylesWithNamed(stepItem, typeDefaults.itemStyle, namedStyles);
+                }
+
+                // Apply sequence-level default item style (if present)
+                if (element.itemStyle) {
+                    applyStylesWithNamed(stepItem, element.itemStyle, namedStyles);
+                }
+
+                // Apply step-level item styles (overrides all defaults)
+                if (step.itemStyle) {
+                    applyStylesWithNamed(stepItem, step.itemStyle, namedStyles);
+                }
+
+                const stepDots = document.createElement('span');
+                stepDots.className = 'step-dots';
+
+                const stepState = document.createElement('span');
+                stepState.className = 'step-state';
+                stepState.textContent = step.state || '';
+
+                // Apply default state style (if present)
+                if (typeDefaults.stateStyle) {
+                    applyStylesWithNamed(stepState, typeDefaults.stateStyle, namedStyles);
+                }
+
+                // Apply sequence-level default state style (if present)
+                if (element.stateStyle) {
+                    applyStylesWithNamed(stepState, element.stateStyle, namedStyles);
+                }
+
+                // Apply step-level state styles (overrides all defaults)
+                if (step.stateStyle) {
+                    applyStylesWithNamed(stepState, step.stateStyle, namedStyles);
+                }
+
+                stepDiv.appendChild(stepItem);
+                stepDiv.appendChild(stepDots);
+                stepDiv.appendChild(stepState);
+
+                container.appendChild(stepDiv);
             }
-            
-            // Apply sequence-level default item style (if present)
-            if (element.itemStyle) {
-                applyStylesWithNamed(stepItem, element.itemStyle, namedStyles);
-            }
-            
-            // Apply step-level item styles (overrides all defaults)
-            if (step.itemStyle) {
-                applyStylesWithNamed(stepItem, step.itemStyle, namedStyles);
-            }
-            
-            const stepDots = document.createElement('span');
-            stepDots.className = 'step-dots';
-            
-            const stepState = document.createElement('span');
-            stepState.className = 'step-state';
-            stepState.textContent = step.state || '';
-            
-            // Apply default state style (if present)
-            if (typeDefaults.stateStyle) {
-                applyStylesWithNamed(stepState, typeDefaults.stateStyle, namedStyles);
-            }
-            
-            // Apply sequence-level default state style (if present)
-            if (element.stateStyle) {
-                applyStylesWithNamed(stepState, element.stateStyle, namedStyles);
-            }
-            
-            // Apply step-level state styles (overrides all defaults)
-            if (step.stateStyle) {
-                applyStylesWithNamed(stepState, step.stateStyle, namedStyles);
-            }
-            
-            stepDiv.appendChild(stepItem);
-            stepDiv.appendChild(stepDots);
-            stepDiv.appendChild(stepState);
-            
-            container.appendChild(stepDiv);
         });
     }
 }
@@ -212,17 +237,17 @@ function renderText(element, container, namedStyles, typeDefaults) {
     const textDiv = document.createElement('div');
     textDiv.className = 'text-content';
     textDiv.textContent = element.text || '';
-    
+
     // Apply default text style (if present)
     if (typeDefaults.textStyle) {
         applyStylesWithNamed(textDiv, typeDefaults.textStyle, namedStyles);
     }
-    
+
     // Apply element-specific text styles (overrides defaults)
     if (element.textStyle) {
         applyStylesWithNamed(textDiv, element.textStyle, namedStyles);
     }
-    
+
     container.appendChild(textDiv);
 }
 
