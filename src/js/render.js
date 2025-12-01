@@ -11,37 +11,97 @@ export function renderChecklist(data, container) {
     // Clear previous content
     container.innerHTML = '';
 
-    // Create checklist title if present
+    // Prepare titles array (convert single title to array for uniform handling)
+    let titles = [];
     if (data.title) {
-        const title = document.createElement('h2');
-        title.className = 'checklist-title';
-        title.textContent = data.title;
-
-        // Apply custom title style if present
-        if (data.titleStyle) {
-            applyStylesWithNamed(title, data.titleStyle, data.namedStyles || {});
+        if (Array.isArray(data.title)) {
+            titles = data.title;
+        } else {
+            // Single title: apply to first page only
+            titles = [data.title];
         }
-
-        container.appendChild(title);
     }
 
-    // Create elements wrapper for column layout
-    const elementsWrapper = document.createElement('div');
-    elementsWrapper.className = 'checklist-elements';
-
-    // Apply column count if specified
-    if (data.columns && data.columns > 1) {
-        elementsWrapper.style.columnCount = data.columns;
-    }
-
-    // Render elements (pass namedStyles and defaultStyle for reference)
+    // Render elements with page break support
     if (data.elements && data.elements.length > 0) {
-        renderElements(data.elements, elementsWrapper, data.namedStyles || {}, data.defaultStyle || {});
+        renderElementsWithPageBreaks(data.elements, container, data.namedStyles || {}, data.defaultStyle || {}, data.columns, titles, data.titleStyle);
     }
-
-    container.appendChild(elementsWrapper);
 
     console.log('Checklist data:', data);
+}
+
+/**
+ * Render elements with support for page breaks
+ * @param {Array} elements - Array of element objects
+ * @param {HTMLElement} container - The container element to render into
+ * @param {Object} namedStyles - Named styles dictionary
+ * @param {Object} defaultStyle - Default styles by element type
+ * @param {number} columns - Number of columns for layout
+ * @param {Array} titles - Array of titles for each page
+ * @param {Object|string} titleStyle - Title style to apply
+ */
+function renderElementsWithPageBreaks(elements, container, namedStyles, defaultStyle, columns, titles, titleStyle) {
+    // Split elements by page breaks
+    const pages = [];
+    let currentPage = [];
+    
+    elements.forEach(element => {
+        if (element.type === 'page-break') {
+            // Save current page and start a new one
+            if (currentPage.length > 0) {
+                pages.push(currentPage);
+                currentPage = [];
+            }
+        } else {
+            currentPage.push(element);
+        }
+    });
+    
+    // Add the last page
+    if (currentPage.length > 0) {
+        pages.push(currentPage);
+    }
+    
+    // Render each page in its own wrapper
+    pages.forEach((pageElements, index) => {
+        // Create page wrapper div
+        const pageWrapper = document.createElement('div');
+        pageWrapper.className = 'checklist-page';
+        
+        // Add page break class to all wrappers except the first
+        if (index > 0) {
+            pageWrapper.classList.add('page-break-before');
+        }
+        
+        // Add title for this page if available
+        if (titles && titles[index]) {
+            const title = document.createElement('h2');
+            title.className = 'checklist-title';
+            title.textContent = titles[index];
+            
+            // Apply custom title style if present
+            if (titleStyle) {
+                applyStylesWithNamed(title, titleStyle, namedStyles);
+            }
+            
+            pageWrapper.appendChild(title);
+        }
+        
+        // Create elements wrapper for column layout
+        const elementsWrapper = document.createElement('div');
+        elementsWrapper.className = 'checklist-elements';
+        
+        // Apply column count if specified
+        if (columns && columns > 1) {
+            elementsWrapper.style.columnCount = columns;
+        }
+        
+        // Render elements in this page
+        renderElements(pageElements, elementsWrapper, namedStyles, defaultStyle);
+        
+        pageWrapper.appendChild(elementsWrapper);
+        container.appendChild(pageWrapper);
+    });
 }
 
 /**

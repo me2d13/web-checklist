@@ -6,7 +6,7 @@ This document describes the complete JSON structure for defining checklists.
 
 ```json
 {
-    "title": "string (optional)",
+    "title": "string|array (optional)",
     "titleStyle": "object|string (optional)",
     "columns": "number (optional, default: 1)",
     "defaultStyle": "object (optional)",
@@ -19,12 +19,37 @@ This document describes the complete JSON structure for defining checklists.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `title` | string | No | Main title displayed at the top of the checklist |
-| `titleStyle` | object\|string | No | CSS styles or named style reference for the main checklist title |
+| `title` | string\|array | No | Main title(s) for the checklist. Can be a single string (displayed on first page only) or an array of strings (one per page, with pages separated by `page-break` elements) |
+| `titleStyle` | object\|string | No | CSS styles or named style reference for the checklist title(s) |
 | `columns` | number | No | Number of columns for multi-column layout (default: 1) |
 | `defaultStyle` | object | No | Default styles applied to all elements by type |
 | `namedStyles` | object | No | Dictionary of reusable named styles |
-| `elements` | array | Yes | Array of element objects (sequences, text, etc.) |
+| `elements` | array | Yes | Array of element objects (sequences, text, page-break, etc.) |
+
+#### Title Behavior
+
+**Single Title (string):**
+```json
+{
+    "title": "My Checklist"
+}
+```
+The title appears only on the first page.
+
+**Multiple Titles (array):**
+```json
+{
+    "title": [
+        "Part 1: Pre-Flight",
+        "Part 2: In-Flight",
+        "Part 3: Post-Flight"
+    ]
+}
+```
+- First element applies to the first page (before first page break)
+- Second element applies to the second page (after first page break)
+- And so on...
+- If fewer titles than pages, remaining pages have no title
 
 ---
 
@@ -36,7 +61,7 @@ Elements are objects in the `elements` array. Each element must have a `type` fi
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `type` | string | Yes | Element type: `"sequence"` or `"text"` |
+| `type` | string | Yes | Element type: `"sequence"`, `"text"`, or `"page-break"` |
 | `style` | object | No | CSS styles applied to the element container |
 
 ---
@@ -153,6 +178,70 @@ A text element displays custom text content, typically used as notes or instruct
 | `text` | string | Yes | Text content to display |
 | `style` | object | No | CSS styles applied to the text element container |
 | `textStyle` | object | No | CSS styles applied to the text content itself |
+
+---
+
+## Element Type: Page Break
+
+A page break element creates a visual separation in web view and forces a new page when printing. This is useful for organizing long checklists into logical sections.
+
+### Structure
+
+```json
+{
+    "type": "page-break"
+}
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | Yes | Must be `"page-break"` |
+
+### Behavior
+
+**In Web View:**
+- Creates a new column layout container
+- Elements before the page break appear in one multi-column layout
+- Elements after the page break start a new multi-column layout
+- Displays a dashed horizontal line as a visual separator
+
+**When Printing:**
+- Forces a page break (starts a new printed page)
+- The dashed line separator is hidden in print
+
+### Example
+
+```json
+{
+    "columns": 2,
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Section 1",
+            "steps": [...]
+        },
+        {
+            "type": "sequence",
+            "title": "Section 2",
+            "steps": [...]
+        },
+        {
+            "type": "page-break"
+        },
+        {
+            "type": "sequence",
+            "title": "Section 3",
+            "steps": [...]
+        }
+    ]
+}
+```
+
+In this example:
+- Sections 1 and 2 will appear in a 2-column layout on the first page
+- Section 3 will start on a new page with its own 2-column layout
 
 ---
 
@@ -410,4 +499,5 @@ Any valid CSS property can be used. Property names are automatically converted f
 - Multi-column layout automatically balances content across columns
 - Sequences without titles are useful for continuing steps after a text element
 - Style inheritance: Element styles don't cascade; each style field is independent
+- Page breaks create separate column layout containers, useful for organizing long checklists and controlling print pagination
 
