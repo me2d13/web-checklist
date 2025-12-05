@@ -2,6 +2,16 @@
  * Web Checklist - Rendering Logic
  */
 
+// Function to check if interactive mode is enabled
+function isInteractiveModeEnabled() {
+    const checkbox = document.getElementById('interactive-mode-checkbox');
+    return checkbox ? checkbox.checked : false;
+}
+
+// Global state for tracking completion
+let lastCompletedIndex = -1; // -1 means nothing is completed
+let allInteractiveElements = []; // Array to store all clickable elements in order
+
 /**
  * Render the checklist from JSON data
  * @param {Object} data - The checklist data
@@ -10,6 +20,12 @@
 export function renderChecklist(data, container) {
     // Clear previous content
     container.innerHTML = '';
+
+    // Reset interactive state
+    if (isInteractiveModeEnabled()) {
+        lastCompletedIndex = -1;
+        allInteractiveElements = [];
+    }
 
     // Prepare titles array (convert single title to array for uniform handling)
     let titles = [];
@@ -31,6 +47,36 @@ export function renderChecklist(data, container) {
 }
 
 /**
+ * Handle click on an interactive element
+ * @param {number} clickedIndex - Index of the clicked element
+ */
+function handleElementClick(clickedIndex) {
+    if (clickedIndex === lastCompletedIndex) {
+        // Clicking on the last completed item reverts it
+        lastCompletedIndex = clickedIndex - 1;
+    } else {
+        // Clicking on any item makes it and all previous items completed
+        lastCompletedIndex = clickedIndex;
+    }
+    updateCompletionState();
+}
+
+/**
+ * Update the visual completion state of all interactive elements
+ */
+function updateCompletionState() {
+    allInteractiveElements.forEach((element, index) => {
+        if (index <= lastCompletedIndex) {
+            // Mark as completed with opacity
+            element.style.opacity = '0.25';
+        } else {
+            // Mark as not completed (full opacity)
+            element.style.opacity = '1';
+        }
+    });
+}
+
+/**
  * Render elements with support for page breaks
  * @param {Array} elements - Array of element objects
  * @param {HTMLElement} container - The container element to render into
@@ -44,7 +90,7 @@ function renderElementsWithPageBreaks(elements, container, namedStyles, defaultS
     // Split elements by page breaks
     const pages = [];
     let currentPage = [];
-    
+
     elements.forEach(element => {
         if (element.type === 'page-break') {
             // Save current page and start a new one
@@ -56,49 +102,49 @@ function renderElementsWithPageBreaks(elements, container, namedStyles, defaultS
             currentPage.push(element);
         }
     });
-    
+
     // Add the last page
     if (currentPage.length > 0) {
         pages.push(currentPage);
     }
-    
+
     // Render each page in its own wrapper
     pages.forEach((pageElements, index) => {
         // Create page wrapper div
         const pageWrapper = document.createElement('div');
         pageWrapper.className = 'checklist-page';
-        
+
         // Add page break class to all wrappers except the first
         if (index > 0) {
             pageWrapper.classList.add('page-break-before');
         }
-        
+
         // Add title for this page if available
         if (titles && titles[index]) {
             const title = document.createElement('h2');
             title.className = 'checklist-title';
             title.textContent = titles[index];
-            
+
             // Apply custom title style if present
             if (titleStyle) {
                 applyStylesWithNamed(title, titleStyle, namedStyles);
             }
-            
+
             pageWrapper.appendChild(title);
         }
-        
+
         // Create elements wrapper for column layout
         const elementsWrapper = document.createElement('div');
         elementsWrapper.className = 'checklist-elements';
-        
+
         // Apply column count if specified
         if (columns && columns > 1) {
             elementsWrapper.style.columnCount = columns;
         }
-        
+
         // Render elements in this page
         renderElements(pageElements, elementsWrapper, namedStyles, defaultStyle);
-        
+
         pageWrapper.appendChild(elementsWrapper);
         container.appendChild(pageWrapper);
     });
@@ -229,6 +275,14 @@ function renderSequence(element, container, namedStyles, typeDefaults) {
                     applyStylesWithNamed(stepDiv, step.textStyle, namedStyles);
                 }
 
+                // Add interactive functionality if enabled
+                if (isInteractiveModeEnabled()) {
+                    const elementIndex = allInteractiveElements.length;
+                    allInteractiveElements.push(stepDiv);
+                    stepDiv.style.cursor = 'pointer';
+                    stepDiv.addEventListener('click', () => handleElementClick(elementIndex));
+                }
+
                 container.appendChild(stepDiv);
             } else {
                 // It's a regular item/state step
@@ -280,6 +334,19 @@ function renderSequence(element, container, namedStyles, typeDefaults) {
                 stepDiv.appendChild(stepDots);
                 stepDiv.appendChild(stepState);
 
+                // Add interactive functionality if enabled
+                if (isInteractiveModeEnabled()) {
+                    const elementIndex = allInteractiveElements.length;
+                    allInteractiveElements.push(stepDiv);
+                    stepDiv.style.cursor = 'pointer';
+
+                    // Make the text spans non-selectable/non-clickable
+                    stepItem.style.pointerEvents = 'none';
+                    stepState.style.pointerEvents = 'none';
+
+                    stepDiv.addEventListener('click', () => handleElementClick(elementIndex));
+                }
+
                 container.appendChild(stepDiv);
             }
         });
@@ -306,6 +373,14 @@ function renderText(element, container, namedStyles, typeDefaults) {
     // Apply element-specific text styles (overrides defaults)
     if (element.textStyle) {
         applyStylesWithNamed(textDiv, element.textStyle, namedStyles);
+    }
+
+    // Add interactive functionality if enabled
+    if (isInteractiveModeEnabled()) {
+        const elementIndex = allInteractiveElements.length;
+        allInteractiveElements.push(textDiv);
+        textDiv.style.cursor = 'pointer';
+        textDiv.addEventListener('click', () => handleElementClick(elementIndex));
     }
 
     container.appendChild(textDiv);
