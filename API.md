@@ -9,6 +9,7 @@ This document describes the complete JSON structure for defining checklists.
     "title": "string|array (optional)",
     "titleStyle": "object|string (optional)",
     "columns": "number (optional, default: 1)",
+    "controls": "object (optional)",
     "defaultStyle": "object (optional)",
     "namedStyles": "object (optional)",
     "elements": "array (required)"
@@ -22,6 +23,7 @@ This document describes the complete JSON structure for defining checklists.
 | `title` | string\|array | No | Main title(s) for the checklist. Can be a single string (displayed on first page only) or an array of strings (one per page, with pages separated by `page-break` elements) |
 | `titleStyle` | object\|string | No | CSS styles or named style reference for the checklist title(s) |
 | `columns` | number | No | Number of columns for multi-column layout (default: 1) |
+| `controls` | object | No | Gamepad/game device button mappings for interactive mode navigation |
 | `defaultStyle` | object | No | Default styles applied to all elements by type |
 | `namedStyles` | object | No | Dictionary of reusable named styles |
 | `elements` | array | Yes | Array of element objects (sequences, text, page-break, etc.) |
@@ -50,6 +52,68 @@ The title appears only on the first page.
 - Second element applies to the second page (after first page break)
 - And so on...
 - If fewer titles than pages, remaining pages have no title
+
+#### Controls
+
+The `controls` field allows you to map gamepad or game device buttons to checklist navigation actions in interactive mode. This is particularly useful for flight simulation checklists where you want to control the checklist using hardware buttons.
+
+**Structure:**
+```json
+{
+    "controls": {
+        "next": {
+            "name": "Device Name (Vendor: xxxx Product: yyyy)",
+            "button": 0
+        },
+        "previous": {
+            "name": "Device Name (Vendor: xxxx Product: yyyy)",
+            "button": 1
+        },
+        "reset": {
+            "name": "Device Name (Vendor: xxxx Product: yyyy)",
+            "button": 2
+        }
+    }
+}
+```
+
+**Fields:**
+- `next` - Button mapping to advance to the next checklist item
+- `previous` - Button mapping to go back to the previous item
+- `reset` - Button mapping to reset the checklist to the initial state
+
+Each control action requires:
+- `name` - The exact device name as reported by the browser (including vendor/product IDs)
+- `button` - The button index (0-based) to trigger the action
+
+**Finding Device Information:**
+
+1. Open the checklist editor
+2. Click the "🎮 Game device helper" button
+3. Press any button on your device
+4. The helper will display the device name and button indices
+5. Copy the exact device name and button number to your JSON
+
+**Example:**
+```json
+{
+    "title": "Flight Checklist",
+    "controls": {
+        "next": {
+            "name": "Logitech Extreme 3D (Vendor: 046d Product: c215)",
+            "button": 0
+        }
+    },
+    "elements": [...]
+}
+```
+
+**Notes:**
+- Controls only work in Interactive mode
+- Device name must match exactly (case-sensitive)
+- Button indices start at 0
+- You can map different devices to different actions
+- If a device is not connected, the controls are simply ignored
 
 ---
 

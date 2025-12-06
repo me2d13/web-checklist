@@ -674,6 +674,30 @@ body {
     font-size: 0.8rem;
     color: #d63384;
     user-select: all;
+    flex: 1;
+}
+
+.copy-config-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    flex-shrink: 0;
+}
+
+.copy-config-btn:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}
+
+.copy-config-btn:active {
+    transform: scale(0.95);
 }
 
 .gamepad-helper-info {

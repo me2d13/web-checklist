@@ -223,6 +223,23 @@ function updateGamepadHelper() {
         return;
     }
 
+    // Check if we need to rebuild the entire structure
+    const existingDevices = detailsElement.querySelectorAll('.gamepad-device');
+    const needsRebuild = existingDevices.length !== gamepadArray.length;
+
+    if (needsRebuild) {
+        // Full rebuild
+        buildGamepadHelperHTML(gamepadArray, detailsElement);
+    } else {
+        // Just update button states and last touched
+        updateGamepadButtonStates(gamepadArray);
+    }
+}
+
+/**
+ * Build the complete gamepad helper HTML structure
+ */
+function buildGamepadHelperHTML(gamepadArray, detailsElement) {
     let html = '';
 
     gamepadArray.forEach((gamepad) => {
@@ -231,7 +248,43 @@ function updateGamepadHelper() {
             previousButtonStates[gamepad.index] = [];
         }
 
-        // Detect button press transitions (not pressed -> pressed)
+        html += `<div class="gamepad-device" data-gamepad-index="${gamepad.index}">
+            <h4>Device ${gamepad.index}: ${gamepad.id} <span style="color: #999; font-size: 0.85rem; font-weight: normal;">(${gamepad.buttons.length} buttons, ${gamepad.axes.length} axes)</span></h4>
+            
+            <div class="gamepad-buttons-compact" data-buttons-container="${gamepad.index}">`;
+
+        // Compact button display - just numbers in small boxes
+        gamepad.buttons.forEach((button, index) => {
+            const pressed = button.pressed ? 'pressed' : '';
+            html += `<div class="button-compact ${pressed}" data-button-index="${index}">${index}</div>`;
+        });
+
+        html += `</div>`;
+
+        // Placeholder for JSON config
+        html += `<div class="gamepad-config-container" data-config-container="${gamepad.index}"></div>`;
+
+        html += `</div>`;
+    });
+
+    detailsElement.innerHTML = html;
+}
+
+/**
+ * Update only the button states and last touched config
+ */
+function updateGamepadButtonStates(gamepadArray) {
+    gamepadArray.forEach((gamepad) => {
+        // Initialize previous state if needed
+        if (!previousButtonStates[gamepad.index]) {
+            previousButtonStates[gamepad.index] = [];
+        }
+
+        // Find the buttons container for this gamepad
+        const buttonsContainer = document.querySelector(`[data-buttons-container="${gamepad.index}"]`);
+        if (!buttonsContainer) return;
+
+        // Detect button press transitions and update button states
         gamepad.buttons.forEach((button, index) => {
             const wasPressed = previousButtonStates[gamepad.index][index] || false;
             const isPressed = button.pressed && button.value > 0.5;
@@ -239,35 +292,76 @@ function updateGamepadHelper() {
             // Only update on press transition (not pressed -> pressed)
             if (!wasPressed && isPressed) {
                 lastTouchedButton[gamepad.index] = index;
+                updateConfigDisplay(gamepad);
+            }
+
+            // Update button visual state
+            const buttonElement = buttonsContainer.querySelector(`[data-button-index="${index}"]`);
+            if (buttonElement) {
+                if (isPressed) {
+                    buttonElement.classList.add('pressed');
+                } else {
+                    buttonElement.classList.remove('pressed');
+                }
             }
 
             // Update previous state
             previousButtonStates[gamepad.index][index] = isPressed;
         });
-
-        html += `<div class="gamepad-device">
-            <h4>Device ${gamepad.index}: ${gamepad.id} <span style="color: #999; font-size: 0.85rem; font-weight: normal;">(${gamepad.buttons.length} buttons, ${gamepad.axes.length} axes)</span></h4>
-            
-            <div class="gamepad-buttons-compact">`;
-
-        // Compact button display - just numbers in small boxes
-        gamepad.buttons.forEach((button, index) => {
-            const pressed = button.pressed ? 'pressed' : '';
-            html += `<div class="button-compact ${pressed}">${index}</div>`;
-        });
-
-        html += `</div>`;
-
-        // Show JSON config for last touched button
-        if (lastTouchedButton[gamepad.index] !== undefined) {
-            html += `<div class="gamepad-config">
-                <strong>Last touched button config:</strong>
-                <code>"name": "${gamepad.id}", "button": ${lastTouchedButton[gamepad.index]}</code>
-            </div>`;
-        }
-
-        html += `</div>`;
     });
-
-    detailsElement.innerHTML = html;
 }
+
+/**
+ * Update the config display for a gamepad
+ */
+function updateConfigDisplay(gamepad) {
+    const configContainer = document.querySelector(`[data-config-container="${gamepad.index}"]`);
+    if (!configContainer) return;
+
+    if (lastTouchedButton[gamepad.index] !== undefined) {
+        const jsonText = `"name": "${gamepad.id}", "button": ${lastTouchedButton[gamepad.index]}`;
+
+        configContainer.innerHTML = `<div class="gamepad-config">
+            <strong>Last touched button config:</strong>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <code id="config-json-${gamepad.index}">${jsonText}</code>
+                <button class="copy-config-btn" data-copy-text='${jsonText}' title="Copy to clipboard">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>`;
+
+        // Add click handler to copy button
+        const copyBtn = configContainer.querySelector('.copy-config-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', function () {
+                const textToCopy = this.getAttribute('data-copy-text');
+                copyToClipboard(textToCopy, this);
+            });
+        }
+    }
+}
+
+/**
+ * Copy text to clipboard and show feedback
+ */
+function copyToClipboard(text, buttonElement) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Show success feedback
+        const originalHTML = buttonElement.innerHTML;
+        buttonElement.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        buttonElement.style.backgroundColor = '#28a745';
+
+        setTimeout(() => {
+            buttonElement.innerHTML = originalHTML;
+            buttonElement.style.backgroundColor = '';
+        }, 1500);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        alert('Failed to copy to clipboard');
+    });
+}
+
