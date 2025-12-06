@@ -9,9 +9,9 @@ A web-based checklist generator that creates interactive and printable checklist
 Try these example checklists:
 
 - [Minimal Example](https://me2d13.github.io/web-checklist/?example=minimal) - Basic checklist structure
-- [Styled Example](https://me2d13.github.io/web-checklist/?example=styled) - Demonstrates styling features
+- [Styled Example - Interactive Mode](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/styled.json) - Demonstrates styling features with interactive navigation
 - [Rich Example](https://me2d13.github.io/web-checklist/?example=rich) - Complex multi-section checklist
-- [Boeing 737 Checklist](https://me2d13.github.io/web-checklist/?example=737) - Real-world flight checklist
+- [Boeing 737 Checklist - Interactive Mode](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/737.json) - Real-world flight checklist with interactive navigation
 
 ## Features
 
