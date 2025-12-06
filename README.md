@@ -4,6 +4,15 @@
 
 A web-based checklist generator that creates interactive and printable checklists from JSON data. Originally designed for flight simulation checklists, but suitable for any sequential procedures.
 
+## Live Demo
+
+Try these example checklists:
+
+- [Minimal Example](https://me2d13.github.io/web-checklist/?example=minimal) - Basic checklist structure
+- [Styled Example](https://me2d13.github.io/web-checklist/?example=styled) - Demonstrates styling features
+- [Rich Example](https://me2d13.github.io/web-checklist/?example=rich) - Complex multi-section checklist
+- [Boeing 737 Checklist](https://me2d13.github.io/web-checklist/?example=737) - Real-world flight checklist
+
 ## Features
 
 ✨ **Interactive Mode**
@@ -29,15 +38,6 @@ A web-based checklist generator that creates interactive and printable checklist
 - Map gamepad buttons to navigation
 - Real-time device detection
 - Easy configuration with visual helper
-
-## Live Demo
-
-Try these example checklists:
-
-- [Minimal Example](https://me2d13.github.io/web-checklist/?example=minimal) - Basic checklist structure
-- [Styled Example](https://me2d13.github.io/web-checklist/?example=styled) - Demonstrates styling features
-- [Rich Example](https://me2d13.github.io/web-checklist/?example=rich) - Complex multi-section checklist
-- [Boeing 737 Checklist](https://me2d13.github.io/web-checklist/?example=737) - Real-world flight checklist
 
 ## Quick Start
 

@@ -498,12 +498,14 @@ body {
     background-color: #6c757d;
     color: white;
     overflow: hidden;
+    opacity: 0.6;
 }
 
 .nav-btn-icon:hover {
     background-color: #5a6268;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    opacity: 1;
 }
 
 .nav-btn-icon:active {
