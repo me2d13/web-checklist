@@ -172,6 +172,11 @@ function handleRenderAndHide() {
  */
 function handleToggleEdit() {
     showEditSection();
+    // Scroll to top to make edit section visible
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
 
 /**

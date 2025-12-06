@@ -29,6 +29,12 @@
             }
         }
     },
+    "controls": {
+        "next": {
+            "name": "MTU_v6 (Vendor: 5056 Product: ddfd)",
+            "button": 10
+        }
+    },
     "elements": [
         {
             "type": "sequence",
@@ -667,7 +673,6 @@
                 }
             ]
         },
-
         {
             "type": "sequence",
             "title": "DESCENT PROCEDURE (1/2):DESCENT PROCEDURE (1/2)",

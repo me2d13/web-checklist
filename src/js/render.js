@@ -91,9 +91,29 @@ function updateCompletionState() {
         }
 
         if (currentIndex >= 0 && currentIndex < allInteractiveElements.length) {
-            allInteractiveElements[currentIndex].classList.add('current-item');
+            const currentElement = allInteractiveElements[currentIndex];
+            currentElement.classList.add('current-item');
+
+            // Auto-scroll to keep current item visible
+            scrollToCurrentItem(currentElement);
         }
     }
+}
+
+/**
+ * Scroll the page to keep the current item visible
+ * @param {HTMLElement} element - The current item element
+ */
+function scrollToCurrentItem(element) {
+    if (!element) return;
+
+    // Use scrollIntoView with smooth behavior and center alignment
+    // 'center' keeps the item in the middle of the viewport when possible
+    element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest'
+    });
 }
 
 /**
