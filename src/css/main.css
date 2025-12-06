@@ -240,7 +240,6 @@ body {
 }
 
 .checklist-container {
-    max-width: 1200px;
     margin: 0 auto;
     background-color: white;
     border-radius: 8px;
@@ -258,10 +257,6 @@ body {
     column-rule: 1px solid #ddd;
 }
 
-/* Page wrapper */
-.checklist-page {
-    /* Container for each page (title + elements) */
-}
 
 /* Page break handling */
 .checklist-page.page-break-before {
@@ -316,6 +311,7 @@ body {
 
 .sequence-step {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     margin-bottom: 0.25rem;
     font-family: monospace;
@@ -337,6 +333,7 @@ body {
 
 .step-state {
     flex-shrink: 0;
+    margin-left: auto;
     padding-left: 0.5rem;
     font-weight: 600;
 }
@@ -374,9 +371,31 @@ body {
     margin: 0.5rem 0;
 }
 
+/* Checklist Footer */
+.checklist-footer {
+    margin-top: 0.75rem;
+    padding-top: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #999;
+}
+
+.checklist-footer a {
+    color: #999;
+    text-decoration: none;
+}
+
+.checklist-footer a:hover {
+    color: #666;
+    text-decoration: underline;
+}
+
 /* Print Styles */
 @media print {
-    .toggle-btn {
+
+    .toggle-btn,
+    .interactive-nav {
         display: none !important;
     }
 
@@ -452,20 +471,74 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.interactive-toggle label {
+/* Checklist Mode Toggle - Modern Segmented Control */
+.layout-mode-toggle {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.layout-mode-toggle .mode-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.segmented-control {
+    display: inline-flex;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    padding: 4px;
+    gap: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.segmented-control input[type="radio"] {
+    display: none;
+}
+
+.segmented-control .segment-label {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     color: #555;
+    background-color: transparent;
+    border-radius: 6px;
     cursor: pointer;
+    transition: all 0.2s ease;
     user-select: none;
+    white-space: nowrap;
 }
 
-.interactive-toggle input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
+.segmented-control .segment-label svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.segmented-control .segment-label:hover {
+    color: #333;
+}
+
+.segmented-control .segment-label:hover svg {
+    opacity: 1;
+}
+
+.segmented-control input[type="radio"]:checked+.segment-label {
+    background-color: white;
+    color: #4a90e2;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.segmented-control input[type="radio"]:checked+.segment-label svg {
+    opacity: 1;
+    stroke: #4a90e2;
 }
 
 /* Gamepad Helper Styles */
@@ -604,20 +677,36 @@ body {
 }
 
 .gamepad-helper-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
     margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem;
+    background-color: #e8f4ff;
+    border-left: 3px solid #4a90e2;
+    border-radius: 4px;
     font-size: 0.85rem;
-    color: #666;
-    line-height: 1.5;
+    color: #555;
+    line-height: 1.6;
+}
+
+.gamepad-helper-info .info-icon {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: #4a90e2;
 }
 
 .gamepad-helper-info a {
     color: #4a90e2;
     text-decoration: none;
+    font-weight: 600;
 }
 
 .gamepad-helper-info a:hover {
     text-decoration: underline;
 }
+
 .button-group-left {
     display: flex;
     gap: 1rem;
@@ -682,9 +771,9 @@ body {
 /* Current Item Highlight - 3D Raised Effect */
 .current-item {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 
-                0 2px 4px rgba(0, 0, 0, 0.1),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     z-index: 1;
@@ -692,9 +781,12 @@ body {
 
 /* Add subtle animation to draw attention */
 @keyframes pulse-subtle {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(-2px);
     }
+
     50% {
         transform: translateY(-3px);
     }

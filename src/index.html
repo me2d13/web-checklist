@@ -39,12 +39,31 @@
                 <button id="close-error" class="close-error" aria-label="Close error">×</button>
             </div>
 
-            <!-- Interactive Mode Toggle -->
-            <div class="interactive-toggle">
-                <label for="interactive-mode-checkbox">
-                    <input type="checkbox" id="interactive-mode-checkbox" checked>
-                    Interactive
-                </label>
+            <!-- Checklist Mode Toggle -->
+            <div class="layout-mode-toggle">
+                <label class="mode-label">Checklist Mode:</label>
+                <div class="segmented-control">
+                    <input type="radio" id="mode-interactive" name="layout-mode" value="interactive" checked>
+                    <label for="mode-interactive" class="segment-label">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M8 2L2 6v8h4V9h4v5h4V6L8 2z" />
+                        </svg>
+                        Interactive
+                    </label>
+
+                    <input type="radio" id="mode-print" name="layout-mode" value="print">
+                    <label for="mode-print" class="segment-label">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="1" width="10" height="14" rx="1" />
+                            <line x1="5" y1="4" x2="11" y2="4" />
+                            <line x1="5" y1="7" x2="11" y2="7" />
+                            <line x1="5" y1="10" x2="11" y2="10" />
+                        </svg>
+                        Print
+                    </label>
+                </div>
             </div>
 
             <div class="button-container">
@@ -62,10 +81,18 @@
                     <button id="close-gamepad-helper" class="close-gamepad-helper">×</button>
                 </div>
                 <p class="gamepad-helper-info">
-                    Checklists can be used in interactive mode with tracking of the current item.
-                    Mark items as completed by mouse click or via an assigned game device button.
-                    <a href="https://github.com/me2d13/web-checklist/blob/master/README.md" target="_blank"
-                        rel="noopener noreferrer">Learn more</a>
+                    <svg class="info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <span>
+                        Checklists can be used in interactive mode with tracking of the current item.
+                        Mark items as completed by mouse click or via an assigned game device button.
+                        <a href="https://github.com/me2d13/web-checklist/blob/master/README.md" target="_blank"
+                            rel="noopener noreferrer">Learn more</a>
+                    </span>
                 </p>
                 <div id="gamepad-details"></div>
             </div>

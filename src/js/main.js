@@ -15,7 +15,7 @@ const checklistContainer = document.getElementById('checklist-container');
 const errorBox = document.getElementById('error-box');
 const errorMessage = document.getElementById('error-message');
 const closeErrorBtn = document.getElementById('close-error');
-const interactiveModeCheckbox = document.getElementById('interactive-mode-checkbox');
+const modeInteractiveRadio = document.getElementById('mode-interactive');
 const interactiveNav = document.getElementById('interactive-nav');
 const navPrevBtn = document.getElementById('nav-prev');
 const navNextBtn = document.getElementById('nav-next');
@@ -46,7 +46,10 @@ function init() {
     navResetBtn.addEventListener('click', resetCompletion);
 
     // Show/hide navigation controls based on interactive mode
-    interactiveModeCheckbox.addEventListener('change', updateNavigationVisibility);
+    // Listen to both radio buttons for mode changes and re-render when mode changes
+    document.querySelectorAll('input[name="layout-mode"]').forEach(radio => {
+        radio.addEventListener('change', handleModeChange);
+    });
 
     // Gamepad will be initialized conditionally when rendering with controls
     // Check for URL parameter to load example
@@ -54,12 +57,55 @@ function init() {
 }
 
 /**
- * Check URL parameters and load example if specified
+ * Check URL parameters and load example or external JSON if specified
  */
 async function checkUrlParameters() {
     const urlParams = new URLSearchParams(window.location.search);
     const exampleName = urlParams.get('example');
+    const externalUrl = urlParams.get('url');
 
+    // Load from external URL if provided
+    if (externalUrl) {
+        try {
+            const response = await fetch(externalUrl);
+            if (!response.ok) {
+                throw new Error(`Failed to load from URL: ${response.statusText}`);
+            }
+
+            const jsonText = await response.text();
+            const jsonData = JSON.parse(jsonText);
+
+            // Load into textarea
+            jsonInput.value = JSON.stringify(jsonData, null, 2);
+
+            // Render and hide edit section
+            hideError();
+            renderChecklist(jsonData, checklistContainer);
+            updateNavigationVisibility();
+
+            // Initialize gamepad controls if present
+            const isInteractive = modeInteractiveRadio ? modeInteractiveRadio.checked : false;
+            const hasControls = jsonData.controls && (jsonData.controls.next || jsonData.controls.previous || jsonData.controls.reset);
+
+            if (isInteractive && hasControls) {
+                initGamepad();
+                startControlMonitoring(jsonData.controls, {
+                    next: nextItem,
+                    previous: previousItem,
+                    reset: resetCompletion
+                });
+            }
+
+            hideEditSection();
+
+        } catch (error) {
+            showError(`Failed to load from URL: ${error.message}`);
+            console.error('URL parameter load error:', error);
+        }
+        return; // Don't check for example parameter if URL was provided
+    }
+
+    // Load local example if provided
     if (exampleName) {
         try {
             const response = await fetch(`examples/${exampleName}.json`);
@@ -133,7 +179,7 @@ function handleRender() {
         stopControlMonitoring();
 
         // Check if we should initialize gamepad controls
-        const isInteractive = interactiveModeCheckbox.checked;
+        const isInteractive = modeInteractiveRadio ? modeInteractiveRadio.checked : false;
         const hasControls = jsonData.controls && (jsonData.controls.next || jsonData.controls.previous || jsonData.controls.reset);
 
         if (isInteractive && hasControls) {
@@ -213,10 +259,55 @@ function hideError() {
 }
 
 /**
+ * Handle mode change - re-render checklist if one exists
+ * This ensures interactive features are properly initialized when switching modes
+ */
+function handleModeChange() {
+    const hasChecklist = checklistContainer.children.length > 0;
+
+    // If a checklist is already rendered, re-render it in the new mode
+    if (hasChecklist && jsonInput.value.trim()) {
+        try {
+            const jsonData = JSON.parse(jsonInput.value);
+
+            // Stop any existing control monitoring
+            stopControlMonitoring();
+
+            // Re-render the checklist
+            renderChecklist(jsonData, checklistContainer);
+            updateNavigationVisibility();
+
+            // Check if we should initialize gamepad controls
+            const isInteractive = modeInteractiveRadio ? modeInteractiveRadio.checked : false;
+            const hasControls = jsonData.controls && (jsonData.controls.next || jsonData.controls.previous || jsonData.controls.reset);
+
+            if (isInteractive && hasControls) {
+                // Initialize gamepad API
+                initGamepad();
+
+                // Start monitoring with action callbacks
+                startControlMonitoring(jsonData.controls, {
+                    next: nextItem,
+                    previous: previousItem,
+                    reset: resetCompletion
+                });
+            }
+        } catch (error) {
+            // If there's an error, just update visibility without re-rendering
+            console.warn('Could not re-render on mode change:', error);
+            updateNavigationVisibility();
+        }
+    } else {
+        // No checklist to re-render, just update visibility
+        updateNavigationVisibility();
+    }
+}
+
+/**
  * Update navigation controls visibility based on interactive mode
  */
 function updateNavigationVisibility() {
-    const isInteractive = interactiveModeCheckbox.checked;
+    const isInteractive = modeInteractiveRadio ? modeInteractiveRadio.checked : false;
     const hasChecklist = checklistContainer.children.length > 0;
 
     if (isInteractive && hasChecklist) {

@@ -1,5 +1,7 @@
 # Web checklists
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 This is a page which can generate checklist based on source data in json. 
 This source contains content and formatting.
 Generated checklist can be printed (as html page).
@@ -100,3 +102,11 @@ To not repeat this for every step in sequence, you can use fields `defaultItemSt
 in the sequence. Those fields can be used even
 * at top level to be applied at whole checklist
 * at sequence level to be applied at all steps in the sequence
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+Copyright (c) 2025 Petr Medek
+
+You are free to use, modify, and distribute this software, provided that the original copyright notice and license are included in all copies or substantial portions of the software.
