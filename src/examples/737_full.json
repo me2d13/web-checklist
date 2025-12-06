@@ -1,0 +1,2311 @@
+{
+    "columns": 2,
+    "defaultStyle": {
+        "sequence": {
+            "titleStyle": {
+                "backgroundColor": "#1565c0",
+                "color": "#ffffff",
+                "textAlign": "center",
+                "marginLeft": "-0.5rem",
+                "marginRight": "-0.5rem",
+                "paddingLeft": "1rem",
+                "paddingRight": "1rem"
+            },
+            "textStyle": {
+                "textAlign": "center",
+                "fontStyle": "italic",
+                "fontWeight": "bold"
+            }
+        }
+    },
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "PRELIMINARY FLIGHTDECK PROCEDURE (1/3):PRELIMINARY FLIGHTDECK PROCEDURE (1/3)",
+            "steps": [
+                {
+                    "text": "OVHD, ELEC. PANEL & EFB, GROUND SE."
+                },
+                {
+                    "item": "AC GROUND POWER",
+                    "state": "ON"
+                },
+                {
+                    "item": "APU",
+                    "state": "STARTED (1 MINUTE LOADLESS)"
+                },
+                {
+                    "item": "MIDDLE APU GENERATORS",
+                    "state": "ON"
+                },
+                {
+                    "text": "OVHD, LIGHTING & ENGINE PANEL"
+                },
+                {
+                    "item": "POSITION LIGHTS",
+                    "state": "STEADY"
+                },
+                {
+                    "text": "OVHD, HYDRAULIC PANEL"
+                },
+                {
+                    "item": "ENGINE HYDRAULIC PUMPS 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "ELECTRIC HYDRAULIC PUMPS A & B",
+                    "state": "ON"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PRELIMINARY FLIGHTDECK PROCEDURE (2/3):PRELIMINARY FLIGHTDECK PROCEDURE (2/3)",
+            "steps": [
+                {
+                    "text": "EFB, GROUND SERVICE & FUEL W & B"
+                },
+                {
+                    "item": "CABIN LIGHTING",
+                    "state": "WHITE BRIGHT (PASSENGERS)"
+                },
+                {
+                    "item": "CABIN LIGHTING",
+                    "state": "WHITE BRIGHT (ENTRY)"
+                },
+                {
+                    "item": "FWD & AFT SERVICE DOORS",
+                    "state": "OPEN"
+                },
+                {
+                    "item": "FWD & AFT CARGO DOORS",
+                    "state": "OPEN"
+                },
+                {
+                    "item": "BLOCKFUEL",
+                    "state": "FLIGHTPLAN (ROUNDUP 0.1+0.1 TONS)"
+                },
+                {
+                    "item": "FUEL TRUCK",
+                    "state": "REFUELING"
+                },
+                {
+                    "text": "OVHD, MIDDLE PANEL"
+                },
+                {
+                    "item": "EMERGENCY EXIT LIGHTS",
+                    "state": "GUARD CLOSED"
+                },
+                {
+                    "item": "CABIN ATTEND BUTTON TEST",
+                    "state": "PUSH"
+                },
+                {
+                    "item": "GROUND CALL BUTTON TEST",
+                    "state": "PUSH"
+                },
+                {
+                    "text": "CONSOLE PANEL"
+                },
+                {
+                    "item": "FLAP LEVER",
+                    "state": "UP & DETENT"
+                },
+                {
+                    "item": "TAKE OFF CONFIG TEST",
+                    "state": "LEFT THRUST (HORN SOUND)"
+                },
+                {
+                    "item": "TAKE OFF CONFIG TEST",
+                    "state": "RIGHT THRUST (HORN SOUND)"
+                },
+                {
+                    "item": "PARKING BRAKE",
+                    "state": "PULLED (ACTIVE)"
+                },
+                {
+                    "item": "ENGINE START LEVERS 1 & 2",
+                    "state": "CUTOFF"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PRELIMINARY FLIGHTDECK PROCEDURE (3/3):PRELIMINARY FLIGHTDECK PROCEDURE (3/3)",
+            "steps": [
+                {
+                    "text": "OVHD, UPPER PANEL"
+                },
+                {
+                    "item": "FLIGHT RECORDER",
+                    "state": "TEST (OFF EXTINGUISHED)"
+                },
+                {
+                    "item": "FLIGHT RECORDER",
+                    "state": "GUARD CLOSED"
+                },
+                {
+                    "item": "MACH AIRSPEED WARNING",
+                    "state": "TEST 1"
+                },
+                {
+                    "item": "MACH AIRSPEED WARNING",
+                    "state": "TEST 2"
+                },
+                {
+                    "item": "STALL WARNING",
+                    "state": "TEST 1 (NEEDS 6MIN A/C POWER)"
+                },
+                {
+                    "item": "STALL WARNING",
+                    "state": "TEST 2 (NEEDS 6MIN A/C POWER)"
+                },
+                {
+                    "item": "LEFT & RIGHT IRS MODE SELECTOR",
+                    "state": "NAV"
+                },
+                {
+                    "item": "IRS DISPLAY SELECTOR",
+                    "state": "HDG & STS"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PREFLIGHT PREPARATION PROCEDURES (1/7):PREFLIGHT PREPARATION PROCEDURES (1/7)",
+            "steps": [
+                {
+                    "text": "EFIS PANEL (CAPTAIN)"
+                },
+                {
+                    "item": "WEATHER RADAR",
+                    "state": "OFF"
+                },
+                {
+                    "item": "AIRPORT BUTTON",
+                    "state": "ON (CAPTAIN)"
+                },
+                {
+                    "item": "TERRAIN RADAR",
+                    "state": "ON (CAPTAIN)"
+                },
+                {
+                    "item": "BAROMETRIC REFERENCE SELECTOR",
+                    "state": "IN/HPA"
+                },
+                {
+                    "item": "BAROMETRIC VALUE",
+                    "state": "LOCAL QNH"
+                },
+                {
+                    "item": "MINIMUMS REFERENCE SELECTOR",
+                    "state": "BARO"
+                },
+                {
+                    "item": "MINIMUMS",
+                    "state": "AIRPORT ELEVATION + 1000 FT"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PREFLIGHT PREPARATION PROCEDURES (3/7):PREFLIGHT PREPARATION PROCEDURES (3/7)",
+            "steps": [
+                {
+                    "text": "FMC, IDENT & POS INIT 1/3"
+                },
+                {
+                    "text": "FMC, PERF INIT 1/2"
+                },
+                {
+                    "item": "ZERO FUEL WEIGHT",
+                    "state": "FLIGHTPLAN (ESTIMATED)"
+                }
+            ]
+        },
+        {
+            "type": "page-break"
+        },
+        {
+            "type": "sequence",
+            "title": "PREFLIGHT PREPARATION PROCEDURES (4/7):PREFLIGHT PREPARATION PROCEDURES (4/7)",
+            "steps": [
+                {
+                    "text": "OVHD, FLIGHT CONTROL PANEL"
+                },
+                {
+                    "item": "YAW DAMPER",
+                    "state": "ON"
+                },
+                {
+                    "text": "OVHD, FUEL PANEL"
+                },
+                {
+                    "item": "CTR FUEL PUMPS L & R",
+                    "state": "ON (> 453KGS)"
+                },
+                {
+                    "item": "AFT & FWD FUEL PUMPS 1",
+                    "state": "ON"
+                },
+                {
+                    "item": "FWD & AFT FUEL PUMPS 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "CROSSFEED VALVE",
+                    "state": "SET OPEN & LIGHT DIMMED"
+                },
+                {
+                    "item": "CROSSFEED VALVE",
+                    "state": "SET CLOSED & LIGHT OFF"
+                },
+                {
+                    "text": "OVHD, ELECTRIC PANEL"
+                },
+                {
+                    "item": "ELECTRICAL AC SWITCH",
+                    "state": "APU GEN"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PREFLIGHT PREPARATION PROCEDURES (5/7):PREFLIGHT PREPARATION PROCEDURES (5/7)",
+            "steps": [
+                {
+                    "text": "OVHD, MIDDLE PANEL"
+                },
+                {
+                    "item": "EMERGENCY EXIT LIGHTS",
+                    "state": "GUARD CLOSED"
+                },
+                {
+                    "item": "FASTEN BELTS",
+                    "state": "ON (IF REFUELING COMPLETED)"
+                },
+                {
+                    "text": "OVHD, WINDOW HEAT PANEL"
+                },
+                {
+                    "item": "LEFT SIDE & FWD WINDOW HEATS",
+                    "state": "ON"
+                },
+                {
+                    "item": "RIGHT SIDE & FWD WINDOW HEATS",
+                    "state": "ON"
+                },
+                {
+                    "text": "OVHD, HYDRAULIC PANEL"
+                },
+                {
+                    "item": "ENGINE HYDRAULIC PUMPS 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "ELECTRIC HYDRAULIC PUMPS A & B",
+                    "state": "ON"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PREFLIGHT PREPARATION PROCEDURES (6/7):PREFLIGHT PREPARATION PROCEDURES (6/7)",
+            "steps": [
+                {
+                    "text": "OVHD, AIR CONDITIONING PANEL"
+                },
+                {
+                    "item": "TRIM AIR",
+                    "state": "ON"
+                },
+                {
+                    "text": "OVHD, AIR PRESSURE PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT AIR CONDITIONING PACK",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "ISOLATION VALVE",
+                    "state": "OPEN"
+                },
+                {
+                    "item": "ENGINE BLEED AIR 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "APU BLEED",
+                    "state": "OFF (ON IF APU IS RUNNING)"
+                },
+                {
+                    "text": "OVHD, CABIN PRESSURIZATION PANEL"
+                },
+                {
+                    "item": "FLIGHT ALTITUDE INDICATOR",
+                    "state": "CRUISE ALTITUDE"
+                },
+                {
+                    "item": "LANDING ALTITUDE INDICATOR",
+                    "state": "RWY ELEVATION"
+                },
+                {
+                    "text": "OVHD, LIGHTING & ENGINE PANEL"
+                },
+                {
+                    "item": "ANTI COLLISION LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "item": "POSITION LIGHTS",
+                    "state": "STEADY"
+                },
+                {
+                    "item": "TAXI LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LEFT & RIGHT RUNWAY TURNOFF LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LEFT & RIGHT LANDING LIGHTS",
+                    "state": "OFF"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PREFLIGHT PREPARATION PROCEDURES (7/7):PREFLIGHT PREPARATION PROCEDURES (7/7)",
+            "steps": [
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "COURSE 1 & 2",
+                    "state": "TO SID-VOR"
+                },
+                {
+                    "item": "CAPTAIN FLIGHT DIRECTOR",
+                    "state": "ON"
+                },
+                {
+                    "item": "FIRST OFFICER FLIGHT DIRECTOR",
+                    "state": "ON"
+                },
+                {
+                    "item": "BANK ANGLE BELOW FL300",
+                    "state": "25 DEGREES"
+                },
+                {
+                    "item": "DEPARTURE HEADING",
+                    "state": "ACCORDING CHARTS"
+                },
+                {
+                    "item": "INITIAL CLIMB CLEARANCE",
+                    "state": "ACCORDING CHARTS"
+                },
+                {
+                    "text": "CONSOLE (CAPTAIN)"
+                },
+                {
+                    "item": "STANDBY ALTIMETER BARO. SELECT.",
+                    "state": "IN/HPA"
+                },
+                {
+                    "item": "STANDBY ALTIMETER",
+                    "state": "LOCAL QNH"
+                },
+                {
+                    "text": "MFD PANEL"
+                },
+                {
+                    "item": "AUTO BRAKES",
+                    "state": "RTO"
+                },
+                {
+                    "item": "AUTO BRAKES ANNUNCIATOR",
+                    "state": "UNILLUMINATES"
+                },
+                {
+                    "item": "FUEL FLOW",
+                    "state": "RESET THEN RATE"
+                },
+                {
+                    "text": "FLIGHT DECK"
+                },
+                {
+                    "item": "FLIGHT DECK DOOR",
+                    "state": "CLOSED"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PREFLIGHT BRIEFINGS WITH CAPTAIN & FIRST OFFICER:PREFLIGHT BRIEFINGS WITH CAPTAIN & FIRST OFFICER",
+            "steps": [
+                {
+                    "text": "EFB, MAIN MENU & GROUND SERVICE"
+                },
+                {
+                    "item": "FWD & AFT ENTRY DOORS",
+                    "state": "CLOSED (IF ALL PAX ABOARD)"
+                },
+                {
+                    "item": "FWD & AFT CARGO DOORS",
+                    "state": "CLOSED"
+                },
+                {
+                    "text": "OVHD, ELECTRIC PANEL"
+                },
+                {
+                    "item": "REMINDER",
+                    "state": "START TRACKING CLIENT"
+                },
+                {
+                    "item": "APU",
+                    "state": "STARTED (RUNS 1 MINUTE LOADLESS)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PERFORMANCE PROCEDURE:PERFORMANCE PROCEDURE",
+            "steps": [
+                {
+                    "text": "OVHD & EFB, GROUND SERVICE"
+                },
+                {
+                    "item": "APU BLEED",
+                    "state": "ON"
+                },
+                {
+                    "item": "MIDDLE APU GENERATORS",
+                    "state": "ON"
+                },
+                {
+                    "item": "GPU",
+                    "state": "DISCONNECTED"
+                },
+                {
+                    "text": "CONTROL & MCP PANEL"
+                },
+                {
+                    "item": "SPEED BUG (IAS/MACH)",
+                    "state": "V2 SPEED AS CALCULATED"
+                },
+                {
+                    "item": "STAB TRIM WHEEL",
+                    "state": "SET AS CALCULATED BY FMC"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "ENGINE START & PUSHBACK PROCEDURE:ENGINE START & PUSHBACK PROCEDURE",
+            "steps": [
+                {
+                    "text": "OVHD, LIGHTING & AIR PRESSURE PANEL"
+                },
+                {
+                    "item": "ANTI COLLISION LIGHT",
+                    "state": "ON"
+                },
+                {
+                    "item": "LEFT & RIGHT AIR CONDITIONING PACKS",
+                    "state": "OFF"
+                },
+                {
+                    "text": "RADIO PANEL & EFB, GROUND SERVICE"
+                },
+                {
+                    "item": "START PUSHBACK",
+                    "state": "AS GIVEN BY ATC"
+                },
+                {
+                    "text": "ENGINE PANEL"
+                },
+                {
+                    "item": "ENGINE START SWITCH 2",
+                    "state": "GROUND"
+                },
+                {
+                    "item": "ENGINE 2 START LEVER",
+                    "state": "IDLE REACHING 25% N2"
+                },
+                {
+                    "item": "ENGINE 2",
+                    "state": "STABLE (20% N1, ~420 DEG., 65% N2)"
+                },
+                {
+                    "item": "ENGINE START SWITCH 1",
+                    "state": "GROUND"
+                },
+                {
+                    "item": "ENGINE 1 START LEVER",
+                    "state": "IDLE REACHING 25% N2"
+                },
+                {
+                    "item": "ENGINE 1",
+                    "state": "STABLE (20% N1, ~420 DEG., 65% N2)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "BEFORE TAXI PROCEDURE:BEFORE TAXI PROCEDURE",
+            "steps": [
+                {
+                    "text": "OVHD PANEL"
+                },
+                {
+                    "item": "ENGINE GENERATORS 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "APU SWITCH",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE START SWITCHES 1 & 2",
+                    "state": "CONTINUES"
+                },
+                {
+                    "item": "PROBE HEATS A & B",
+                    "state": "ON"
+                },
+                {
+                    "text": "OVHD, AIR PRESSURE PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT AIR CONDITIONING PACK",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "ISOLATION VALVE",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "APU BLEED",
+                    "state": "OFF"
+                },
+                {
+                    "text": "MCP PANEL & YOKE"
+                },
+                {
+                    "item": "TAKE-OFF FLAPS",
+                    "state": "AS CALCULATED"
+                },
+                {
+                    "item": "FLIGHT CONTROL ELEVATORS",
+                    "state": "FULL FORWARD"
+                },
+                {
+                    "item": "FLIGHT CONTROL ELEVATORS",
+                    "state": "FULL BACK"
+                },
+                {
+                    "item": "FLIGHT CONTROL AILERONS",
+                    "state": "FULL LEFT"
+                },
+                {
+                    "item": "FLIGHT CONTROL AILERONS",
+                    "state": "FULL RIGHT"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "TAXI PROCEDURE:TAXI PROCEDURE",
+            "steps": [
+                {
+                    "text": "OVHD, LIGHTING PANEL"
+                },
+                {
+                    "item": "TAXI LIGHT",
+                    "state": "ON"
+                },
+                {
+                    "item": "LEFT & RIGHT RUNWAY TURNOFF LIGHTS",
+                    "state": "ON"
+                },
+                {
+                    "text": "CONSOLE"
+                },
+                {
+                    "item": "PARKING BRAKE",
+                    "state": "RELEASE"
+                },
+                {
+                    "item": "TAKE OFF CONFIG",
+                    "state": "TEST (NO HORN SOUND)"
+                },
+                {
+                    "item": "BRAKES",
+                    "state": "TEST"
+                },
+                {
+                    "text": "OVHD, MIDDLE PANEL"
+                },
+                {
+                    "item": "CHIMES ONLY",
+                    "state": "ON (SEAT CABIN CREW)"
+                },
+                {
+                    "item": "CABIN ATTEND BUTTON",
+                    "state": "PUSH (AS CREWINFO)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "BEFORE TAKEOFF PROCEDURE:BEFORE TAKEOFF PROCEDURE",
+            "steps": [
+                {
+                    "text": "ON RUNWAY INTERSECTION (HOLD)"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REQUEST TAKEOFF CLEARANCE"
+                },
+                {
+                    "text": "OVHD, LIGHTING PANEL"
+                },
+                {
+                    "item": "POSITION LIGHTS",
+                    "state": "STROBE & STEADY"
+                },
+                {
+                    "item": "LEFT & RIGHT LANDING LIGHTS",
+                    "state": "ON"
+                },
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "AUTOTHROTTLE",
+                    "state": "ACTIVE"
+                },
+                {
+                    "item": "LNAV OR HDG SEL",
+                    "state": "ACTIVE"
+                },
+                {
+                    "item": "VNAV",
+                    "state": "ACTIVE"
+                },
+                {
+                    "text": "EFIS PANEL"
+                },
+                {
+                    "item": "WEATHER RADAR",
+                    "state": "ON (CAPTAIN, TFC DIST. >5)"
+                },
+                {
+                    "text": "RADIO PANEL"
+                },
+                {
+                    "item": "TRANSPONDER",
+                    "state": "TA/RA"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "TAKEOFF PROCEDURE:TAKEOFF PROCEDURE",
+            "steps": [
+                {
+                    "item": "CAPTAIN CLOCK TIMER",
+                    "state": "ET"
+                },
+                {
+                    "item": "THRUST",
+                    "state": "STABALIZED AT 40% N1"
+                },
+                {
+                    "item": "ACTIVATE TOGA (OR MIC SWITCH)",
+                    "state": ""
+                },
+                {
+                    "text": "AFTER TAKEOFF"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "CLIMB PROCEDURE (1/2):CLIMB PROCEDURE (1/2)",
+            "steps": [
+                {
+                    "text": "MFD PANEL"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "UP"
+                },
+                {
+                    "text": "OVHD, MIDDLE & ANTI ICE PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT WIPER",
+                    "state": "PARK POSITION (MAX 200KTS)"
+                },
+                {
+                    "text": "MCP & MFD PANEL"
+                },
+                {
+                    "item": "AUTOPILOT",
+                    "state": "ENGAGE (ABOVE 1000 FT AGL)"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "FLAPS UP SPEED"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "RETRACT (ABOVE EACH PREVIOUS FLAP BUG)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "CLIMB PROCEDURE (2/2):CLIMB PROCEDURE (2/2)",
+            "steps": [
+                {
+                    "text": "MFD & OVHD PANEL"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "OFF"
+                },
+                {
+                    "item": "AUTO BRAKES",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE START SWITCHES 1 & 2",
+                    "state": "AUTO"
+                },
+                {
+                    "text": "OVHD, PRESSURIZATION PANEL"
+                },
+                {
+                    "item": "CABIN PRESSURE & DIFFERENTIAL",
+                    "state": "WITHIN LIMITS"
+                },
+                {
+                    "item": "PRESSURIZATION SELECTOR",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "APU BLEED",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE BLEED AIR 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "LEFT & RIGHT AIR CONDITIONING PACK",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "ISOLATION VALVE",
+                    "state": "AUTO"
+                },
+                {
+                    "text": "EFIS PANEL & YOKE"
+                },
+                {
+                    "item": "ALTIMETERS",
+                    "state": "STD (CAPTAIN & FIRST OFFICER)"
+                },
+                {
+                    "item": "STANDBY ALTIMETER",
+                    "state": "STD"
+                },
+                {
+                    "item": "YOKE CHECKLIST",
+                    "state": "AFTER TAKE-OFF (READ OUT)"
+                },
+                {
+                    "text": "OVHD, MIDDLE PANEL"
+                },
+                {
+                    "item": "CABIN ATTEND BUTTON",
+                    "state": "PUSH (AS CREWINFO)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "CLIMB PROCEDURE (1/2, US/CA):CLIMB PROCEDURE (1/2, US/CA)",
+            "steps": [
+                {
+                    "text": "MFD PANEL"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "UP"
+                },
+                {
+                    "text": "OVHD, MIDDLE & ANTI ICE PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT WIPER",
+                    "state": "PARK POSITION (MAX 200KTS)"
+                },
+                {
+                    "text": "MCP & MFD PANEL"
+                },
+                {
+                    "item": "AUTOPILOT",
+                    "state": "ENGAGE (ABOVE 1000 FT AGL)"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "FLAPS UP SPEED"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "RETRACT (ABOVE EACH PREVIOUS FLAP BUG)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "CLIMB PROCEDURE (2/2, US/CA):CLIMB PROCEDURE (2/2, US/CA)",
+            "steps": [
+                {
+                    "text": "MFD PANEL"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "OFF"
+                },
+                {
+                    "item": "AUTO BRAKES",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE START SWITCHES 1 & 2",
+                    "state": "AUTO"
+                },
+                {
+                    "text": "OVHD, PRESSURIZATION PANEL"
+                },
+                {
+                    "item": "CABIN PRESSURE & DIFFERENTIAL",
+                    "state": "WITHIN LIMITS"
+                },
+                {
+                    "item": "PRESSURIZATION SELECTOR",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "APU BLEED",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE BLEED AIR 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "LEFT & RIGHT AIR CONDITIONING PACK",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "ISOLATION VALVE",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "LEFT & RIGHT DUCT PRESSURE",
+                    "state": "WORKING"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REPORT HEIGHT & POSITION"
+                },
+                {
+                    "text": "YOKE"
+                },
+                {
+                    "item": "YOKE CHECKLIST",
+                    "state": "AFTER TAKE-OFF (READ OUT)"
+                },
+                {
+                    "text": "OVHD, MIDDLE PANEL"
+                },
+                {
+                    "item": "CHIMES ONLY",
+                    "state": "OFF (RELEASE CABIN CREW)"
+                },
+                {
+                    "item": "CABIN ATTEND BUTTON",
+                    "state": "PUSH (AS CREWINFO)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PRECRUISE PROCEDURE (PASSING 10 THOUSAND FEET):PRECRUISE PROCEDURE (PASSING 10 THOUSAND FEET)",
+            "steps": [
+                {
+                    "text": "OVHD, FUEL / LIGHTNING / ENGINE PANEL"
+                },
+                {
+                    "item": "FUEL FACING LIGHTS",
+                    "state": "OFF (LOW PRESSURE LIGHTS)"
+                },
+                {
+                    "item": "LEFT & RIGHT LANDING LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LEFT & RIGHT RUNWAY TURNOFF LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "TAXI LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "item": "APU",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LOGO LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "item": "WING LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "text": "OVHD, PRESSURIZATION & MIDDLE PANEL"
+                },
+                {
+                    "item": "PRESSURIZATION SELECTOR",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "APU BLEED",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE BLEED AIR 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "LEFT & RIGHT AIR CONDITIONING PACK",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "ISOLATION VALVE",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "LEFT & RIGHT DUCT PRESSURE",
+                    "state": "WORKING"
+                },
+                {
+                    "item": "FASTEN BELTS",
+                    "state": "AUTO"
+                },
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "RECALL",
+                    "state": "SIXPACK PUSH (CAPTAIN OR FIRST OFFICER)"
+                },
+                {
+                    "item": "RECALL",
+                    "state": "SIXPACK ALL OFF (CAPTAIN & FIRST OFFICER)"
+                },
+                {
+                    "item": "HEADING BUG",
+                    "state": "ADJUST TRACK"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PRECRUISE PROCEDURE (PASSING 10 THOUSAND FEET, US/CA):PRECRUISE PROCEDURE (PASSING 10 THOUSAND FEET, US/CA)",
+            "steps": [
+                {
+                    "text": "OVHD, FUEL / LIGHTNING / ENGINE PANEL"
+                },
+                {
+                    "item": "FUEL FACING LIGHTS",
+                    "state": "OFF (LOW PRESSURE LIGHTS)"
+                },
+                {
+                    "item": "LEFT & RIGHT LANDING LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LEFT & RIGHT RUNWAY TURNOFF LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "TAXI LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "item": "APU",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LOGO LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "item": "WING LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "text": "OVHD, PRESSURIZATION & MIDDLE PANEL"
+                },
+                {
+                    "item": "CABIN PRESSURE DIFFERENTIAL",
+                    "state": "CAB ALT WITHIN LIMITS"
+                },
+                {
+                    "item": "PRESSURIZATION SELECTOR",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "APU BLEED",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE BLEED AIR 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "LEFT & RIGHT AIR CONDITIONING PACK",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "ISOLATION VALVE",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "LEFT & RIGHT DUCT PRESSURE",
+                    "state": "WORKING"
+                },
+                {
+                    "item": "FASTEN BELTS",
+                    "state": "AUTO"
+                },
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "RECALL",
+                    "state": "SIXPACK PUSH (CAPTAIN OR FIRST OFFICER)"
+                },
+                {
+                    "item": "RECALL",
+                    "state": "SIXPACK ALL OFF (CAPTAIN & FIRST OFFICER)"
+                },
+                {
+                    "item": "HEADING BUG",
+                    "state": "ADJUST TRACK"
+                },
+                {
+                    "item": "ALTIMETERS",
+                    "state": "STD (CAPTAIN & FIRST OFFICER)"
+                },
+                {
+                    "item": "STANDBY ALTIMETER",
+                    "state": "STD"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "PRECRUISE PROCEDURE (PASSING 30 THOUSAND FEET):PRECRUISE PROCEDURE (PASSING 30 THOUSAND FEET)",
+            "steps": [
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "BANK ANGLE",
+                    "state": "10 DEGREES (ABOVE FLIGHT LEVEL 300)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "CRUISE PROCEDURE (LEVEL OFF):CRUISE PROCEDURE (LEVEL OFF)",
+            "steps": [
+                {
+                    "text": "EFB, GROUND SERVICE & MAIN MENU"
+                },
+                {
+                    "item": "CABIN LIGHTING",
+                    "state": "CRUISE (PASSENGERS)"
+                },
+                {
+                    "item": "CABIN LIGHTING",
+                    "state": "WHITE MEDIUM (ENTRY)"
+                },
+                {
+                    "item": "PAX ANNOUNCEMENT",
+                    "state": "LEVEL OFF MESSAGE"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "CRUISE PROCEDURE (WAYPOINT REACHED):CRUISE PROCEDURE (WAYPOINT REACHED)",
+            "steps": [
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "HEADING BUG",
+                    "state": "ADJUST TRACK"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "DESCENT PROCEDURE (1/2):DESCENT PROCEDURE (1/2)",
+            "steps": [
+                {
+                    "text": "FMC, DES/FORECAST"
+                },
+                {
+                    "item": "DESCEND WEATHER",
+                    "state": "MAX 3 FLIGHTLEVEL STEPS"
+                },
+                {
+                    "item": "DESCEND WEATHER",
+                    "state": "FLIGHTPLAN WIND DATA"
+                },
+                {
+                    "item": "TRANSITION LEVEL",
+                    "state": "ARRIVAL"
+                },
+                {
+                    "item": "LOCAL QNH",
+                    "state": "ARRIVAL"
+                },
+                {
+                    "item": "ISA DEVIATION",
+                    "state": "FLIGHTPLAN AVG ISA"
+                },
+                {
+                    "text": "FMC, FIX"
+                },
+                {
+                    "item": "FIX",
+                    "state": "DESTINATION LANDING RUNWAY (RW14L)"
+                },
+                {
+                    "item": "DISTANCE RINGS",
+                    "state": "/10 /4.5 /XX NAUTICAL MILES"
+                },
+                {
+                    "text": "EFIS & RADIO & MCP PANEL"
+                },
+                {
+                    "item": "DECISION ALTITUTE HEIGHT",
+                    "state": "ACCORDING CHART"
+                },
+                {
+                    "item": "NAV-FREQUENCIES",
+                    "state": "ACTIVE (CAPTAIN & FIRST OFFICER)"
+                },
+                {
+                    "item": "COURSES",
+                    "state": "ACCORDING APPROACH CHART"
+                },
+                {
+                    "item": "ALTITUDE BUG",
+                    "state": "ADJUST TILL IAF CLEARANCE"
+                },
+                {
+                    "text": "LANDING PERFORMANCE CALCULATION"
+                },
+                {
+                    "item": "LANDING PERFORMANCE CALCULATION",
+                    "state": ""
+                },
+                {
+                    "text": "FMC, APPROACH REF 1/1"
+                },
+                {
+                    "item": "LANDING FLAPS / VREF",
+                    "state": "SELECT 2* TO FILL FLAP/SPD"
+                },
+                {
+                    "text": "MFD PANEL & COCKPIT"
+                },
+                {
+                    "item": "AUTO BRAKES",
+                    "state": "AS CALCULATED"
+                },
+                {
+                    "item": "YOKE CHECKLIST",
+                    "state": "DESCENT (READ OUT, MOVE KNOB)"
+                },
+                {
+                    "text": "EFB, GROUND SERVICE & MAIN MENU"
+                },
+                {
+                    "item": "CABIN LIGHTING",
+                    "state": "LANDING (PASSENGERS)"
+                },
+                {
+                    "item": "CABIN LIGHTING",
+                    "state": "WHITE BRIGHT (ENTRY)"
+                },
+                {
+                    "item": "PAX ANNOUNCEMENT",
+                    "state": "DESCENT MESSAGE (PA SYSTEM)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "DESCENT PROCEDURE (PASSING 30 THOUSAND FEET):DESCENT PROCEDURE (PASSING 30 THOUSAND FEET)",
+            "steps": [
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "BANK ANGLE",
+                    "state": "25 DEGREES (BELOW FLIGHT LEVEL 300)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "DESCENT PROCEDURE (2/2):DESCENT PROCEDURE (2/2)",
+            "steps": [
+                {
+                    "text": "OVHD, ENGINE & ANTI ICE PANEL"
+                },
+                {
+                    "text": "OVHD, LIGHTNING & MIDDLE PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT LANDING LIGHTS",
+                    "state": "ON"
+                },
+                {
+                    "item": "LEFT & RIGHT RUNWAY TURNOFF LIGHTS",
+                    "state": "ON"
+                },
+                {
+                    "item": "LOGO LIGHT",
+                    "state": "ON (IN DARKNESS)"
+                },
+                {
+                    "item": "FASTEN BELTS",
+                    "state": "ON"
+                },
+                {
+                    "text": "EFIS PANEL"
+                },
+                {
+                    "item": "BAROMETRIC REF. SELECTOR",
+                    "state": "HPA (CAPT. & FIRST OFF.)"
+                },
+                {
+                    "item": "BAROMETRIC VALUE",
+                    "state": "LOCAL QNH"
+                },
+                {
+                    "item": "STANDBY ALTIMETER BAROMETRIC SELECTOR",
+                    "state": "HPA"
+                },
+                {
+                    "item": "STANDBY ALTIMETER",
+                    "state": "LOCAL QNH"
+                },
+                {
+                    "item": "STANDBY ALTIMETER",
+                    "state": "APPROACH MODE (FOR ILS)"
+                },
+                {
+                    "item": "YOKE CHECKLIST",
+                    "state": "APPROACH (READ OUT, MOVE KNOB)"
+                },
+                {
+                    "text": "ACP PANEL"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REPORT HEIGHT, POSITION, INFO"
+                },
+                {
+                    "text": "EFB, MAIN MENU"
+                },
+                {
+                    "item": "PAX ANNOUNCEMENT",
+                    "state": "PREPARE LANDING MESSAGE"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "DESCENT PROCEDURE (2/2, US/CA):DESCENT PROCEDURE (2/2, US/CA)",
+            "steps": [
+                {
+                    "text": "OVHD, ENGINE & ANTI ICE PANEL"
+                },
+                {
+                    "text": "EFIS PANEL & COCKPIT"
+                },
+                {
+                    "item": "BAROMETRIC REF. SELECTOR",
+                    "state": "IN (CAPT. & FIRST OFF.)"
+                },
+                {
+                    "item": "BAROMETRIC VALUE",
+                    "state": "LOCAL QNH"
+                },
+                {
+                    "item": "STANDBY ALTIMETER BAROMETRIC SELECTOR",
+                    "state": "IN"
+                },
+                {
+                    "item": "STANDBY ALTIMETER",
+                    "state": "LOCAL QNH"
+                },
+                {
+                    "item": "STANDBY ALTIMETER",
+                    "state": "APPROACH MODE (FOR ILS)"
+                },
+                {
+                    "item": "YOKE CHECKLIST",
+                    "state": "APPROACH (READ OUT, MOVE KNOB)"
+                },
+                {
+                    "text": "OVHD, LIGHTNING PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT LANDING LIGHTS",
+                    "state": "ON"
+                },
+                {
+                    "item": "LEFT & RIGHT RUNWAY TURNOFF LIGHTS",
+                    "state": "ON"
+                },
+                {
+                    "item": "LOGO LIGHT",
+                    "state": "ON (IN DARKNESS)"
+                },
+                {
+                    "item": "FASTEN BELTS",
+                    "state": "ON"
+                },
+                {
+                    "text": "ACP PANEL"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REPORT HEIGHT, POSITION, INFO"
+                },
+                {
+                    "text": "EFB, MAIN MENU"
+                },
+                {
+                    "item": "PAX ANNOUNCEMENT",
+                    "state": "PREPARE LANDING MESSAGE"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "APPROACH PROCEDURE:APPROACH PROCEDURE",
+            "steps": [
+                {
+                    "text": "CONSOLE & MCP & MIDDLE PANEL"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "FLAPS UP SPEED"
+                },
+                {
+                    "item": "CHIMES ONLY",
+                    "state": "ON (SEAT CABIN CREW)"
+                },
+                {
+                    "item": "CABIN ATTEND BUTTON",
+                    "state": "PUSH (AS CREWINFO)"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "1"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "FLAPS 1 SPEED"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "5"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "FLAPS 5 SPEED"
+                },
+                {
+                    "item": "VOR LOC / APP SWITCH",
+                    "state": "(IF DIAMONDS ALIVE)"
+                },
+                {
+                    "item": "AUTOPILOT",
+                    "state": "CMD B (ONLY CAT III AUTOLANDING)"
+                },
+                {
+                    "item": "HEADING BUG",
+                    "state": "RUNWAY HDG ACC. CHART"
+                },
+                {
+                    "item": "ALTITUDE BUG",
+                    "state": "MISSED APPROACH ACC. CHART"
+                },
+                {
+                    "text": "ACP PANEL"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REPORT ILS ESTABLISHED"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "LANDING PROCEDURE (1/2):LANDING PROCEDURE (1/2)",
+            "steps": [
+                {
+                    "text": "CONSOLE & MCP & OVHD PANEL"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "DOWN"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "15"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "FLAPS 15 SPEED"
+                },
+                {
+                    "item": "LEFT & RIGHT WIPER",
+                    "state": "INT / LOW / HIGH (IN RAIN)"
+                },
+                {
+                    "text": "LANDING CHECKLIST (READ OUT HERE)"
+                },
+                {
+                    "item": "ENGINE START SWITCHES 1 & 2",
+                    "state": "CONTINUES"
+                },
+                {
+                    "item": "RECALL",
+                    "state": "SIXPACK PUSH (CAPTAIN OR FIRST OFFICER)"
+                },
+                {
+                    "item": "RECALL",
+                    "state": "SIXPACK ALL OFF (CAPTAIN & FIRST OFFICER)"
+                },
+                {
+                    "item": "SPEEDBRAKE LEVER",
+                    "state": "ARMED (GREEN LIGHTS)"
+                },
+                {
+                    "item": "AUTO BRAKES",
+                    "state": "SET AS CALCULATED"
+                },
+                {
+                    "item": "LANDING GEAR",
+                    "state": "DOWN (3 GREEN)"
+                },
+                {
+                    "item": "LANDING FLAPS",
+                    "state": "SET 30 OR 40 (GREEN LIGHTS)"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "VREF + 50% HW (APPROACH)"
+                },
+                {
+                    "item": "TAXI LIGHT",
+                    "state": "ON"
+                },
+                {
+                    "text": "LANDING CHECKLIST COMPLETED (READ OUT)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "LANDING PROCEDURE (2/2):LANDING PROCEDURE (2/2)",
+            "steps": [
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "A/P DISENGAGE",
+                    "state": "YOKE BUTTON"
+                },
+                {
+                    "item": "AUTOTHROTTLE",
+                    "state": "OFF"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "AFTER LANDING PROCEDURE:AFTER LANDING PROCEDURE",
+            "steps": [
+                {
+                    "text": "CONSOLE & MFD PANEL"
+                },
+                {
+                    "item": "REVERSE LEVERS",
+                    "state": "IDLE <60 KNOTS"
+                },
+                {
+                    "item": "REVERSE LEVERS",
+                    "state": "CLOSED <30 KNOTS"
+                },
+                {
+                    "item": "AUTO BRAKES",
+                    "state": "OFF"
+                },
+                {
+                    "item": "MANUAL BRAKES",
+                    "state": "TILL <15 KNOTS"
+                },
+                {
+                    "item": "SPEEDBRAKE LEVER",
+                    "state": "DOWN (RETRACT)"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "UP & CLEAR RUNWAY"
+                },
+                {
+                    "text": "EFIS PANEL"
+                },
+                {
+                    "item": "WEATHER RADAR",
+                    "state": "OFF (CAPTAIN)"
+                },
+                {
+                    "item": "TERRAIN RADAR",
+                    "state": "OFF (FIRST OFFICER)"
+                },
+                {
+                    "text": "OVHD, LIGHTING PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT LANDING LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "POSITION LIGHTS",
+                    "state": "STEADY (OFF RWY)"
+                },
+                {
+                    "text": "ACP PANEL"
+                },
+                {
+                    "item": "TRANSPONDER",
+                    "state": "ALT OFF (IVAO STBY)"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REPORT RWY VACATED"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "TAXI TO GATE PROCEDURE (1/2):TAXI TO GATE PROCEDURE (1/2)",
+            "steps": [
+                {
+                    "text": "ACP PANEL"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REQUEST TAXI TO GATE"
+                },
+                {
+                    "text": "MCP PANEL"
+                },
+                {
+                    "item": "FLIGHT DIRECTORS",
+                    "state": "OFF (CAPTAIN & FIRST OFFICER)"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "100 KNOTS (INITIAL VALUE)"
+                },
+                {
+                    "item": "ALTITUDE BUG",
+                    "state": "MISSED APPROACH +100 FT"
+                },
+                {
+                    "item": "STAB TRIM WHEEL",
+                    "state": "4 UNITS (INITIAL VALUE)"
+                },
+                {
+                    "text": "EFB, GROUND SERVICE"
+                },
+                {
+                    "item": "CABIN LIGHTING",
+                    "state": "WHITE MEDIUM (PASSENGERS)"
+                },
+                {
+                    "text": "OVHD, DEICING PANEL"
+                },
+                {
+                    "item": "PROBE HEATS A & B",
+                    "state": "OFF"
+                },
+                {
+                    "text": "OVHD, HEAT PANEL"
+                },
+                {
+                    "item": "WING ANTI ICE",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE ANTI ICE 1 & 2",
+                    "state": "OFF (ON <10 DEG. & V. M.)"
+                },
+                {
+                    "text": "OVHD, ENGINE & ELECTRIC PANEL"
+                },
+                {
+                    "item": "ENGINE START SWITCHES 1 & 2",
+                    "state": "AUTO"
+                },
+                {
+                    "item": "APU",
+                    "state": "STARTED (1 MINUTE LOADLESS)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "TAXI TO GATE PROCEDURE (2/2):TAXI TO GATE PROCEDURE (2/2)",
+            "steps": [
+                {
+                    "text": "OVHD, ENGINE & ELECTRIC PANEL"
+                },
+                {
+                    "item": "MIDDLE APU GENERATORS",
+                    "state": "ON"
+                },
+                {
+                    "item": "ENGINE START LEVER 2",
+                    "state": "CUTOFF"
+                },
+                {
+                    "text": "OVHD, LIGHTING PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT RUNWAY TURNOFF LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "TAXI LIGHT",
+                    "state": "OFF"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "TRANSIT SHUTDOWN PROCEDURE (1/3):TRANSIT SHUTDOWN PROCEDURE (1/3)",
+            "steps": [
+                {
+                    "text": "CONSOLE"
+                },
+                {
+                    "item": "PARKING BRAKE",
+                    "state": "PULLED (ACTIVE)"
+                },
+                {
+                    "item": "ENGINE START LEVERS 1 & 2",
+                    "state": "CUTOFF"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "TRANSIT SHUTDOWN PROCEDURE (2/3):TRANSIT SHUTDOWN PROCEDURE (2/3)",
+            "steps": [
+                {
+                    "text": "OVHD, LIGHTING PANEL"
+                },
+                {
+                    "item": "ANTI COLLISION LIGHTS",
+                    "state": "OFF (IF N1 <20%)"
+                },
+                {
+                    "text": "ACP PANEL"
+                },
+                {
+                    "item": "INITIAL TRANSPONDER CODE",
+                    "state": "2000"
+                },
+                {
+                    "item": "TRANSPONDER",
+                    "state": "STANDBY"
+                },
+                {
+                    "text": "FLIGHT DECK"
+                },
+                {
+                    "item": "FLIGHT DECK DOOR",
+                    "state": "OPEN"
+                },
+                {
+                    "text": "OVHD, ELEC. PANEL & EFB, GR. SE."
+                },
+                {
+                    "item": "AC GROUND POWER",
+                    "state": "ON"
+                },
+                {
+                    "item": "GPU GROUND SERVICE",
+                    "state": "CONNECTED"
+                },
+                {
+                    "item": "AC GROUND POWER",
+                    "state": "ON"
+                },
+                {
+                    "item": "APU",
+                    "state": "OFF"
+                },
+                {
+                    "text": "OVHD, MIDDLE & AIR PRESS. PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT WIPER",
+                    "state": "PARK POSITION"
+                },
+                {
+                    "item": "CHIMES ONLY",
+                    "state": "OFF (RELEASE CABIN CREW)"
+                },
+                {
+                    "item": "FASTEN BELTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ELECTRIC HYDRAULIC PUMPS A & B",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ISOLATION VALVE",
+                    "state": "OPEN"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "TRANSIT SHUTDOWN PROCEDURE (3/3):TRANSIT SHUTDOWN PROCEDURE (3/3)",
+            "steps": [
+                {
+                    "text": "EFB, GROUND SERVICE & MAIN MENU"
+                },
+                {
+                    "item": "CABIN LIGHTING",
+                    "state": "WHITE BRIGHT (PASSENGERS)"
+                },
+                {
+                    "item": "FWD ENTRY DOOR",
+                    "state": "OPEN"
+                },
+                {
+                    "item": "AFT ENTRY DOOR",
+                    "state": "OPEN"
+                },
+                {
+                    "item": "FWD & AFT CARGO DOORS",
+                    "state": "OPEN"
+                },
+                {
+                    "item": "REMINDER",
+                    "state": "STOP TRACKING CLIENT"
+                },
+                {
+                    "item": "PAX & CARGO",
+                    "state": "TOTAL 0 (EFB, LOADSHEET)"
+                },
+                {
+                    "item": "FLIGHT LEG",
+                    "state": "TERMINATE"
+                },
+                {
+                    "item": "AFT ENTRY DOOR",
+                    "state": "CLOSED"
+                },
+                {
+                    "item": "FWD & AFT CARGO DOORS",
+                    "state": "CLOSED"
+                },
+                {
+                    "text": "GLARESHIELD"
+                },
+                {
+                    "item": "NORMAL CHECKLIST",
+                    "state": "SHUTDOWN (READ OUT)"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "COLD & DARK SHUTDOWN PROCEDURE (1/2):COLD & DARK SHUTDOWN PROCEDURE (1/2)",
+            "steps": [
+                {
+                    "text": "OVHD, CONTROLS & UPPER PANEL"
+                },
+                {
+                    "item": "YAW DAMPER",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LEFT & RIGHT IRS MODE SELECTOR",
+                    "state": "OFF"
+                },
+                {
+                    "item": "IRS DISPLAY SELECTOR",
+                    "state": "TK/GS"
+                },
+                {
+                    "text": "OVHD, FUEL PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT CENTER FUEL PUMPS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "AFT & FWD FUEL PUMPS 1",
+                    "state": "OFF"
+                },
+                {
+                    "item": "FWD & AFT FUEL PUMPS 2",
+                    "state": "OFF"
+                },
+                {
+                    "text": "OVHD, HEAT PANEL"
+                },
+                {
+                    "item": "LEFT SIDE & FWD WINDOW HEATS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "RIGHT SIDE & FWD WINDOW HEATS",
+                    "state": "OFF"
+                },
+                {
+                    "text": "OVHD, HYDRAULIC PANEL"
+                },
+                {
+                    "item": "ELECTRIC HYDRAULIC PUMPS A & B",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE HYDRAULIC PUMPS 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "text": "OVHD, HYDRAULIC PANEL"
+                },
+                {
+                    "item": "TRIM AIR",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LEFT & RIGHT AIR CONDITIONING PACKS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "ENGINE BLEED AIR 1 & 2",
+                    "state": "ON"
+                },
+                {
+                    "item": "APU BLEED",
+                    "state": "OFF"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "COLD & DARK SHUTDOWN PROCEDURE (2/2):COLD & DARK SHUTDOWN PROCEDURE (2/2)",
+            "steps": [
+                {
+                    "text": "OVHD, LIGHTNING & MIDDLE PANEL"
+                },
+                {
+                    "item": "WING LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "item": "POSITION LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "LOGO LIGHT",
+                    "state": "OFF"
+                },
+                {
+                    "item": "EMERGENCY EXIT LIGHTS",
+                    "state": "GUARD OPENED & OFF"
+                },
+                {
+                    "item": "COCKPIT PANEL LIGHTNING",
+                    "state": "ALL OFF"
+                },
+                {
+                    "text": "OVHD, ELECTRIC PANEL"
+                },
+                {
+                    "item": "AC GROUND POWER",
+                    "state": "OFF"
+                },
+                {
+                    "item": "BATTERY",
+                    "state": "GUARD OPENED & OFF"
+                },
+                {
+                    "text": "GLARESHIELD"
+                },
+                {
+                    "item": "NORMAL CHECKLIST",
+                    "state": "SECURE (READ OUT)"
+                },
+                {
+                    "text": "EFB, GROUND SERVICE"
+                },
+                {
+                    "item": "FWD ENTRY DOOR",
+                    "state": "CLOSED"
+                },
+                {
+                    "text": "END OF CHECKLISTS"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "GO-AROUND / MISSED APPROACH PROCEDURE:GO-AROUND / MISSED APPROACH PROCEDURE",
+            "steps": [
+                {
+                    "text": "MFD & MCP PANEL"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "15"
+                },
+                {
+                    "item": "THRUST LEVERS",
+                    "state": "GO-AROUND THRUST"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "UP (POSITIVE RATE)"
+                },
+                {
+                    "item": "LNAV OR HDG SEL",
+                    "state": "ACTIVE (ABOVE 400FT AGL)"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "RETRACT (ABOVE EACH PFD FLAP BUG)"
+                },
+                {
+                    "item": "HEADING BUG",
+                    "state": "ADJUST TRACK"
+                },
+                {
+                    "item": "VNAV OR LVL CHANGE",
+                    "state": "ACTIVE"
+                },
+                {
+                    "item": "AUTOPILOT",
+                    "state": "ENGAGE (ABOVE 1000FT AGL)"
+                },
+                {
+                    "item": "AUTOTHROTTLE",
+                    "state": "ACTIVE"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "FLAPS UP SPEED"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "OFF"
+                },
+                {
+                    "text": "OVHD, ENGINE & ANTI ICE PANEL"
+                },
+                {
+                    "text": "EFIS PANEL"
+                },
+                {
+                    "item": "ALTIMETERS",
+                    "state": "STD (CAPTAIN & FIRST OFFICER)"
+                },
+                {
+                    "item": "STANDBY ALTIMETER",
+                    "state": "STD"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "GO-AROUND / MISSED APPROACH PROCEDURE (US/CA):GO-AROUND / MISSED APPROACH PROCEDURE (US/CA)",
+            "steps": [
+                {
+                    "text": "MFD & MCP PANEL"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "15"
+                },
+                {
+                    "item": "THRUST LEVERS",
+                    "state": "GO-AROUND THRUST"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "UP (POSITIVE RATE)"
+                },
+                {
+                    "item": "LNAV OR HDG SEL",
+                    "state": "ACTIVE (ABOVE 400FT AGL)"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "RETRACT (ABOVE EACH PFD FLAP BUG)"
+                },
+                {
+                    "item": "HEADING BUG",
+                    "state": "ADJUST TRACK"
+                },
+                {
+                    "item": "VNAV OR LVL CHANGE",
+                    "state": "ACTIVE"
+                },
+                {
+                    "item": "AUTOPILOT",
+                    "state": "ENGAGE (ABOVE 1000FT AGL)"
+                },
+                {
+                    "item": "AUTOTHROTTLE",
+                    "state": "ACTIVE"
+                },
+                {
+                    "item": "AIRSPEED BUG",
+                    "state": "FLAPS UP SPEED"
+                },
+                {
+                    "item": "LANDING GEAR LEVER",
+                    "state": "OFF"
+                },
+                {
+                    "text": "OVHD, ENGINE & ANTI ICE PANEL"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "REJECTED TAKEOFF CHECKLIST:REJECTED TAKEOFF CHECKLIST",
+            "steps": [
+                {
+                    "text": "MCP & MFD PANEL"
+                },
+                {
+                    "item": "THRUST LEVERS",
+                    "state": "CLOSED (IDLE)"
+                },
+                {
+                    "item": "AUTOTHROTTLE",
+                    "state": "OFF"
+                },
+                {
+                    "item": "SPEEDBRAKE LEVER",
+                    "state": "FULL UP (EXTENDED)"
+                },
+                {
+                    "item": "REVERSE LEVERS",
+                    "state": "THRUST (AS NEEDED)"
+                },
+                {
+                    "item": "REVERSE LEVERS",
+                    "state": "CLOSED <30 KNOTS"
+                },
+                {
+                    "item": "PARKING BRAKE",
+                    "state": "PULLED (ACTIVE)"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REPORT REJECT & STATUS"
+                },
+                {
+                    "item": "NOTIFY CABIN",
+                    "state": "REMAIN SEATED"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "AFTER REJECTED TAKEOFF PROCEDURE:AFTER REJECTED TAKEOFF PROCEDURE",
+            "steps": [
+                {
+                    "text": "MFD PANEL"
+                },
+                {
+                    "item": "PARKING BRAKE",
+                    "state": "RELEASE"
+                },
+                {
+                    "item": "AUTO BRAKES",
+                    "state": "OFF"
+                },
+                {
+                    "item": "SPEEDBRAKE LEVER",
+                    "state": "DOWN"
+                },
+                {
+                    "item": "FLAPS",
+                    "state": "UP & CLEAR RUNWAY"
+                },
+                {
+                    "text": "EFIS PANEL"
+                },
+                {
+                    "item": "WEATHER RADAR",
+                    "state": "OFF (CAPTAIN)"
+                },
+                {
+                    "item": "TERRAIN RADAR",
+                    "state": "OFF (FIRST OFFICER)"
+                },
+                {
+                    "text": "OVHD, LIGHTING PANEL"
+                },
+                {
+                    "item": "LEFT & RIGHT LANDING LIGHTS",
+                    "state": "OFF"
+                },
+                {
+                    "item": "POSITION LIGHTS",
+                    "state": "STEADY (OFF RWY)"
+                },
+                {
+                    "text": "ACP PANEL"
+                },
+                {
+                    "item": "TRANSPONDER",
+                    "state": "ALT OFF (IVAO STBY)"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REPORT RWY VACATED"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "ENGINE FIRE / DAMAGE / SEPARATION CHECKLIST (1/2):ENGINE FIRE / DAMAGE / SEPARATION CHECKLIST (1/2)",
+            "steps": [
+                {
+                    "text": "MFD PANEL"
+                },
+                {
+                    "item": "AUTOTHROTTLE",
+                    "state": "OFF"
+                },
+                {
+                    "item": "THRUST LEVER",
+                    "state": "IDLE (AFFECTED ENGINE)"
+                },
+                {
+                    "item": "ENGINE START LEVER",
+                    "state": "CUTOFF (AFFECTED ENGINE)"
+                },
+                {
+                    "item": "FIRE WARN",
+                    "state": "PUSH FOR BELL CUTOUT"
+                },
+                {
+                    "text": "FIRE PANEL"
+                },
+                {
+                    "item": "ENGINE FIRE SWITCH",
+                    "state": "PULL (AFFECTED ENGINE)"
+                },
+                {
+                    "item": "ENGINE FIRE SWITCH",
+                    "state": "TURN (AFFECTED ENGINE)"
+                },
+                {
+                    "text": "OVHD, AIR PRESSURE PANEL"
+                },
+                {
+                    "item": "ISOLATION VALVE",
+                    "state": "CLOSED"
+                },
+                {
+                    "item": "AIR CONDITIONING PACK",
+                    "state": "OFF (AFFECTED SIDE)"
+                },
+                {
+                    "item": "APU BLEED AIR",
+                    "state": "OFF"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "ENGINE FIRE / DAMAGE / SEPARATION CHECKLIST (2/2):ENGINE FIRE / DAMAGE / SEPARATION CHECKLIST (2/2)",
+            "steps": [
+                {
+                    "text": "OVHD, ELECTRIC PANEL"
+                },
+                {
+                    "item": "APU",
+                    "state": "STARTED (RUNS 1 MINUTE LOADLESS)"
+                },
+                {
+                    "item": "MIDDLE APU GENERATOR",
+                    "state": "ON (AFFECTED ENGINE)"
+                },
+                {
+                    "text": "ACP PANEL"
+                },
+                {
+                    "item": "TRANSPONDER",
+                    "state": "TA (PREVENTS CLIMB COMMANDS NOT"
+                },
+                {
+                    "item": "TRANSPONDER CODE",
+                    "state": "7700 (EMERGENCY)"
+                },
+                {
+                    "item": "CONTACT ATC",
+                    "state": "REPORT ENGINE FIRE (REQUEST NEXT AIRPORT)"
+                }
+            ]
+        }
+    ]
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,13 @@
     <title>Web Checklist</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <!-- Edit Section -->
     <div id="edit-section" class="edit-section">
         <div class="edit-container">
             <h1>Web Checklist Generator</h1>
-            
+
             <div class="json-editor">
                 <div class="json-editor-header">
                     <label for="json-input">Enter JSON Data:</label>
@@ -24,14 +26,10 @@
                         <a href="#" class="example-link" data-example="737">737</a>
                     </div>
                 </div>
-                <textarea 
-                    id="json-input" 
-                    class="json-textarea" 
-                    placeholder="Paste or enter JSON data here..."
-                    rows="20"
-                ></textarea>
+                <textarea id="json-input" class="json-textarea" placeholder="Paste or enter JSON data here..."
+                    rows="20"></textarea>
             </div>
-            
+
             <!-- Error Message Box -->
             <div id="error-box" class="error-box hidden">
                 <div class="error-content">
@@ -40,31 +38,57 @@
                 </div>
                 <button id="close-error" class="close-error" aria-label="Close error">×</button>
             </div>
-            
+
             <!-- Interactive Mode Toggle -->
             <div class="interactive-toggle">
                 <label for="interactive-mode-checkbox">
                     <input type="checkbox" id="interactive-mode-checkbox" checked>
-                    Allow interactive clicks
+                    Interactive
                 </label>
             </div>
-            
+
             <div class="button-container">
-                <button id="render-btn" class="btn btn-primary">Render</button>
-                <button id="render-hide-btn" class="btn btn-secondary">Render and Hide</button>
+                <div class="button-group-left">
+                    <button id="render-btn" class="btn btn-primary">Render</button>
+                    <button id="render-hide-btn" class="btn btn-secondary">Render and Hide</button>
+                </div>
+                <button id="gamepad-helper-btn" class="btn-gamepad-helper">🎮 Game device helper</button>
+            </div>
+
+            <!-- Gamepad Helper Section (hidden by default) -->
+            <div id="gamepad-helper" class="gamepad-helper hidden">
+                <div class="gamepad-helper-header">
+                    <h3>Game Device Helper</h3>
+                    <button id="close-gamepad-helper" class="close-gamepad-helper">×</button>
+                </div>
+                <p class="gamepad-helper-info">
+                    Checklists can be used in interactive mode with tracking of the current item.
+                    Mark items as completed by mouse click or via an assigned game device button.
+                    <a href="https://github.com/me2d13/web-checklist/blob/master/README.md" target="_blank"
+                        rel="noopener noreferrer">Learn more</a>
+                </p>
+                <div id="gamepad-details"></div>
             </div>
         </div>
     </div>
 
     <!-- Toggle Button (shown when edit section is hidden) -->
     <button id="toggle-edit-btn" class="toggle-btn hidden" aria-label="Show editor">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
         </svg>
     </button>
 
     <!-- Checklist Section -->
     <div id="checklist-section" class="checklist-section">
+        <!-- Interactive Navigation Controls -->
+        <div id="interactive-nav" class="interactive-nav hidden">
+            <button id="nav-next" class="nav-btn nav-btn-primary" title="Next item">Next</button>
+            <button id="nav-prev" class="nav-btn" title="Previous item">Previous</button>
+            <button id="nav-reset" class="nav-btn nav-btn-reset" title="Reset all">Reset</button>
+        </div>
+
         <div id="checklist-container" class="checklist-container">
             <!-- Generated checklist will appear here -->
         </div>
@@ -72,5 +96,5 @@
 
     <script type="module" src="js/main.js"></script>
 </body>
-</html>
 
+</html>

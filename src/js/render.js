@@ -9,8 +9,9 @@ function isInteractiveModeEnabled() {
 }
 
 // Global state for tracking completion
-let lastCompletedIndex = -1; // -1 means nothing is completed
+let lastCompletedIndex = -1; // -1 means nothing is completed, -2 means never clicked
 let allInteractiveElements = []; // Array to store all clickable elements in order
+let elementTypes = []; // Array to track element types: 'text' or 'item'
 
 /**
  * Render the checklist from JSON data
@@ -23,8 +24,9 @@ export function renderChecklist(data, container) {
 
     // Reset interactive state
     if (isInteractiveModeEnabled()) {
-        lastCompletedIndex = -1;
+        lastCompletedIndex = -2; // -2 = never clicked (no current item highlight)
         allInteractiveElements = [];
+        elementTypes = [];
     }
 
     // Prepare titles array (convert single title to array for uniform handling)
@@ -66,6 +68,9 @@ function handleElementClick(clickedIndex) {
  */
 function updateCompletionState() {
     allInteractiveElements.forEach((element, index) => {
+        // Remove current item class from all elements first
+        element.classList.remove('current-item');
+
         if (index <= lastCompletedIndex) {
             // Mark as completed with opacity
             element.style.opacity = '0.25';
@@ -74,6 +79,78 @@ function updateCompletionState() {
             element.style.opacity = '1';
         }
     });
+
+    // Highlight the current (next to be completed) item
+    // Only if we're not in "never clicked" state (-2)
+    if (lastCompletedIndex >= -1) {
+        let currentIndex = lastCompletedIndex + 1;
+
+        // Skip text elements to find the next item/state step to highlight
+        while (currentIndex < allInteractiveElements.length && elementTypes[currentIndex] === 'text') {
+            currentIndex++;
+        }
+
+        if (currentIndex >= 0 && currentIndex < allInteractiveElements.length) {
+            allInteractiveElements[currentIndex].classList.add('current-item');
+        }
+    }
+}
+
+/**
+ * Move to the next item (mark current + 1 as completed)
+ * Skips text-only elements
+ */
+export function nextItem() {
+    // Start searching from the next element after lastCompletedIndex
+    let searchIndex = lastCompletedIndex + 1;
+
+    // Skip any text elements to find the next item/state step
+    while (searchIndex < allInteractiveElements.length && elementTypes[searchIndex] === 'text') {
+        searchIndex++;
+    }
+
+    // If we found an item, mark it (and everything before it) as completed
+    // This check prevents going beyond the last item
+    if (searchIndex < allInteractiveElements.length) {
+        lastCompletedIndex = searchIndex;
+        updateCompletionState();
+    }
+}
+
+/**
+ * Move to the previous item (unmark current)
+ * Skips text-only elements
+ */
+export function previousItem() {
+    // Don't go below -1 (all items uncompleted)
+    if (lastCompletedIndex < 0) {
+        return;
+    }
+
+    // Start from the current lastCompletedIndex and go backwards
+    let searchIndex = lastCompletedIndex - 1;
+
+    // Skip any text elements backwards to find the previous item/state step
+    while (searchIndex >= 0 && elementTypes[searchIndex] === 'text') {
+        searchIndex--;
+    }
+
+    // Don't go below -1
+    if (searchIndex < -1) {
+        searchIndex = -1;
+    }
+
+    // Set to the previous item (or -1 if we went past the beginning)
+    lastCompletedIndex = searchIndex;
+    updateCompletionState();
+}
+
+/**
+ * Reset all items to uncompleted state
+ */
+export function resetCompletion() {
+    lastCompletedIndex = -2; // -2 = never clicked (no current item highlight)
+    updateCompletionState();
 }
 
 /**
@@ -279,6 +356,7 @@ function renderSequence(element, container, namedStyles, typeDefaults) {
                 if (isInteractiveModeEnabled()) {
                     const elementIndex = allInteractiveElements.length;
                     allInteractiveElements.push(stepDiv);
+                    elementTypes.push('text'); // Mark as text step
                     stepDiv.style.cursor = 'pointer';
                     stepDiv.addEventListener('click', () => handleElementClick(elementIndex));
                 }
@@ -338,6 +416,7 @@ function renderSequence(element, container, namedStyles, typeDefaults) {
                 if (isInteractiveModeEnabled()) {
                     const elementIndex = allInteractiveElements.length;
                     allInteractiveElements.push(stepDiv);
+                    elementTypes.push('item'); // Mark as item/state step
                     stepDiv.style.cursor = 'pointer';
 
                     // Make the text spans non-selectable/non-clickable
@@ -379,6 +458,7 @@ function renderText(element, container, namedStyles, typeDefaults) {
     if (isInteractiveModeEnabled()) {
         const elementIndex = allInteractiveElements.length;
         allInteractiveElements.push(textDiv);
+        elementTypes.push('text'); // Mark as text element
         textDiv.style.cursor = 'pointer';
         textDiv.addEventListener('click', () => handleElementClick(elementIndex));
     }
