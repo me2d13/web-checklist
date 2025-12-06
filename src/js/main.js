@@ -3,7 +3,7 @@
  */
 
 import { renderChecklist, nextItem, previousItem, resetCompletion } from './render.js';
-import { initGamepad } from './gamepad.js';
+import { initGamepad, startControlMonitoring, stopControlMonitoring } from './gamepad.js';
 
 // DOM Elements
 const editSection = document.getElementById('edit-section');
@@ -48,8 +48,7 @@ function init() {
     // Show/hide navigation controls based on interactive mode
     interactiveModeCheckbox.addEventListener('change', updateNavigationVisibility);
 
-    // Initialize gamepad detection
-    initGamepad();
+    // Gamepad will be initialized conditionally when rendering with controls
     // Check for URL parameter to load example
     checkUrlParameters();
 }
@@ -129,6 +128,26 @@ function handleRender() {
         hideError();
         renderChecklist(jsonData, checklistContainer);
         updateNavigationVisibility();
+
+        // Stop any existing control monitoring
+        stopControlMonitoring();
+
+        // Check if we should initialize gamepad controls
+        const isInteractive = interactiveModeCheckbox.checked;
+        const hasControls = jsonData.controls && (jsonData.controls.next || jsonData.controls.previous || jsonData.controls.reset);
+
+        if (isInteractive && hasControls) {
+            // Initialize gamepad API
+            initGamepad();
+
+            // Start monitoring with action callbacks
+            startControlMonitoring(jsonData.controls, {
+                next: nextItem,
+                previous: previousItem,
+                reset: resetCompletion
+            });
+        }
+
         return true;
     } catch (error) {
         showError('Invalid JSON: ' + error.message);

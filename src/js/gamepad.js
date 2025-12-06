@@ -8,6 +8,11 @@ let helperUpdateInterval = null;
 let lastTouchedButton = {}; // Track last touched button per device
 let previousButtonStates = {}; // Track previous button states to detect press/release
 
+// Control mapping and monitoring
+let controlsConfig = null; // Stores the controls configuration from JSON
+let controlMonitoringInterval = null; // Interval for monitoring control buttons
+let controlButtonStates = {}; // Track button states for control monitoring
+
 /**
  * Initialize gamepad detection
  */
@@ -36,6 +41,81 @@ export function initGamepad() {
 
     // Start polling for gamepads (some browsers need this)
     pollGamepads();
+}
+
+/**
+ * Start monitoring gamepad controls for checklist navigation
+ * @param {Object} controls - Controls configuration from JSON {next: {name, button}, previous: {name, button}, reset: {name, button}}
+ * @param {Object} actions - Action callbacks {next: function, previous: function, reset: function}
+ */
+export function startControlMonitoring(controls, actions) {
+    if (!controls || !('getGamepads' in navigator)) {
+        return;
+    }
+
+    controlsConfig = controls;
+
+    // Stop any existing monitoring
+    stopControlMonitoring();
+
+    // Start monitoring interval (check every 50ms for responsive controls)
+    controlMonitoringInterval = setInterval(() => {
+        monitorControlButtons(actions);
+    }, 50);
+
+    console.log('Gamepad control monitoring started', controls);
+}
+
+/**
+ * Stop monitoring gamepad controls
+ */
+export function stopControlMonitoring() {
+    if (controlMonitoringInterval) {
+        clearInterval(controlMonitoringInterval);
+        controlMonitoringInterval = null;
+        controlButtonStates = {};
+    }
+}
+
+/**
+ * Monitor control buttons and trigger actions on press
+ */
+function monitorControlButtons(actions) {
+    const gamepads = navigator.getGamepads();
+
+    for (let i = 0; i < gamepads.length; i++) {
+        const gamepad = gamepads[i];
+        if (!gamepad) continue;
+
+        // Check each control mapping
+        ['next', 'previous', 'reset'].forEach(action => {
+            const control = controlsConfig[action];
+            if (!control) return;
+
+            // Check if this gamepad matches the control's device name
+            if (gamepad.id === control.name && control.button !== undefined) {
+                const button = gamepad.buttons[control.button];
+                if (!button) return;
+
+                // Create state key
+                const stateKey = `${gamepad.id}_${control.button}_${action}`;
+                const wasPressed = controlButtonStates[stateKey] || false;
+                const isPressed = button.pressed && button.value > 0.5;
+
+                // Detect press transition (not pressed -> pressed)
+                if (!wasPressed && isPressed) {
+                    // Trigger the action
+                    if (actions[action]) {
+                        actions[action]();
+                        console.log(`Gamepad action triggered: ${action}`);
+                    }
+                }
+
+                // Update state
+                controlButtonStates[stateKey] = isPressed;
+            }
+        });
+    }
 }
 
 /**
