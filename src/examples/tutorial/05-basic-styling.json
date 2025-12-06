@@ -1,0 +1,45 @@
+{
+    "title": "Styled Checklist",
+    "titleStyle": {
+        "color": "#1565c0",
+        "fontSize": "2rem",
+        "textAlign": "center"
+    },
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Critical Items",
+            "titleStyle": {
+                "backgroundColor": "#d32f2f",
+                "color": "white",
+                "padding": "0.5rem"
+            },
+            "steps": [
+                {
+                    "item": "Fire Extinguisher",
+                    "state": "AVAILABLE",
+                    "stateStyle": {
+                        "color": "#2e7d32",
+                        "fontWeight": "bold"
+                    }
+                },
+                {
+                    "item": "Emergency Exits",
+                    "state": "CLEAR",
+                    "stateStyle": {
+                        "color": "#2e7d32",
+                        "fontWeight": "bold"
+                    }
+                },
+                {
+                    "item": "First Aid Kit",
+                    "state": "ACCESSIBLE",
+                    "stateStyle": {
+                        "color": "#2e7d32",
+                        "fontWeight": "bold"
+                    }
+                }
+            ]
+        }
+    ]
+}

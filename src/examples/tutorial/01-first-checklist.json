@@ -1,0 +1,22 @@
+{
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Engine Start",
+            "steps": [
+                {
+                    "item": "Battery",
+                    "state": "ON"
+                },
+                {
+                    "item": "Fuel Pump",
+                    "state": "ON"
+                },
+                {
+                    "item": "Ignition",
+                    "state": "START"
+                }
+            ]
+        }
+    ]
+}

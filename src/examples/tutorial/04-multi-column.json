@@ -1,0 +1,60 @@
+{
+    "title": "Systems Check",
+    "columns": 2,
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Electrical",
+            "steps": [
+                {
+                    "item": "Battery",
+                    "state": "ON"
+                },
+                {
+                    "item": "Alternator",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Circuit Breakers",
+                    "state": "IN"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Hydraulics",
+            "steps": [
+                {
+                    "item": "Hydraulic Pressure",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Fluid Level",
+                    "state": "VERIFY"
+                },
+                {
+                    "item": "Pump Operation",
+                    "state": "TEST"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Fuel",
+            "steps": [
+                {
+                    "item": "Fuel Quantity",
+                    "state": "VERIFY"
+                },
+                {
+                    "item": "Fuel Selector",
+                    "state": "BOTH"
+                },
+                {
+                    "item": "Fuel Pump",
+                    "state": "ON"
+                }
+            ]
+        }
+    ]
+}

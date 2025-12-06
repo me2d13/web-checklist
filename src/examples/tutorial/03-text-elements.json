@@ -1,0 +1,39 @@
+{
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Before Engine Start",
+            "steps": [
+                {
+                    "item": "Parking Brake",
+                    "state": "SET"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "IDLE"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Ensure area is clear before starting engine"
+        },
+        {
+            "type": "sequence",
+            "steps": [
+                {
+                    "item": "Engine Start",
+                    "state": "INITIATE"
+                },
+                {
+                    "item": "Oil Pressure",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Engine Temperature",
+                    "state": "MONITOR"
+                }
+            ]
+        }
+    ]
+}

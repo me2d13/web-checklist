@@ -1,0 +1,73 @@
+{
+    "title": "Flight Checklist with Gamepad",
+    "controls": {
+        "next": {
+            "name": "Logitech Extreme 3D (Vendor: 046d Product: c215)",
+            "button": 0
+        },
+        "previous": {
+            "name": "Logitech Extreme 3D (Vendor: 046d Product: c215)",
+            "button": 1
+        },
+        "reset": {
+            "name": "Logitech Extreme 3D (Vendor: 046d Product: c215)",
+            "button": 2
+        }
+    },
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Pre-Start",
+            "steps": [
+                {
+                    "item": "Parking Brake",
+                    "state": "SET"
+                },
+                {
+                    "item": "Throttle",
+                    "state": "IDLE"
+                },
+                {
+                    "item": "Mixture",
+                    "state": "RICH"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Engine Start",
+            "steps": [
+                {
+                    "item": "Fuel Pump",
+                    "state": "ON"
+                },
+                {
+                    "item": "Ignition",
+                    "state": "START"
+                },
+                {
+                    "item": "Oil Pressure",
+                    "state": "CHECK"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "After Start",
+            "steps": [
+                {
+                    "item": "Alternator",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Avionics",
+                    "state": "ON"
+                },
+                {
+                    "item": "Radios",
+                    "state": "SET"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+{
+    "defaultStyle": {
+        "sequence": {
+            "titleStyle": {
+                "letterSpacing": "0.1em",
+                "textTransform": "uppercase"
+            },
+            "itemStyle": {
+                "color": "#666"
+            }
+        }
+    },
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Section 1",
+            "steps": [
+                {
+                    "item": "Item A",
+                    "state": "CHECK"
+                },
+                {
+                    "item": "Item B",
+                    "state": "VERIFY"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Section 2",
+            "steps": [
+                {
+                    "item": "Item C",
+                    "state": "TEST"
+                },
+                {
+                    "item": "Item D",
+                    "state": "CONFIRM"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Section 3",
+            "steps": [
+                {
+                    "item": "Item E",
+                    "state": "COMPLETE"
+                },
+                {
+                    "item": "Item F",
+                    "state": "DONE"
+                }
+            ]
+        }
+    ]
+}

@@ -1,107 +1,170 @@
-# Web checklists
+# Web Checklist
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-This is a page which can generate checklist based on source data in json. 
-This source contains content and formatting.
-Generated checklist can be printed (as html page).
+A web-based checklist generator that creates interactive and printable checklists from JSON data. Originally designed for flight simulation checklists, but suitable for any sequential procedures.
 
-This page was developed mainly for flight (simulation) checklists, but can be used for any sequences.
+## Features
 
-# Demo
-Sample checklists can be loaded directly via URL:
-- `index.html?example=minimal` - Basic example
-- `index.html?example=styled` - Example with styling features
-- `index.html?example=rich` - Complex multi-section checklist
+✨ **Interactive Mode**
+- Click-to-complete items with visual feedback
+- Navigation controls (Next, Previous, Reset)
+- Gamepad/hardware button support
+- Auto-scroll to current item
+- Real-time progress tracking
 
-# API
-Complete json format is described at API page.
+📄 **Print Mode**
+- Clean, optimized layout for printing
+- Multi-column support (1-3 columns)
+- Page break control
+- Full-width utilization for landscape printing
 
-# Tutorial
-Json file contains metadata (about formatting, colors, styles) and content.
-Checklist is basically sequence of elements.
-Basic checklist element is sequence of steps with some (optional) title.
+🎨 **Rich Styling**
+- Customizable colors, fonts, and layouts
+- Named styles for reusability
+- Default styles by element type
+- Priority-based style inheritance
 
-## Hello world checklist
-Super simple checklist with one sequence would be
+🎮 **Hardware Integration**
+- Map gamepad buttons to navigation
+- Real-time device detection
+- Easy configuration with visual helper
+
+## Live Demo
+
+Try these example checklists:
+
+- [Minimal Example](https://me2d13.github.io/web-checklist/?example=minimal) - Basic checklist structure
+- [Styled Example](https://me2d13.github.io/web-checklist/?example=styled) - Demonstrates styling features
+- [Rich Example](https://me2d13.github.io/web-checklist/?example=rich) - Complex multi-section checklist
+- [Boeing 737 Checklist](https://me2d13.github.io/web-checklist/?example=737) - Real-world flight checklist
+
+## Quick Start
+
+Visit [https://me2d13.github.io/web-checklist/](https://me2d13.github.io/web-checklist/)
+
+1. Paste your JSON data into the editor
+2. Choose Interactive or Print mode
+3. Click "Render" to generate your checklist
+4. Click "Render and Hide" for a clean view ready to print
+
+## Documentation
+
+- **[Tutorial](TUTORIAL.md)** - Step-by-step guide with examples
+- **[API Reference](API.md)** - Complete JSON format specification
+
+## Creating Your First Checklist
+
+Here's a minimal example:
+
 ```json
 {
+    "title": "My First Checklist",
     "elements": [
         {
             "type": "sequence",
-            "title": "Enter a car",
+            "title": "Pre-Flight",
             "steps": [
                 {
-                    "item": "Car door",
-                    "state": "OPENED"
+                    "item": "Battery",
+                    "state": "ON"
                 },
                 {
-                    "item": "Driver",
-                    "state": "SEATED"
+                    "item": "Fuel",
+                    "state": "CHECK"
                 }
             ]
         }
     ]
 }
 ```
-Renders into
 
-## Checklist properties
-Checklist can have some properties, like title and number of columns (on page)
-```json
-{
-    "title": "Car checklist",
-    "columns": 2,
-    "elements": [
-        ...
-    ]
-}
+See the [Tutorial](TUTORIAL.md) for more examples and the [API Reference](API.md) for all available options.
+
+## Loading External Checklists
+
+You can load checklists from external URLs:
+
 ```
-Renders into
-
-## Custom text
-Custom text can be entered as an element. If it is followed by steps with no title it looks like custom line between steps.
-```json
-{
-    "elements": [
-        {
-            "type": "sequence",
-            "title": "Enter a car",
-            "steps": [
-                {
-                    "item": "Car door",
-                    "state": "OPENED"
-                }
-            ]
-        },
-        {
-            "type": "text",
-            "text": "Make sure you can fit in"
-        },
-        {
-            "type": "sequence",
-            "steps": [
-                {
-                    "item": "Driver",
-                    "state": "SEATED"
-                }
-            ]
-        }
-    ]
-}
+https://me2d13.github.io/web-checklist/?url=https://example.com/checklist.json
 ```
-Renders into
 
-## Styling
+### CORS Requirements
 
-## Predefined styles
+**Important:** The server hosting your JSON file must allow cross-origin requests by setting appropriate CORS headers. The server needs to include:
 
-## Default styles
-When you predefine some style you may want to apply it to all items and states in step all sequences. Or in one sequence.
-To not repeat this for every step in sequence, you can use fields `defaultItemStyle` and `defaultStateStyle` to apply styles
-in the sequence. Those fields can be used even
-* at top level to be applied at whole checklist
-* at sequence level to be applied at all steps in the sequence
+```
+Access-Control-Allow-Origin: *
+```
+
+Or specifically allow the web-checklist domain:
+
+```
+Access-Control-Allow-Origin: https://me2d13.github.io
+```
+
+### Using GitHub (Recommended)
+
+A simple solution is to store your JSON files in a GitHub repository and use the raw file URL:
+
+**Example with the 737 checklist:**
+```
+https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/737.json
+```
+
+[Try it live!](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/737.json)
+
+**Benefits of using GitHub:**
+- ✅ Automatic CORS headers (raw.githubusercontent.com allows cross-origin access)
+- ✅ Version control for your checklists
+- ✅ Free hosting
+- ✅ Easy sharing with direct links
+- ✅ Collaborative editing via pull requests
+
+## Self-Hosting
+
+The entire application is in the `src/` folder. Simply:
+
+1. Copy the `src/` folder to your web server
+2. Access `index.html` through your web server
+
+**Note:** Requires a web server (cannot be opened directly from filesystem due to ES6 module imports).
+
+### Local Development Server Options
+
+```bash
+# Python
+cd src && python3 -m http.server 8000
+
+# Node.js
+npx http-server src -p 8000
+
+# PHP
+cd src && php -S localhost:8000
+
+# Docker
+docker run -p 8000:80 -v $(pwd)/src:/usr/share/nginx/html:ro nginx:alpine
+```
+
+Then open http://localhost:8000/
+
+## Technology
+
+- Pure HTML/CSS/JavaScript (ES6)
+- No build process or dependencies
+- Modern browsers only (2025+)
+- Gamepad API for hardware support
+- Responsive design
+
+## Browser Support
+
+Requires a modern browser with support for:
+- ES6 modules
+- Flexbox and CSS Grid
+- Gamepad API (for hardware controls)
+- Clipboard API (for copy functionality)
+
+Tested on: Chrome, Firefox, Safari, Edge (latest versions)
 
 ## License
 
@@ -110,3 +173,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Copyright (c) 2025 Petr Medek
 
 You are free to use, modify, and distribute this software, provided that the original copyright notice and license are included in all copies or substantial portions of the software.
+
+## Contributing
+
+This is a personal project, but suggestions and feedback are welcome! Please open an issue on GitHub.
+
+## Acknowledgments
+
+Designed for flight simulation enthusiasts who need reliable, customizable checklists for their virtual cockpits.

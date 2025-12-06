@@ -1,0 +1,41 @@
+{
+    "title": "Pre-Flight Checklist",
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Exterior Inspection",
+            "steps": [
+                {
+                    "item": "Pitot Tube",
+                    "state": "CLEAR"
+                },
+                {
+                    "item": "Fuel Caps",
+                    "state": "SECURE"
+                },
+                {
+                    "item": "Landing Gear",
+                    "state": "CHECK"
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "title": "Cockpit Setup",
+            "steps": [
+                {
+                    "item": "Seat Position",
+                    "state": "ADJUST"
+                },
+                {
+                    "item": "Seat Belts",
+                    "state": "FASTEN"
+                },
+                {
+                    "item": "Rudder Pedals",
+                    "state": "ADJUST"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "namedStyles": {
+        "warning": {
+            "backgroundColor": "#fff3e0",
+            "borderLeft": "4px solid #ff9800",
+            "padding": "0.5rem"
+        },
+        "critical": {
+            "color": "#d32f2f",
+            "fontWeight": "bold"
+        },
+        "success": {
+            "color": "#2e7d32",
+            "fontWeight": "bold"
+        }
+    },
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Safety Checks",
+            "style": "warning",
+            "steps": [
+                {
+                    "item": "Emergency Exit",
+                    "state": "CLEAR",
+                    "stateStyle": "critical"
+                },
+                {
+                    "item": "Fire Extinguisher",
+                    "state": "READY",
+                    "stateStyle": "success"
+                },
+                {
+                    "item": "Oxygen Masks",
+                    "state": "AVAILABLE",
+                    "stateStyle": "success"
+                }
+            ]
+        }
+    ]
+}
