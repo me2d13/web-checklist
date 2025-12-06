@@ -466,10 +466,76 @@ body {
     background-color: rgba(0, 0, 0, 0.03);
 }
 
-/* Interactive Mode Toggle */
-.interactive-toggle {
-    margin-bottom: 1.5rem;
+/* Interactive Navigation Controls */
+.interactive-nav {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 999;
 }
+
+.interactive-nav.hidden {
+    display: none;
+}
+
+.nav-btn {
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn-icon {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    background-color: #6c757d;
+    color: white;
+    overflow: hidden;
+}
+
+.nav-btn-icon:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-btn-icon:active {
+    transform: scale(0.95);
+}
+
+.nav-btn-primary {
+    width: 64px;
+    height: 64px;
+    background-color: #4a90e2;
+    color: white;
+}
+
+.nav-btn-primary:hover {
+    background-color: #357abd;
+}
+
+.nav-btn-reset {
+    background-color: #dc3545;
+    color: white;
+}
+
+.nav-btn-reset:hover {
+    background-color: #c82333;
+}
+
+.nav-btn svg {
+    display: block;
+}
+
+
+
 
 /* Checklist Mode Toggle - Modern Segmented Control */
 .layout-mode-toggle {
@@ -734,62 +800,6 @@ body {
 .button-group-left {
     display: flex;
     gap: 1rem;
-}
-
-/* Interactive Navigation Controls */
-.interactive-nav {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    z-index: 999;
-}
-
-.interactive-nav.hidden {
-    display: none;
-}
-
-.nav-btn {
-    padding: 0.5rem 1rem;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease;
-}
-
-.nav-btn:hover {
-    background-color: #357abd;
-    transform: translateY(-1px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-}
-
-.nav-btn:active {
-    transform: translateY(0);
-}
-
-.nav-btn-reset {
-    background-color: #dc3545;
-}
-
-.nav-btn-reset:hover {
-    background-color: #c82333;
-}
-
-.nav-btn-primary {
-    background-color: #28a745;
-    font-size: 1rem;
-    padding: 0.65rem 1.25rem;
-    font-weight: 700;
-}
-
-.nav-btn-primary:hover {
-    background-color: #218838;
 }
 
 /* Current Item Highlight - 3D Raised Effect */
