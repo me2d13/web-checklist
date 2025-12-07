@@ -32,8 +32,8 @@
     },
     "controls": {
         "next": {
-            "name": "BU0836A Interface (Vendor: 16c0 Product: 05ba)",
-            "button": 21
+            "name": "Alpha Flight Controls (Vendor: 294b Product: 1900)",
+            "button": 1
         }
     },
     "elements": [

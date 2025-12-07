@@ -51,7 +51,9 @@ function init() {
         radio.addEventListener('change', handleModeChange);
     });
 
-    // Gamepad will be initialized conditionally when rendering with controls
+    // Initialize gamepad support (for helper button to work)
+    initGamepad();
+
     // Check for URL parameter to load example
     checkUrlParameters();
 }
