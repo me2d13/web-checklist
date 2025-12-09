@@ -69,7 +69,7 @@ src/
 
 ## Key Features
 
-### JSON Format (see API.md for full spec)
+### JSON Format (see REFERENCE.md for full spec)
 
 **Top-level fields:**
 - `title` - String or array (one per page)
@@ -256,7 +256,7 @@ When making changes, verify:
 
 ## Key Files to Understand
 
-1. **API.md** - Complete JSON format specification
+1. **REFERENCE.md** - Complete JSON format specification
 2. **README.md** - User-facing documentation
 3. **src/js/render.js** - Core rendering logic, interactive features
 4. **src/js/gamepad.js** - Hardware button integration

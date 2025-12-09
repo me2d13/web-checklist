@@ -1,4 +1,4 @@
-# Web Checklist - JSON API Reference
+# Web Checklist - JSON Format Reference
 
 This document describes the complete JSON structure for defining checklists.
 

@@ -288,6 +288,8 @@ For a complete list of CSS properties, see [MDN CSS Reference](https://developer
 
 **Goal:** Define reusable styles to avoid repetition.
 
+Suppose you want to style half of the elements with different color and text style. You would need to copy same style to all these elements. Instead of that you can define this style, give it a name and in the element just use this name instead of complete definition.
+
 ### JSON Structure
 
 ```json
@@ -338,6 +340,8 @@ _[Screenshot placeholder: Checklist using named styles]_
 ## 7. Default Styles
 
 **Goal:** Apply styles to all elements of a specific type.
+
+Suppose you want to change all section titles by giving them custom look. With named styles you can create the style once and mention the style for every title. However if you want really to modify all titles, you can set style as default and then it would be applied to all elements. You don't need to mark the elements anyhow, default style will be applied... by default.
 
 ### JSON Structure
 
@@ -560,12 +564,12 @@ See the [737 example](https://me2d13.github.io/web-checklist/?example=737) for a
 
 ## Next Steps
 
-- Read the [API Reference](API.md) for complete JSON specification
+- Read the [JSON Format Reference](REFERENCE.md) for complete JSON specification
 - Explore the example files in `src/examples/`
 - Create your own checklists!
 
 ## Need Help?
 
-- Check the [API Reference](API.md) for detailed field descriptions
+- Check the [JSON Format Reference](REFERENCE.md) for detailed field descriptions
 - Look at example files for inspiration
 - Open an issue on GitHub for bugs or questions

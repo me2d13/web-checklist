@@ -51,7 +51,7 @@ Visit [https://me2d13.github.io/web-checklist/](https://me2d13.github.io/web-che
 ## Documentation
 
 - **[Tutorial](TUTORIAL.md)** - Step-by-step guide with examples
-- **[API Reference](API.md)** - Complete JSON format specification
+- **[JSON Format Reference](REFERENCE.md)** - Complete JSON format specification
 
 ## Creating Your First Checklist
 
@@ -79,7 +79,7 @@ Here's a minimal example:
 }
 ```
 
-See the [Tutorial](TUTORIAL.md) for more examples and the [API Reference](API.md) for all available options.
+See the [Tutorial](TUTORIAL.md) for more examples and the [JSON Format Reference](REFERENCE.md) for all available options.
 
 ## Loading External Checklists
 
