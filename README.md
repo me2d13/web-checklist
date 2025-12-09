@@ -121,6 +121,15 @@ https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me
 - ✅ Easy sharing with direct links
 - ✅ Collaborative editing via pull requests
 
+### Safety Requirements
+
+For security, external URLs must meet these requirements:
+- **Content-Type**: Must be JSON or text (binary files rejected)
+- **File Size**: Maximum 5MB
+- **Timeout**: Requests abort after 10 seconds
+- **Valid JSON**: Content must be parseable JSON
+
+
 ## Self-Hosting
 
 The entire application is in the `src/` folder. Simply:

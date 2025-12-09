@@ -13,11 +13,25 @@
     <!-- Edit Section -->
     <div id="edit-section" class="edit-section">
         <div class="edit-container">
-            <h1>Web Checklist Generator</h1>
+            <div class="title-with-docs">
+                <h1>Web Checklist Generator</h1>
+                <a href="https://github.com/me2d13/web-checklist" target="_blank" rel="noopener noreferrer"
+                    class="docs-link">📖 Documentation</a>
+            </div>
 
             <div class="json-editor">
                 <div class="json-editor-header">
-                    <label for="json-input">Enter JSON Data:</label>
+                    <div class="json-editor-label-group">
+                        <label for="json-input">Enter JSON Data:</label>
+                        <span id="url-loader-trigger" class="url-loader-trigger">or load from url</span>
+                        <div id="url-loader-input-group" class="url-loader-input-group hidden">
+                            <input type="text" id="url-input" class="url-input" placeholder="Enter JSON URL..." />
+                            <button id="url-load-confirm" class="url-action-btn url-confirm-btn" title="Load from URL"
+                                aria-label="Load from URL">✓</button>
+                            <button id="url-load-cancel" class="url-action-btn url-cancel-btn" title="Cancel"
+                                aria-label="Cancel">✕</button>
+                        </div>
+                    </div>
                     <div class="example-links">
                         <span class="examples-label">Examples:</span>
                         <a href="#" class="example-link" data-example="minimal">minimal</a>
@@ -28,6 +42,17 @@
                 </div>
                 <textarea id="json-input" class="json-textarea" placeholder="Paste or enter JSON data here..."
                     rows="20"></textarea>
+            </div>
+
+            <!-- URL Info Box (shown when loaded from URL parameter) -->
+            <div id="url-info-box" class="url-info-box hidden">
+                <div class="url-info-content">
+                    <span class="url-info-icon">🔗</span>
+                    <span class="url-info-text">
+                        The JSON is loaded from URL: <strong id="url-info-source"></strong>
+                    </span>
+                </div>
+                <a href="#" id="url-unload-btn" class="url-unload-btn">Unload</a>
             </div>
 
             <!-- Error Message Box -->
@@ -100,7 +125,7 @@
     </div>
 
     <!-- Toggle Button (shown when edit section is hidden) -->
-    <button id="toggle-edit-btn" class="toggle-btn hidden" aria-label="Show editor">
+    <button id="toggle-edit-btn" class="toggle-btn hidden" aria-label="Show editor" title="Edit this checklist">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>

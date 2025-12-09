@@ -20,6 +20,14 @@ const interactiveNav = document.getElementById('interactive-nav');
 const navPrevBtn = document.getElementById('nav-prev');
 const navNextBtn = document.getElementById('nav-next');
 const navResetBtn = document.getElementById('nav-reset');
+const urlLoaderTrigger = document.getElementById('url-loader-trigger');
+const urlLoaderInputGroup = document.getElementById('url-loader-input-group');
+const urlInput = document.getElementById('url-input');
+const urlLoadConfirm = document.getElementById('url-load-confirm');
+const urlLoadCancel = document.getElementById('url-load-cancel');
+const urlInfoBox = document.getElementById('url-info-box');
+const urlInfoSource = document.getElementById('url-info-source');
+const urlUnloadBtn = document.getElementById('url-unload-btn');
 
 /**
  * Initialize the application
@@ -45,6 +53,13 @@ function init() {
     navNextBtn.addEventListener('click', nextItem);
     navResetBtn.addEventListener('click', resetCompletion);
 
+    // Set up URL loader listeners
+    urlLoaderTrigger.addEventListener('click', showUrlLoader);
+    urlLoadConfirm.addEventListener('click', handleUrlLoad);
+    urlLoadCancel.addEventListener('click', hideUrlLoader);
+    urlInput.addEventListener('keydown', handleUrlInputKeydown);
+    urlUnloadBtn.addEventListener('click', handleUrlUnload);
+
     // Show/hide navigation controls based on interactive mode
     // Listen to both radio buttons for mode changes and re-render when mode changes
     document.querySelectorAll('input[name="layout-mode"]').forEach(radio => {
@@ -69,13 +84,48 @@ async function checkUrlParameters() {
     // Load from external URL if provided
     if (externalUrl) {
         try {
-            const response = await fetch(externalUrl);
+            // Safety: Set up timeout for the fetch request (10 seconds)
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+            const response = await fetch(externalUrl, {
+                signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+
             if (!response.ok) {
                 throw new Error(`Failed to load from URL: ${response.statusText}`);
             }
 
+            // Safety: Check Content-Type header
+            const contentType = response.headers.get('content-type');
+            if (contentType && !contentType.includes('application/json') && !contentType.includes('text/')) {
+                throw new Error(`Invalid content type: ${contentType}. Expected JSON.`);
+            }
+
+            // Safety: Check Content-Length header (limit to 5MB)
+            const contentLength = response.headers.get('content-length');
+            const MAX_SIZE = 5 * 1024 * 1024; // 5MB in bytes
+            if (contentLength && parseInt(contentLength) > MAX_SIZE) {
+                throw new Error(`File too large: ${(parseInt(contentLength) / 1024 / 1024).toFixed(2)}MB. Maximum allowed: 5MB.`);
+            }
+
+            // Read the response text
             const jsonText = await response.text();
-            const jsonData = JSON.parse(jsonText);
+
+            // Safety: Check actual size after download (in case Content-Length wasn't provided)
+            if (jsonText.length > MAX_SIZE) {
+                throw new Error(`File too large: ${(jsonText.length / 1024 / 1024).toFixed(2)}MB. Maximum allowed: 5MB.`);
+            }
+
+            // Safety: Validate JSON before parsing
+            let jsonData;
+            try {
+                jsonData = JSON.parse(jsonText);
+            } catch (parseError) {
+                throw new Error(`Invalid JSON format: ${parseError.message}`);
+            }
 
             // Load into textarea
             jsonInput.value = JSON.stringify(jsonData, null, 2);
@@ -98,10 +148,18 @@ async function checkUrlParameters() {
                 });
             }
 
+            // Show URL info box
+            showUrlInfoBox(externalUrl);
+
             hideEditSection();
 
         } catch (error) {
-            showError(`Failed to load from URL: ${error.message}`);
+            // Handle timeout errors specifically
+            if (error.name === 'AbortError') {
+                showError('Failed to load from URL: Request timeout (exceeded 10 seconds)');
+            } else {
+                showError(`Failed to load from URL: ${error.message}`);
+            }
             console.error('URL parameter load error:', error);
         }
         return; // Don't check for example parameter if URL was provided
@@ -318,6 +376,99 @@ function updateNavigationVisibility() {
         interactiveNav.classList.add('hidden');
     }
 }
+
+/**
+ * Show URL loader input
+ */
+function showUrlLoader() {
+    urlLoaderTrigger.classList.add('hidden');
+    urlLoaderInputGroup.classList.remove('hidden');
+    urlInput.value = '';
+    urlInput.focus();
+}
+
+/**
+ * Hide URL loader input and show trigger
+ */
+function hideUrlLoader() {
+    urlLoaderInputGroup.classList.add('hidden');
+    urlLoaderTrigger.classList.remove('hidden');
+    urlInput.value = '';
+}
+
+/**
+ * Handle URL load confirmation
+ */
+function handleUrlLoad() {
+    const url = urlInput.value.trim();
+
+    if (!url) {
+        showError('Please enter a URL');
+        return;
+    }
+
+    // Basic URL validation
+    try {
+        new URL(url);
+    } catch (error) {
+        showError('Please enter a valid URL');
+        return;
+    }
+
+    // Generate new URL with ?url= parameter
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set('url', url);
+
+    // Navigate to the new URL (this will trigger the checkUrlParameters function)
+    window.location.href = currentUrl.toString();
+}
+
+/**
+ * Handle keyboard events in URL input
+ * @param {KeyboardEvent} event - Keyboard event
+ */
+function handleUrlInputKeydown(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        handleUrlLoad();
+    } else if (event.key === 'Escape') {
+        event.preventDefault();
+        hideUrlLoader();
+    }
+}
+
+/**
+ * Show URL info box with the source URL
+ * @param {string} url - The URL that was loaded
+ */
+function showUrlInfoBox(url) {
+    urlInfoSource.textContent = url;
+    urlInfoBox.classList.remove('hidden');
+}
+
+/**
+ * Hide URL info box
+ */
+function hideUrlInfoBox() {
+    urlInfoBox.classList.add('hidden');
+    urlInfoSource.textContent = '';
+}
+
+/**
+ * Handle URL unload - remove URL parameter and reload page
+ * @param {Event} event - Click event
+ */
+function handleUrlUnload(event) {
+    event.preventDefault();
+
+    // Create new URL without the 'url' parameter
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.delete('url');
+
+    // Navigate to the clean URL (reload page without URL parameter)
+    window.location.href = currentUrl.toString();
+}
+
 
 // Initialize when DOM is loaded
 if (document.readyState === 'loading') {
