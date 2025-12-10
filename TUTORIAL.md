@@ -480,15 +480,15 @@ Suppose you want to change all section titles by giving them custom look. With n
     "title": "Flight Checklist",
     "controls": {
         "next": {
-            "name": "Logitech Extreme 3D (Vendor: 046d Product: c215)",
-            "button": 0
+            "name": "BU0836A Interface (Vendor: 16c0 Product: 05ba)",
+            "button": 21
         },
         "previous": {
-            "name": "Logitech Extreme 3D (Vendor: 046d Product: c215)",
-            "button": 1
+            "name": "BU0836A Interface (Vendor: 16c0 Product: 05ba)",
+            "button": 20
         },
         "reset": {
-            "name": "Logitech Extreme 3D (Vendor: 046d Product: c215)",
+            "name": "BU0836A Interface (Vendor: 16c0 Product: 05ba)",
             "button": 2
         }
     },
@@ -498,7 +498,8 @@ Suppose you want to change all section titles by giving them custom look. With n
 
 ### What You'll See
 
-_[Screenshot placeholder: Game device helper showing button presses]_
+![Game device helper showing button presses](img/t10.png)
+
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/10-gamepad.json)**
 
