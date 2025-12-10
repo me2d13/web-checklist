@@ -52,7 +52,7 @@ This tutorial will guide you through creating checklists from simple to advanced
 
 ### What You'll See
 
-_[Screenshot placeholder: Simple checklist with one section]_
+![Simple checklist with one section](img/t1.png)
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/01-first-checklist.json)**
 
@@ -110,7 +110,7 @@ _[Screenshot placeholder: Simple checklist with one section]_
 
 ### What You'll See
 
-_[Screenshot placeholder: Checklist with multiple sections]_
+![Checklist with multiple sections](img/t2.png)
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/02-multiple-sections.json)**
 
@@ -160,7 +160,7 @@ _[Screenshot placeholder: Checklist with multiple sections]_
 
 ### What You'll See
 
-_[Screenshot placeholder: Checklist with text element between sections]_
+![Checklist with text element between sections](img/t3.png)
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/03-text-elements.json)**
 
@@ -205,7 +205,7 @@ _[Screenshot placeholder: Checklist with text element between sections]_
 
 ### What You'll See
 
-_[Screenshot placeholder: Two-column checklist layout]_
+![Two-column checklist layout](img/t4.png)
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/04-multi-column.json)**
 
@@ -258,7 +258,7 @@ _[Screenshot placeholder: Two-column checklist layout]_
 
 ### What You'll See
 
-_[Screenshot placeholder: Checklist with custom colors and styling]_
+![Checklist with custom colors and styling](img/t5.png)
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/05-basic-styling.json)**
 
@@ -324,7 +324,7 @@ Suppose you want to style half of the elements with different color and text sty
 
 ### What You'll See
 
-_[Screenshot placeholder: Checklist using named styles]_
+![Checklist using named styles](img/t6.png)
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/06-named-styles.json)**
 
@@ -375,7 +375,7 @@ Suppose you want to change all section titles by giving them custom look. With n
 
 ### What You'll See
 
-_[Screenshot placeholder: Checklist with default styles applied]_
+![Checklist with default styles applied](img/t7.png)
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/07-default-styles.json)**
 
@@ -421,7 +421,7 @@ _[Screenshot placeholder: Checklist with default styles applied]_
 
 ### What You'll See
 
-_[Screenshot placeholder: Multi-page checklist with page break]_
+![Multi-page checklist with page break](img/t8.png)
 
 **[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/tutorial/08-page-breaks.json)**
 
@@ -449,7 +449,7 @@ _[Screenshot placeholder: Multi-page checklist with page break]_
 
 ### What You'll See
 
-_[Screenshot placeholder: Interactive mode with highlighted current item]_
+![Interactive mode with highlighted current item](img/t9.png)
 
 ### Key Features
 
