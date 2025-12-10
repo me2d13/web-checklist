@@ -20,13 +20,13 @@ This document describes the complete JSON structure for defining checklists.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `title` | string\|array | No | Main title(s) for the checklist. Can be a single string (displayed on first page only) or an array of strings (one per page, with pages separated by `page-break` elements) |
-| `titleStyle` | object\|string | No | CSS styles or named style reference for the checklist title(s) |
+| [`title`](#title-behavior) | string\|array | No | Main title(s) for the checklist. Can be a single string (displayed on first page only) or an array of strings (one per page, with pages separated by `page-break` elements) |
+| `titleStyle` | object\|string | No | CSS styles or [named style](#named-styles) reference for the checklist title(s) |
 | `columns` | number | No | Number of columns for multi-column layout (default: 1) |
-| `controls` | object | No | Gamepad/game device button mappings for interactive mode navigation |
-| `defaultStyle` | object | No | Default styles applied to all elements by type |
-| `namedStyles` | object | No | Dictionary of reusable named styles |
-| `elements` | array | Yes | Array of element objects (sequences, text, page-break, etc.) |
+| [`controls`](#controls) | object | No | Gamepad/game device button mappings for interactive mode navigation |
+| [`defaultStyle`](#default-styles) | object | No | Default styles applied to all elements by type |
+| [`namedStyles`](#named-styles) | object | No | Dictionary of reusable named styles |
+| [`elements`](#elements) | array | Yes | Array of element objects (sequences, text, page-break, etc.) |
 
 #### Title Behavior
 
@@ -125,8 +125,8 @@ Elements are objects in the `elements` array. Each element must have a `type` fi
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `type` | string | Yes | Element type: `"sequence"`, `"text"`, or `"page-break"` |
-| `style` | object | No | CSS styles applied to the element container |
+| `type` | string | Yes | Element type: [`"sequence"`](#element-type-sequence), [`"text"`](#element-type-text), or [`"page-break"`](#element-type-page-break) |
+| [`style`](#styling) | object | No | CSS styles applied to the element container |
 
 ---
 
@@ -155,12 +155,12 @@ A sequence represents a checklist section with optional title and a list of step
 |-------|------|----------|-------------|
 | `type` | string | Yes | Must be `"sequence"` |
 | `title` | string | No | Sequence title. If omitted, steps appear without a heading |
-| `style` | object\|string | No | CSS styles or named style reference for the sequence container |
-| `titleStyle` | object\|string | No | CSS styles or named style reference for the sequence title |
-| `itemStyle` | object\|string | No | Default CSS styles or named style reference for all step items in this sequence |
-| `stateStyle` | object\|string | No | Default CSS styles or named style reference for all step states in this sequence |
-| `textStyle` | object\|string | No | Default CSS styles or named style reference for all text steps in this sequence |
-| `steps` | array | Yes | Array of step objects |
+| [`style`](#styling) | object\|string | No | CSS styles or [named style](#named-styles) reference for the sequence container |
+| [`titleStyle`](#styling) | object\|string | No | CSS styles or [named style](#named-styles) reference for the sequence title |
+| [`itemStyle`](#styling) | object\|string | No | Default CSS styles or [named style](#named-styles) reference for all step items in this sequence |
+| [`stateStyle`](#styling) | object\|string | No | Default CSS styles or [named style](#named-styles) reference for all step states in this sequence |
+| [`textStyle`](#styling) | object\|string | No | Default CSS styles or [named style](#named-styles) reference for all text steps in this sequence |
+| [`steps`](#steps) | array | Yes | Array of step objects |
 
 **Note:** `itemStyle` and `stateStyle` at the sequence level apply to all steps in that sequence. Individual step styles override these defaults.
 
@@ -196,15 +196,15 @@ Each step in a sequence can be either an item/state step or a text step.
 |-------|------|----------|-------------|
 | `item` | string | No | Step item description (left side) |
 | `state` | string | No | Step state/value (right side) |
-| `itemStyle` | object\|string | No | CSS styles or named style reference for the step item |
-| `stateStyle` | object\|string | No | CSS styles or named style reference for the step state |
+| [`itemStyle`](#styling) | object\|string | No | CSS styles or [named style](#named-styles) reference for the step item |
+| [`stateStyle`](#styling) | object\|string | No | CSS styles or [named style](#named-styles) reference for the step state |
 
 #### Step Fields (Text)
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `text` | string | Yes | Text content to display |
-| `textStyle` | object\|string | No | CSS styles or named style reference for the text content |
+| [`textStyle`](#styling) | object\|string | No | CSS styles or [named style](#named-styles) reference for the text content |
 
 #### Step Rendering
 
@@ -240,8 +240,8 @@ A text element displays custom text content, typically used as notes or instruct
 |-------|------|----------|-------------|
 | `type` | string | Yes | Must be `"text"` |
 | `text` | string | Yes | Text content to display |
-| `style` | object | No | CSS styles applied to the text element container |
-| `textStyle` | object | No | CSS styles applied to the text content itself |
+| [`style`](#styling) | object | No | CSS styles applied to the text element container |
+| [`textStyle`](#styling) | object | No | CSS styles applied to the text content itself |
 
 ---
 
@@ -335,20 +335,20 @@ Default styles allow you to define styling that applies to all elements of a spe
 
 ### Fields by Element Type
 
-#### For `sequence` elements:
+#### For [`sequence`](#element-type-sequence) elements:
 - `style` - Default container style for all sequences
 - `titleStyle` - Default title style for all sequence titles
 - `itemStyle` - Default item style for all steps in all sequences
 - `stateStyle` - Default state style for all steps in all sequences
 - `textStyle` - Default text style for all text steps in all sequences
 
-#### For `text` elements:
+#### For [`text`](#element-type-text) elements:
 - `style` - Default container style for all text elements
 - `textStyle` - Default text content style for all text elements
 
 ### Priority Order (lowest to highest)
 
-1. **Document-level defaults** (`defaultStyle`)
+1. **Document-level defaults** ([`defaultStyle`](#default-styles))
 2. **Sequence-level defaults** (`itemStyle`/`stateStyle` on sequence)
 3. **Element-specific styles** (styles defined on individual elements/steps)
 
@@ -399,9 +399,9 @@ Named styles allow you to define reusable styles once and reference them through
 
 ### Usage
 
-Any style field can use either:
+Any [style field](#styling) can use either:
 - **Inline styles** (object) - Define styles directly
-- **Named style reference** (string) - Reference a predefined named style
+- **Named style reference** (string) - Reference a predefined [named style](#named-styles)
 
 ```json
 {
@@ -426,7 +426,7 @@ or
 
 Style fields can contain either:
 - **Object**: CSS property-value pairs applied directly
-- **String**: Reference to a named style defined in `namedStyles`
+- **String**: Reference to a named style defined in [`namedStyles`](#named-styles)
 
 Property names can use either camelCase or kebab-case.
 
