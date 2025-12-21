@@ -365,6 +365,14 @@
         {
             "type": "sequence",
             "title": "ENGINE START & PUSHBACK PROCEDURE",
+            "style": {
+                "backgroundImage": "url('examples/737startup.jpg')",
+                "backgroundSize": "cover",
+                "backgroundPosition": "center",
+                "backgroundRepeat": "no-repeat",
+                "backgroundColor": "rgba(255, 255, 255, 0.85)",
+                "backgroundBlendMode": "lighten"
+            },
             "steps": [
                 {
                     "text": "OVHD, LIGHTING & AIR PRESSURE PANEL"

@@ -488,6 +488,12 @@ body {
     margin-top: 0;
 }
 
+/* Remove top margin when sequence follows an image (images act as separators) */
+.checklist-element-image+.checklist-element-sequence:has(.sequence-title) {
+    margin-top: 0;
+}
+
+
 /* Sequence Elements */
 .sequence-title {
     font-weight: 700;
@@ -545,6 +551,29 @@ body {
     white-space: pre-wrap;
 }
 
+/* Image Elements */
+.checklist-element-image {
+    background: none;
+    border: none;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.image-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.image-content {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
 .checklist-placeholder {
     padding: 2rem;
     text-align: center;
@@ -585,7 +614,6 @@ body {
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        color-adjust: exact !important;
     }
 
     .toggle-btn,

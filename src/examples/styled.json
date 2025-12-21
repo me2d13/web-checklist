@@ -68,6 +68,14 @@
             ]
         },
         {
+            "type": "image",
+            "src": "examples/cesna-sep.jpg",
+            "imageStyle": {
+                "maxWidth": "400px",
+                "borderRadius": "4px"
+            }
+        },
+        {
             "type": "sequence",
             "title": "Starting Engine",
             "titleStyle": {

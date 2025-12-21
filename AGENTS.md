@@ -83,6 +83,7 @@ src/
 **Element types:**
 - `sequence` - Checklist section with title and steps
 - `text` - Custom text/notes
+- `image` - Image with optional title
 - `page-break` - Force new page (print) or section (screen)
 
 **Sequence steps:**
@@ -225,7 +226,7 @@ URL parameters:
 ## Future Considerations
 
 - The project is feature-complete for its primary use case
-- Additional element types could be added (e.g., tables, images)
+- Additional element types could be added (e.g., tables)
 - Theming system could be implemented
 - Export to PDF functionality
 - Checklist templates/presets

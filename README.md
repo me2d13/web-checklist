@@ -33,6 +33,7 @@ Try these example checklists:
 - Named styles for reusability
 - Default styles by element type
 - Priority-based style inheritance
+- Image support to separate sections with images
 
 🎮 **Hardware Integration**
 - Map gamepad buttons to navigation
@@ -88,6 +89,10 @@ You can load checklists from external URLs:
 ```
 https://me2d13.github.io/web-checklist/?url=https://example.com/checklist.json
 ```
+
+## Checklists sharing
+
+Wrote your checklist and want to share it with others? Send me the link (or create pull request) and I will reference it README or dedicated page.
 
 ### CORS Requirements
 
@@ -161,7 +166,7 @@ Then open http://localhost:8000/
 
 - Pure HTML/CSS/JavaScript (ES6)
 - No build process or dependencies
-- Modern browsers only (2025+)
+- Modern browsers only (2024+)
 - Gamepad API for hardware support
 - Responsive design
 

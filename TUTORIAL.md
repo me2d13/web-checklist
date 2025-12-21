@@ -15,7 +15,8 @@ This tutorial will guide you through creating checklists from simple to advanced
 9. [Interactive Mode](#9-interactive-mode)
 10. [Gamepad Integration](#10-gamepad-integration)
 11. [Loading from URL](#11-loading-from-url)
-12. [Advanced Examples](#12-advanced-examples)
+12. [Adding Images](#12-adding-images)
+13. [Advanced Examples](#13-advanced-examples)
 
 ---
 
@@ -538,7 +539,111 @@ https://me2d13.github.io/web-checklist/?url=https://example.com/checklist.json
 
 ---
 
-## 12. Advanced Examples
+## 12. Adding Images
+
+**Goal:** Add images to your checklists as visual separators or backgrounds.
+
+Images can be used in two ways:
+1. **Standalone image elements** - displayed as separate sections
+2. **Background images** - applied via CSS to sequence containers
+
+### Method 1: Standalone Image Element
+
+Use the `image` element type to display an image between sections. This is perfect for visual separators, diagrams, or reference photos.
+
+```json
+{
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "Before Starting Engine",
+            "steps": [...]
+        },
+        {
+            "type": "image",
+            "src": "examples/cesna-sep.jpg",
+            "imageStyle": {
+                "maxWidth": "400px",
+                "borderRadius": "4px"
+            }
+        },
+        {
+            "type": "sequence",
+            "title": "Starting Engine",
+            "steps": [...]
+        }
+    ]
+}
+```
+
+#### What You'll See
+
+![Image element as section separator](img/t12a.png)
+
+**[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/refs/heads/master/src/examples/styled.json)**
+
+#### Key Points for Image Elements
+
+- `src` - Path or URL to the image file (required)
+- `title` - Optional title displayed above the image
+- `imageStyle` - CSS styles applied to the image itself (e.g., `maxWidth`, `borderRadius`, `border`)
+- `style` - CSS styles applied to the container
+- Images are centered by default
+- No extra margin when a sequence follows an image (images act as natural separators)
+
+### Method 2: Background Image via CSS
+
+You can also use images as backgrounds for sequence sections by applying CSS background properties through the `style` field.
+
+```json
+{
+    "elements": [
+        {
+            "type": "sequence",
+            "title": "ENGINE START & PUSHBACK PROCEDURE",
+            "style": {
+                "backgroundImage": "url('examples/737startup.jpg')",
+                "backgroundSize": "cover",
+                "backgroundPosition": "center",
+                "backgroundRepeat": "no-repeat",
+                "backgroundColor": "rgba(255, 255, 255, 0.85)",
+                "backgroundBlendMode": "lighten"
+            },
+            "steps": [...]
+        }
+    ]
+}
+```
+
+#### What You'll See
+
+![Background image on sequence section](img/t12b.png)
+
+**[→ Try this example live](https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/refs/heads/master/src/examples/737.json)**
+
+#### Key Points for Background Images
+
+- Use `backgroundImage` with `url()` syntax
+- `backgroundSize: "cover"` makes the image fill the container
+- `backgroundPosition: "center"` centers the image
+- Add semi-transparent overlay with `backgroundColor` and `backgroundBlendMode` to ensure text readability
+- All standard CSS background properties are supported
+
+### When to Use Each Method
+
+**Use standalone image elements when:**
+- You want the image to be a distinct visual separator
+- The image should be centered and stand alone
+- You want to add a title/caption to the image
+
+**Use background images when:**
+- You want a subtle visual enhancement to a section
+- The image should be behind the text
+- You want to create a themed or branded section
+
+---
+
+## 13. Advanced Examples
 
 ### Boeing 737 Checklist
 

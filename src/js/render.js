@@ -285,6 +285,9 @@ function renderElements(elements, container, namedStyles, defaultStyle) {
             case 'text':
                 renderText(element, elementDiv, namedStyles, typeDefaults);
                 break;
+            case 'image':
+                renderImage(element, elementDiv, namedStyles, typeDefaults);
+                break;
             default:
                 renderUnknown(element, elementDiv);
         }
@@ -491,6 +494,51 @@ function renderText(element, container, namedStyles, typeDefaults) {
     }
 
     container.appendChild(textDiv);
+}
+
+/**
+ * Render an image element
+ * @param {Object} element - The image element data
+ * @param {HTMLElement} container - The container to render into
+ * @param {Object} namedStyles - Named styles dictionary
+ * @param {Object} typeDefaults - Default styles for this element type
+ */
+function renderImage(element, container, namedStyles, typeDefaults) {
+    // Render optional title if present
+    if (element.title) {
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'image-title';
+        titleDiv.textContent = element.title;
+
+        // Apply default title style (if present)
+        if (typeDefaults.titleStyle) {
+            applyStylesWithNamed(titleDiv, typeDefaults.titleStyle, namedStyles);
+        }
+
+        // Apply element-specific title styles (overrides defaults)
+        if (element.titleStyle) {
+            applyStylesWithNamed(titleDiv, element.titleStyle, namedStyles);
+        }
+
+        container.appendChild(titleDiv);
+    }
+
+    // Render the image
+    if (element.src) {
+        const img = document.createElement('img');
+        img.className = 'image-content';
+        img.src = element.src;
+
+        // Set alt text (use title if available, otherwise empty string)
+        img.alt = element.title || '';
+
+        // Apply imageStyle to the image element itself
+        if (element.imageStyle) {
+            applyStylesWithNamed(img, element.imageStyle, namedStyles);
+        }
+
+        container.appendChild(img);
+    }
 }
 
 /**

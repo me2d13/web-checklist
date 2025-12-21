@@ -125,7 +125,7 @@ Elements are objects in the `elements` array. Each element must have a `type` fi
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `type` | string | Yes | Element type: [`"sequence"`](#element-type-sequence), [`"text"`](#element-type-text), or [`"page-break"`](#element-type-page-break) |
+| `type` | string | Yes | Element type: [`"sequence"`](#element-type-sequence), [`"text"`](#element-type-text), [`"image"`](#element-type-image), or [`"page-break"`](#element-type-page-break) |
 | [`style`](#styling) | object | No | CSS styles applied to the element container |
 
 ---
@@ -245,7 +245,60 @@ A text element displays custom text content, typically used as notes or instruct
 
 ---
 
+## Element Type: Image
+
+An image element displays an image with an optional title. This is useful for including diagrams, photos, or visual references in checklists.
+
+### Structure
+
+```json
+{
+    "type": "image",
+    "src": "string (required)",
+    "title": "string (optional)",
+    "style": "object|string (optional)",
+    "titleStyle": "object|string (optional)",
+    "imageStyle": "object|string (optional)"
+}
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | Yes | Must be `"image"` |
+| `src` | string | Yes | Path or URL to the image file |
+| `title` | string | No | Optional title displayed above the image |
+| [`style`](#styling) | object\|string | No | CSS styles or [named style](#named-styles) reference applied to the image element container |
+| [`titleStyle`](#styling) | object\|string | No | CSS styles or [named style](#named-styles) reference applied to the image title |
+| [`imageStyle`](#styling) | object\|string | No | CSS styles or [named style](#named-styles) reference applied to the image itself (e.g., for rounded corners, borders, sizing) |
+
+### Example
+
+```json
+{
+    "type": "image",
+    "title": "Cockpit Overview",
+    "src": "images/cockpit.jpg",
+    "imageStyle": {
+        "borderRadius": "8px",
+        "maxWidth": "600px",
+        "border": "2px solid #ddd"
+    }
+}
+```
+
+### Notes
+
+- Images are centered by default
+- The `imageStyle` field allows you to customize the image appearance (e.g., rounded corners, maximum width, borders)
+- Unlike sequences, images do not support `defaultStyle` in the document-level configuration
+- The `title` field works the same way as for sequences - it's optional and displayed above the image when present
+
+---
+
 ## Element Type: Page Break
+
 
 A page break element creates a visual separation in web view and forces a new page when printing. This is useful for organizing long checklists into logical sections.
 
