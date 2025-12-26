@@ -713,8 +713,6 @@ For advanced bookmark management, you can edit bookmarks directly as JSON:
 
 2. **Edit the JSON:**
    
-   ![Bookmark editor](img/t13f-bookmark-editor.png)
-   
    Bookmarks are stored as a JSON array:
    ```json
    [
