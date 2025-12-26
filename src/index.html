@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-language" content="en">
     <title>Web Checklist</title>
-    
+
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#4a90d9">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Checklist">
-    
+
     <!-- Manifest -->
     <link rel="manifest" href="manifest.json">
-    
+
     <!-- Icons -->
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
-    
+
     <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -29,111 +29,164 @@
         <div class="edit-container">
             <div class="title-with-docs">
                 <h1>Web Checklist Generator</h1>
-                <a href="https://github.com/me2d13/web-checklist" target="_blank" rel="noopener noreferrer"
-                    class="docs-link">📖 Documentation</a>
+                <div class="title-right-controls">
+                    <button id="manage-bookmarks-btn" class="btn-manage-bookmarks" title="Manage bookmarks">
+                        🔖 Manage bookmarks
+                    </button>
+                    <a href="https://github.com/me2d13/web-checklist" target="_blank" rel="noopener noreferrer"
+                        class="docs-link">📖 Documentation</a>
+                </div>
             </div>
 
-            <div class="json-editor">
-                <div class="json-editor-header">
-                    <div class="json-editor-label-group">
-                        <label for="json-input">Enter JSON Data:</label>
-                        <span id="url-loader-trigger" class="url-loader-trigger">or load from url</span>
-                        <div id="url-loader-input-group" class="url-loader-input-group hidden">
-                            <input type="text" id="url-input" class="url-input" placeholder="Enter JSON URL..." />
-                            <button id="url-load-confirm" class="url-action-btn url-confirm-btn" title="Load from URL"
-                                aria-label="Load from URL">✓</button>
-                            <button id="url-load-cancel" class="url-action-btn url-cancel-btn" title="Cancel"
-                                aria-label="Cancel">✕</button>
+            <!-- Bookmarks Container (shown when bookmarks exist) -->
+            <div id="bookmarks-container" class="bookmarks-container hidden">
+                <svg class="bookmarks-bg-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                </svg>
+                <span class="bookmarks-bg-label">Current bookmarks</span>
+                <div id="bookmarks-list" class="bookmarks-list">
+                    <!-- Bookmark buttons will be rendered here -->
+                </div>
+            </div>
+
+            <!-- Bookmark Editor Section (hidden by default, replaces JSON editor when active) -->
+            <div id="bookmark-section" class="bookmark-section hidden">
+                <div class="bookmark-editor-header">
+                    <label for="bookmark-input">Edit Bookmarks:</label>
+                    <span class="bookmark-help-text">Enter an array of bookmark objects with "title" and "url"
+                        fields</span>
+                </div>
+                <textarea id="bookmark-input" class="json-textarea"
+                    placeholder='[\n  {\n    "title": "Example Checklist",\n    "url": "https://example.com/checklist.json"\n  }\n]'
+                    rows="20"></textarea>
+                <div class="bookmark-button-container">
+                    <button id="update-bookmarks-btn" class="btn btn-primary">Update bookmarks</button>
+                    <button id="discard-bookmarks-btn" class="btn btn-secondary">Discard bookmark changes</button>
+                </div>
+            </div>
+
+            <!-- Checklist Editor Section (all checklist-related controls) -->
+            <div id="checklist-editor-section">
+                <div class="json-editor">
+                    <div class="json-editor-header">
+                        <div class="json-editor-label-group">
+                            <label for="json-input">Enter JSON Data:</label>
+                            <span id="url-loader-trigger" class="url-loader-trigger">or load from url</span>
+                            <div id="url-loader-input-group" class="url-loader-input-group hidden">
+                                <input type="text" id="url-input" class="url-input" placeholder="Enter JSON URL..." />
+                                <button id="url-load-confirm" class="url-action-btn url-confirm-btn"
+                                    title="Load from URL" aria-label="Load from URL">✓</button>
+                                <button id="url-load-cancel" class="url-action-btn url-cancel-btn" title="Cancel"
+                                    aria-label="Cancel">✕</button>
+                            </div>
+                        </div>
+                        <div class="example-links">
+                            <span class="examples-label">Examples:</span>
+                            <a href="#" class="example-link" data-example="minimal">minimal</a>
+                            <a href="#" class="example-link" data-example="styled">styled</a>
+                            <a href="#" class="example-link" data-example="rich">rich</a>
+                            <a href="#" class="example-link" data-example="737">737</a>
                         </div>
                     </div>
-                    <div class="example-links">
-                        <span class="examples-label">Examples:</span>
-                        <a href="#" class="example-link" data-example="minimal">minimal</a>
-                        <a href="#" class="example-link" data-example="styled">styled</a>
-                        <a href="#" class="example-link" data-example="rich">rich</a>
-                        <a href="#" class="example-link" data-example="737">737</a>
+                    <textarea id="json-input" class="json-textarea" placeholder="Paste or enter JSON data here..."
+                        rows="20"></textarea>
+                </div>
+
+                <!-- URL Info Box (shown when loaded from URL parameter) -->
+                <div id="url-info-box" class="url-info-box hidden">
+                    <div class="url-info-content">
+                        <span class="url-info-icon">🔗</span>
+                        <span class="url-info-text">
+                            The JSON is loaded from URL: <strong id="url-info-source"></strong>
+                        </span>
+                    </div>
+                    <div class="url-info-actions">
+                        <button id="url-add-bookmark-btn" class="url-action-btn-secondary">🔖 Add bookmark</button>
+                        <a href="#" id="url-unload-btn" class="url-unload-btn">Unload</a>
                     </div>
                 </div>
-                <textarea id="json-input" class="json-textarea" placeholder="Paste or enter JSON data here..."
-                    rows="20"></textarea>
-            </div>
 
-            <!-- URL Info Box (shown when loaded from URL parameter) -->
-            <div id="url-info-box" class="url-info-box hidden">
-                <div class="url-info-content">
-                    <span class="url-info-icon">🔗</span>
-                    <span class="url-info-text">
-                        The JSON is loaded from URL: <strong id="url-info-source"></strong>
-                    </span>
+                <!-- Bookmark Title Popup -->
+                <div id="bookmark-title-popup" class="bookmark-title-popup hidden">
+                    <div class="bookmark-title-content">
+                        <h3>Add Bookmark</h3>
+                        <input type="text" id="bookmark-title-input" class="bookmark-title-input"
+                            placeholder="Enter bookmark title..." />
+                        <div class="bookmark-title-actions">
+                            <button id="bookmark-title-save" class="bookmark-title-btn bookmark-title-save">✓
+                                Save</button>
+                            <button id="bookmark-title-cancel" class="bookmark-title-btn bookmark-title-cancel">✗
+                                Cancel</button>
+                        </div>
+                    </div>
                 </div>
-                <a href="#" id="url-unload-btn" class="url-unload-btn">Unload</a>
-            </div>
 
-            <!-- Error Message Box -->
-            <div id="error-box" class="error-box hidden">
-                <div class="error-content">
-                    <span class="error-icon">⚠️</span>
-                    <div class="error-message" id="error-message"></div>
+                <!-- Error Message Box -->
+                <div id="error-box" class="error-box hidden">
+                    <div class="error-content">
+                        <span class="error-icon">⚠️</span>
+                        <div class="error-message" id="error-message"></div>
+                    </div>
+                    <button id="close-error" class="close-error" aria-label="Close error">×</button>
                 </div>
-                <button id="close-error" class="close-error" aria-label="Close error">×</button>
-            </div>
 
-            <!-- Checklist Mode Toggle -->
-            <div class="layout-mode-toggle">
-                <label class="mode-label">Checklist Mode:</label>
-                <div class="segmented-control">
-                    <input type="radio" id="mode-interactive" name="layout-mode" value="interactive" checked>
-                    <label for="mode-interactive" class="segment-label">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M8 2L2 6v8h4V9h4v5h4V6L8 2z" />
+                <!-- Checklist Mode Toggle -->
+                <div class="layout-mode-toggle">
+                    <label class="mode-label">Checklist Mode:</label>
+                    <div class="segmented-control">
+                        <input type="radio" id="mode-interactive" name="layout-mode" value="interactive" checked>
+                        <label for="mode-interactive" class="segment-label">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M8 2L2 6v8h4V9h4v5h4V6L8 2z" />
+                            </svg>
+                            Interactive
+                        </label>
+
+                        <input type="radio" id="mode-print" name="layout-mode" value="print">
+                        <label for="mode-print" class="segment-label">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="1" width="10" height="14" rx="1" />
+                                <line x1="5" y1="4" x2="11" y2="4" />
+                                <line x1="5" y1="7" x2="11" y2="7" />
+                                <line x1="5" y1="10" x2="11" y2="10" />
+                            </svg>
+                            Print
+                        </label>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <div class="button-group-left">
+                        <button id="render-btn" class="btn btn-primary">Render</button>
+                        <button id="render-hide-btn" class="btn btn-secondary">Render and Hide</button>
+                    </div>
+                    <button id="gamepad-helper-btn" class="btn-gamepad-helper">🎮 Game device helper</button>
+                </div>
+
+                <!-- Gamepad Helper Section (hidden by default) -->
+                <div id="gamepad-helper" class="gamepad-helper hidden">
+                    <div class="gamepad-helper-header">
+                        <h3>Game Device Helper</h3>
+                        <button id="close-gamepad-helper" class="close-gamepad-helper">×</button>
+                    </div>
+                    <p class="gamepad-helper-info">
+                        <svg class="info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
                         </svg>
-                        Interactive
-                    </label>
-
-                    <input type="radio" id="mode-print" name="layout-mode" value="print">
-                    <label for="mode-print" class="segment-label">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <rect x="3" y="1" width="10" height="14" rx="1" />
-                            <line x1="5" y1="4" x2="11" y2="4" />
-                            <line x1="5" y1="7" x2="11" y2="7" />
-                            <line x1="5" y1="10" x2="11" y2="10" />
-                        </svg>
-                        Print
-                    </label>
+                        <span>
+                            Checklists can be used in interactive mode with tracking of the current item.
+                            Mark items as completed by mouse click or via an assigned game device button.
+                            <a href="https://github.com/me2d13/web-checklist/blob/master/README.md" target="_blank"
+                                rel="noopener noreferrer">Learn more</a>
+                        </span>
+                    </p>
+                    <div id="gamepad-details"></div>
                 </div>
-            </div>
-
-            <div class="button-container">
-                <div class="button-group-left">
-                    <button id="render-btn" class="btn btn-primary">Render</button>
-                    <button id="render-hide-btn" class="btn btn-secondary">Render and Hide</button>
-                </div>
-                <button id="gamepad-helper-btn" class="btn-gamepad-helper">🎮 Game device helper</button>
-            </div>
-
-            <!-- Gamepad Helper Section (hidden by default) -->
-            <div id="gamepad-helper" class="gamepad-helper hidden">
-                <div class="gamepad-helper-header">
-                    <h3>Game Device Helper</h3>
-                    <button id="close-gamepad-helper" class="close-gamepad-helper">×</button>
-                </div>
-                <p class="gamepad-helper-info">
-                    <svg class="info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
-                    <span>
-                        Checklists can be used in interactive mode with tracking of the current item.
-                        Mark items as completed by mouse click or via an assigned game device button.
-                        <a href="https://github.com/me2d13/web-checklist/blob/master/README.md" target="_blank"
-                            rel="noopener noreferrer">Learn more</a>
-                    </span>
-                </p>
-                <div id="gamepad-details"></div>
             </div>
         </div>
     </div>
@@ -145,6 +198,27 @@
             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
         </svg>
     </button>
+
+    <!-- Floating Bookmark Button (shown when edit section is hidden and bookmarks exist) -->
+    <button id="floating-bookmarks-btn" class="floating-bookmarks-btn hidden" aria-label="Show bookmarks"
+        title="Bookmarks">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+        </svg>
+    </button>
+
+    <!-- Floating Bookmarks Popup -->
+    <div id="floating-bookmarks-popup" class="floating-bookmarks-popup hidden">
+        <div class="floating-bookmarks-content">
+            <div class="floating-bookmarks-header">
+                <h3>Bookmarks</h3>
+                <button id="close-floating-bookmarks" class="close-floating-bookmarks">×</button>
+            </div>
+            <div id="floating-bookmarks-list" class="floating-bookmarks-list">
+                <!-- Bookmark buttons will be rendered here -->
+            </div>
+        </div>
+    </div>
 
     <!-- Checklist Section -->
     <div id="checklist-section" class="checklist-section">
@@ -175,7 +249,7 @@
     </div>
 
     <script type="module" src="js/main.js"></script>
-    
+
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {

@@ -16,7 +16,8 @@ This tutorial will guide you through creating checklists from simple to advanced
 10. [Gamepad Integration](#10-gamepad-integration)
 11. [Loading from URL](#11-loading-from-url)
 12. [Adding Images](#12-adding-images)
-13. [Advanced Examples](#13-advanced-examples)
+13. [Bookmark Management](#13-bookmark-management)
+14. [Advanced Examples](#14-advanced-examples)
 
 ---
 
@@ -643,7 +644,155 @@ You can also use images as backgrounds for sequence sections by applying CSS bac
 
 ---
 
-## 13. Advanced Examples
+## 13. Bookmark Management
+
+**Goal:** Save and quickly access your frequently used checklists.
+
+The bookmark feature allows you to save links to your favorite checklists for quick access, without needing to remember or type URLs. Bookmarks are stored locally in your browser, so they're always available even offline.
+
+### How Bookmarks Work
+
+Bookmarks are stored in your browser's **localStorage**, which means:
+- ✅ **Private:** Only you can see your bookmarks
+- ✅ **Persistent:** Bookmarks survive browser restarts
+- ✅ **No server required:** Everything is stored locally
+- ⚠️ **Browser-specific:** Bookmarks don't sync between different browsers or devices
+- ⚠️ **Clearing browser data:** Bookmarks are deleted if you clear browser storage
+
+### Quick Workflow: Adding a Bookmark
+
+The easiest way to add a bookmark is when you load a checklist via URL:
+
+1. **Load a checklist from URL:**
+   ```
+   https://me2d13.github.io/web-checklist/?url=https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/styled.json
+   ```
+
+2. **Click "Add bookmark" button:**
+   
+   ![URL info box with Add bookmark button](img/t13a-add-bookmark.png)
+   
+   When a checklist is loaded via URL parameter, you'll see an info box at the top showing the source URL. Click the green "🔖 Add bookmark" button.
+
+3. **Enter bookmark title:**
+   
+   ![Bookmark title popup](img/t13b-bookmark-title-popup.png)
+   
+   Enter a descriptive title for your bookmark (e.g., "Boeing 737 Startup", "Cessna Pre-Flight").
+
+4. **Save the bookmark:**
+   
+   Click "✓ Save" or press Enter. The bookmark is immediately saved and appears in the bookmarks bar in the edit section.
+   
+   **Tip:** You can also press Escape or click outside the popup to cancel.
+
+
+### Accessing Bookmarks
+
+**When editing (edit section visible):**
+
+![Bookmarks container in edit mode](img/t13c-bookmarks-edit.png)
+
+Bookmarks appear in a compact bar with a bookmark icon and label. Click any bookmark button to load that checklist.
+
+**When viewing a rendered checklist:**
+
+![Floating bookmark button](img/t13d-floating-button.png)
+
+A green floating bookmark button (🔖) appears in the top-right corner. Click it to open the bookmarks popup.
+
+![Bookmarks popup overlay](img/t13e-bookmarks-popup.png)
+
+The popup shows all your bookmarks with a blurred background. Click any bookmark to load it, or click outside to close.
+
+### Managing Bookmarks
+
+For advanced bookmark management, you can edit bookmarks directly as JSON:
+
+1. **Click "Manage bookmarks" button** in the edit section
+
+2. **Edit the JSON:**
+   
+   ![Bookmark editor](img/t13f-bookmark-editor.png)
+   
+   Bookmarks are stored as a JSON array:
+   ```json
+   [
+     {
+       "title": "Boeing 737 Checklist",
+       "url": "https://raw.githubusercontent.com/me2d13/web-checklist/master/src/examples/737.json"
+     },
+     {
+       "title": "Cessna Pre-Flight",
+       "url": "https://example.com/cessna-preflight.json"
+     }
+   ]
+   ```
+
+3. **Update or discard:**
+   - Click "Update bookmarks" to save changes
+   - Click "Discard bookmark changes" to cancel
+
+### Bookmark JSON Format
+
+Each bookmark is an object with two required fields:
+
+```json
+{
+  "title": "Display name for the bookmark",
+  "url": "https://example.com/checklist.json"
+}
+```
+
+**Fields:**
+- `title` (string, required) - The name shown on the bookmark button
+- `url` (string, required) - The URL to the JSON checklist file
+
+### Use Cases
+
+**Flight Simulation:**
+```json
+[
+  {
+    "title": "737 Normal Procedures",
+    "url": "https://example.com/737-normal.json"
+  },
+  {
+    "title": "737 Emergency",
+    "url": "https://example.com/737-emergency.json"
+  },
+  {
+    "title": "Cessna 172 Pre-Flight",
+    "url": "https://example.com/c172-preflight.json"
+  }
+]
+```
+
+**Different Aircraft:**
+Save checklists for different aircraft you fly and switch between them with one click.
+
+**Shared Checklists:**
+Bookmark checklists shared by your virtual airline or flight school.
+
+**Personal Collections:**
+Organize your own checklist library stored on GitHub or cloud storage.
+
+### Tips
+
+1. **GitHub hosting:** Store checklists on GitHub for reliable URLs
+2. **Quick add:** Use the "Add bookmark" button when loading from URL
+3. **Backup:** Export your bookmarks JSON occasionally to save your collection
+
+### Limitations
+
+- Bookmarks are stored per browser (don't sync across devices)
+- Maximum storage depends on browser (typically 5-10MB for all localStorage)
+- Clearing browser data will delete bookmarks
+- No folders or categories (use descriptive titles instead)
+
+---
+
+## 14. Advanced Examples
 
 ### Boeing 737 Checklist
 

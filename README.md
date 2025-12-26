@@ -40,6 +40,12 @@ Try these example checklists:
 - Real-time device detection
 - Easy configuration with visual helper
 
+🔖 **Bookmark Management**
+- Save frequently used checklists
+- Quick access via floating bookmark button
+- Local storage (no server required)
+- Easy bookmark editing and organization
+
 ## Quick Start
 
 Visit [https://me2d13.github.io/web-checklist/](https://me2d13.github.io/web-checklist/)

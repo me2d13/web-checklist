@@ -1,5 +1,5 @@
 // Service Worker for Web Checklist PWA
-const CACHE_NAME = 'web-checklist-v1';
+const CACHE_NAME = 'web-checklist-v6';
 
 // Files to cache for offline use
 const STATIC_ASSETS = [
@@ -9,6 +9,7 @@ const STATIC_ASSETS = [
   './js/main.js',
   './js/render.js',
   './js/gamepad.js',
+  './js/bookmarks.js',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png'

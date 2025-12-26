@@ -36,7 +36,9 @@ The application has two distinct modes:
 
 **Edit Section** (collapsible):
 - JSON textarea with syntax highlighting
+- URL loader for loading checklists from external URLs
 - Example links (minimal, styled, rich, 737)
+- Bookmark management (add, edit, quick access)
 - Mode selector (Interactive/Print) - segmented control
 - Render buttons (Render, Render and Hide)
 - Game Device Helper for gamepad configuration
@@ -54,12 +56,18 @@ The application has two distinct modes:
 ```
 src/
 ├── index.html          # Main HTML structure
+├── service-worker.js   # PWA service worker for offline support
+├── manifest.json       # PWA manifest for installability
 ├── css/
 │   └── main.css       # All styling (no dynamic CSS generation)
 ├── js/
 │   ├── main.js        # Application initialization, event handlers
 │   ├── render.js      # Checklist rendering logic, interactive mode
-│   └── gamepad.js     # Gamepad API integration, device helper
+│   ├── gamepad.js     # Gamepad API integration, device helper
+│   └── bookmarks.js   # Bookmark management, localStorage integration
+├── icons/
+│   ├── icon-192.png   # PWA icon (192x192)
+│   └── icon-512.png   # PWA icon (512x512)
 └── examples/
     ├── minimal.json   # Basic example
     ├── styled.json    # Styling features
@@ -231,6 +239,56 @@ URL parameters:
 - Export to PDF functionality
 - Checklist templates/presets
 
+## PWA Support
+
+The application is a **Progressive Web App** that can be installed on desktop and mobile devices.
+
+### Service Worker
+
+**File:** `src/service-worker.js`
+
+**Purpose:**
+- Caches static assets for offline use
+- Enables faster load times
+- Required for PWA installability
+
+**Cache Management:**
+- Cache name: `web-checklist-v{N}` (increment N for updates)
+- Cached files: HTML, CSS, JS, icons, manifest
+- Old caches automatically deleted on activation
+
+**IMPORTANT - Cache Versioning:**
+When making changes to HTML, CSS, or JS files:
+1. **Bump the cache version** in `service-worker.js`
+2. Change `CACHE_NAME` from `v{N}` to `v{N+1}`
+3. This forces the service worker to update and clear old cache
+4. Users may need to clear browser cache or unregister service worker
+
+**Development Workflow:**
+```javascript
+// Before changes:
+const CACHE_NAME = 'web-checklist-v4';
+
+// After making changes to any cached file:
+const CACHE_NAME = 'web-checklist-v5';  // Increment version
+```
+
+**Testing Cache Updates:**
+1. Open DevTools → Application tab
+2. Service Workers → Unregister
+3. Clear storage → Clear site data
+4. Hard refresh (Ctrl+Shift+R)
+
+### Manifest
+
+**File:** `src/manifest.json`
+
+Defines app metadata for installation:
+- App name and description
+- Icons (192x192, 512x512)
+- Display mode (standalone)
+- Theme colors
+
 ## Development Notes
 
 - No TypeScript (pure JavaScript)
@@ -240,6 +298,8 @@ URL parameters:
 - Modern browser features assumed (2025+)
 - Gamepad API support required for hardware controls
 - Clipboard API for copy functionality
+- Service Worker API for PWA support
+- LocalStorage API for bookmark persistence
 
 ## Testing Checklist
 
@@ -254,6 +314,10 @@ When making changes, verify:
 - [ ] Styles apply in correct priority order
 - [ ] Examples load via URL parameters
 - [ ] Footer appears on all pages
+- [ ] Bookmarks save and load correctly
+- [ ] Floating bookmark button appears when edit section hidden
+- [ ] Service worker cache version bumped if files changed
+- [ ] PWA installs correctly on mobile/desktop
 
 ## Key Files to Understand
 
@@ -261,5 +325,7 @@ When making changes, verify:
 2. **README.md** - User-facing documentation
 3. **src/js/render.js** - Core rendering logic, interactive features
 4. **src/js/gamepad.js** - Hardware button integration
-5. **src/css/main.css** - All styling rules
-6. **src/examples/737.json** - Real-world complex example
+5. **src/js/bookmarks.js** - Bookmark management, localStorage
+6. **src/css/main.css** - All styling rules
+7. **src/service-worker.js** - PWA caching logic (remember to bump version!)
+8. **src/examples/737.json** - Real-world complex example

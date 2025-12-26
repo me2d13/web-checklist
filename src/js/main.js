@@ -4,6 +4,7 @@
 
 import { renderChecklist, nextItem, previousItem, resetCompletion } from './render.js';
 import { initGamepad, startControlMonitoring, stopControlMonitoring } from './gamepad.js';
+import { initBookmarks, updateBookmarkVisibility } from './bookmarks.js';
 
 // DOM Elements
 const editSection = document.getElementById('edit-section');
@@ -68,6 +69,9 @@ function init() {
 
     // Initialize gamepad support (for helper button to work)
     initGamepad();
+
+    // Initialize bookmarks
+    initBookmarks();
 
     // Check for URL parameter to load example
     checkUrlParameters();
@@ -291,6 +295,7 @@ function handleToggleEdit() {
 function hideEditSection() {
     editSection.classList.add('hidden');
     toggleEditBtn.classList.remove('hidden');
+    updateBookmarkVisibility(false);
 }
 
 /**
@@ -299,6 +304,7 @@ function hideEditSection() {
 function showEditSection() {
     editSection.classList.remove('hidden');
     toggleEditBtn.classList.add('hidden');
+    updateBookmarkVisibility(true);
 }
 
 /**
